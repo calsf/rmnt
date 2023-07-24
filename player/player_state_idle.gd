@@ -11,7 +11,7 @@ func exit(data_state := {}) -> void:
 
 
 func state_process(delta: float) -> void:
-	if (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")) and not player.has_jumped:
+	if (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
 		state_machine.transition_to("Air", {
 				jump = true
 			})

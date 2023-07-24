@@ -17,7 +17,7 @@ func exit(data_state := {}) -> void:
 func state_physics_process(delta: float) -> void:
 	var input_vector = owner.update_movement()
 
-	if Input.is_action_just_pressed("jump") and not owner.has_jumped:
+	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Air", {
 				jump = true
 			})

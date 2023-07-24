@@ -3,78 +3,35 @@ extends KinematicBody2D
 
 const DECEL = 200
 
-const MAX_SPEED = 175
-const RISE_SPEED = 3.5
-const FALL_SPEED = 3
-const MAX_HEIGHT = 48
+const JUMP_IMPULSE = 300
+const GRAVITY = 700
 
 var lane_collisions := []
 
-var knockback = Vector2.ZERO
-
-# Jump props
-var gravity := 0
-var jump_height := 0
-var is_jumping := false
-var is_falling := false
-var has_jumped := false
-var added_height := 0
-var height_change := 0
+var knockback := Vector2.ZERO
+var knockdown := 0
 var is_aerial_stun := false
+
+var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
 
 onready var lane_detection = $LaneDetection
 onready var enemy_child = $SubBody
+onready var ground = $GroundDetection
+onready var feet = $SubBody/Feet
+
+
+func _init():
+	# Add to enemies group
+	add_to_group("enemies")
 
 
 func _ready():
-	pass
+	# Ignore this ground for all enemies, should only collide with own ground
+	get_tree().call_group("enemies", "add_collision_exception", ground)
 
 
 func _physics_process(delta):
 	lane_collisions = lane_detection.get_overlapping_areas()
-	
-	# TEMP HITSTUN BEHAVIOR
-#	knockback = knockback.move_toward(Vector2.ZERO, DECEL * delta)
-#	curr_knockback_strength = clamp(curr_knockback_strength - (DECEL * delta), 0, 9999)
-#	knockback = move_and_slide(knockback)
-#
-#	if is_jumping:
-#		# Increase added height until reaches jump height
-#		# Move player sprite up the same amount
-#		if added_height < jump_height:
-#			gravity += .025 # Apply increasing rise speed
-#			# Avoid jumping above jump height
-#			height_change = min(RISE_SPEED + gravity, jump_height - added_height)
-#
-#			added_height += height_change
-#			enemy_child.position.y -= height_change
-#		else:
-#			gravity = 0
-#			is_falling = true	# Once jump_height is reached, set to falling state
-#			is_jumping = false	# No longer in jump state
-#	elif is_falling:
-#		# Subtract from added height until reaches 0 or less
-#		# Move player sprite down the same amount
-#		if added_height > 0:
-#			gravity += .025	# Apply increasing gravity force
-#			height_change = FALL_SPEED + gravity
-#			# Avoid added_height going below 0
-#			if added_height - height_change < 0:
-#				height_change = added_height
-#
-#			# If not aerial stun attack and is in hitstun, keep enemy suspended in air
-#			if not is_aerial_stun and knockback != Vector2.ZERO:
-#				height_change = 0
-#
-#			added_height -= height_change
-#			enemy_child.position.y += height_change
-#		else:
-#			# Reset jump related values
-#			jump_height = MAX_HEIGHT
-#			added_height = 0
-#			gravity = 0 	# Reset gravity
-#			is_falling = false
-#			has_jumped = false
 
 
 # Triggered by EnemyHurtbox
@@ -91,16 +48,10 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
 				
 				# Aerial hitstun
 				if hitbox_data["knockup"] > 0:
-					jump_height = hitbox_data["knockup"]
-					gravity = 0
-					has_jumped = true
-					is_jumping = true
-					is_falling = false
+					child_velocity.y = -hitbox_data["knockup"]
 					is_aerial_stun = true
 				elif hitbox_data["knockdown"] > 0:
-					gravity = hitbox_data["knockdown"]
-					is_jumping = false
-					is_falling = true
+					knockdown = hitbox_data["knockdown"]
 					is_aerial_stun = true
 				else:
 					# If no knockback or knockdown, this is not an 'aerial hitstun' attack
@@ -109,3 +60,9 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
 				
 				return true
 	return false
+
+
+func add_collision_exception(collision):
+	# If not own ground collision, ignore collision
+	if collision != ground:
+		enemy_child.add_collision_exception_with(collision)

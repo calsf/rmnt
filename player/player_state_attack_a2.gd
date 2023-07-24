@@ -26,7 +26,7 @@ func state_process(delta: float) -> void:
 			state_machine.transition_to("AttackB")
 		elif Input.is_action_just_pressed("attack_c") or player.is_input_buffered("attack_c"):
 			state_machine.transition_to("AttackC")
-		elif (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")) and not player.has_jumped:
+		elif (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
 			state_machine.transition_to("Air", {
 				jump = true
 			})

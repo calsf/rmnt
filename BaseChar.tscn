@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://player/player_state_attack_c.gd" type="Script" id=13]
 [ext_resource path="res://player/player_state_air_attack_a.gd" type="Script" id=14]
 [ext_resource path="res://player/player_state_air_attack_b.gd" type="Script" id=15]
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 12, 3 )
 
 [sub_resource type="Animation" id=14]
 resource_name = "AirAttackA"
@@ -405,6 +408,9 @@ extents = Vector2( 35, 11 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 8, 14 )
 
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 11, 2.5 )
+
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 360, 3 )
 
@@ -422,9 +428,17 @@ position = Vector2( 2, 1 )
 scale = Vector2( 2, 1 )
 texture = ExtResource( 7 )
 
+[node name="GroundDetection" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetection"]
+position = Vector2( -1, 18 )
+shape = SubResource( 17 )
+
 [node name="SubBody" type="KinematicBody2D" parent="."]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 128
 
 [node name="CharSprite" type="Sprite" parent="SubBody"]
 texture = ExtResource( 6 )
@@ -463,14 +477,14 @@ shape = SubResource( 13 )
 [node name="AttackB" type="Area2D" parent="SubBody"]
 script = ExtResource( 11 )
 knockback_x = 100.0
-knockdown = 1.0
+knockdown = 300.0
 
 [node name="AttackB" type="CollisionPolygon2D" parent="SubBody/AttackB"]
 polygon = PoolVector2Array( 40, 16, 40, -27, -18, -27, -18, -12, 10, -12, 10, 16 )
 
 [node name="AttackC" type="Area2D" parent="SubBody"]
 script = ExtResource( 11 )
-knockup = 56.0
+knockup = 300.0
 
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC"]
 polygon = PoolVector2Array( 40, 16, 40, -34, -34, -34, -34, 16, -11, 16, -11, -12, 10, -12, 10, 16 )
@@ -481,6 +495,10 @@ script = ExtResource( 12 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="SubBody/PlayerHurtbox"]
 position = Vector2( 0, 2.5 )
 shape = SubResource( 11 )
+
+[node name="Feet" type="CollisionShape2D" parent="SubBody"]
+position = Vector2( -1, 12.5 )
+shape = SubResource( 18 )
 
 [node name="LaneDetection" type="Area2D" parent="."]
 collision_layer = 2

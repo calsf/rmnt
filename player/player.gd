@@ -2,27 +2,18 @@ class_name Player
 extends KinematicBody2D
 
 const MAX_SPEED = 175
-const RISE_SPEED = 4
-const FALL_SPEED = 2.75
-const MAX_HEIGHT = 56
+const JUMP_IMPULSE = 300
+const GRAVITY = 700
 
 # Movement props
 var speed_x := 120.0
 var speed_y := 100.0
 var velocity := Vector2.ZERO
+var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
 
 # By default, player should face right
 # Used to check if facing left for facing dependant behavior
 var is_facing_left := false
-
-# Jump props
-var gravity := 0
-var jump_height := 0
-var is_jumping := false
-var is_falling := false
-var has_jumped := false
-var added_height := 0
-var height_change := 0
 
 # Other
 var lane_collisions := []
@@ -33,63 +24,21 @@ onready var anim = $SubBody/AnimationPlayer
 onready var player_child = $SubBody
 onready var lane_detection = $LaneDetection
 onready var input_timer = $InputTimer
+onready var ground = $GroundDetection
+
+
+func _init():
+	# Add to players group
+	add_to_group("players")
+
+
+func _ready():
+	# Ignore this ground for all players, should only collide with own ground
+	get_tree().call_group("players", "add_collision_exception", ground)
 
 
 func _physics_process(delta):
 	lane_collisions = lane_detection.get_overlapping_areas()
-#	var lane_collisions = lane_detection.get_overlapping_areas()
-#	var hitbox_collisions = hitbox.get_overlapping_areas()
-#	var hurtbox_collisions = hurtbox.get_overlapping_areas()
-#	if lane_collisions and (hitbox_collisions or hurtbox_collisions):
-#		# Get the parents of objects in same lane
-#		var lane_collision_parents = []
-#		for area in lane_collisions:
-#			lane_collision_parents.append(area.owner)
-#
-#		# Process areas that player is hitting and are in the same lane
-#		for area in hitbox_collisions:
-#			if lane_collision_parents.has(area.owner):
-#				print_debug("hit " + area.owner.name)
-#
-#		# Process areas that are hitting player and are in the same lane
-#		for area in hurtbox_collisions:
-#			if lane_collision_parents.has(area.owner):
-#				print_debug("hurt by " + area.owner.name)
-	
-	
-#	if is_jumping:
-#		# Increase added height until reaches jump height
-#		# Move player sprite up the same amount
-#		if added_height < jump_height:
-#			gravity += .025 # Apply increasing rise speed
-#			# Avoid jumping above jump height
-#			change = min(RISE_SPEED + gravity, jump_height - added_height)
-#
-#			added_height += change
-#			player_child.position.y -= change
-#		else:
-#			gravity = 0
-#			is_falling = true	# Once jump_height is reached, set to falling state
-#			is_jumping = false	# No longer in jump state
-#	elif is_falling:
-#		# Subtract from added height until reaches 0 or less
-#		# Move player sprite down the same amount
-#		if added_height > 0:
-#			gravity += .025	# Apply increasing gravity force
-#			change = FALL_SPEED + gravity
-#			# Avoid added_height going below 0
-#			if added_height - change < 0:
-#				change = added_height
-#
-#			added_height -= change
-#			player_child.position.y += change
-#		else:
-#			# Reset jump related values
-#			jump_height = MAX_HEIGHT
-#			added_height = 0
-#			gravity = 0 	# Reset gravity
-#			is_falling = false
-#			has_jumped = false
 
 
 # Triggered by PlayerHurtbox
@@ -168,3 +117,9 @@ func enable_input_cancel():
 # For disabling input cancels, should always be disabled when exiting a state
 func disable_input_cancel():
 	can_input_cancel = false
+
+
+func add_collision_exception(collision):
+	# If not own ground collision, ignore collision
+	if collision != ground:
+		player_child.add_collision_exception_with(collision)

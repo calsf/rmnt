@@ -18,40 +18,21 @@ func state_physics_process(delta: float) -> void:
 	if enemy.get_slide_count():
 		enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce
 	
-	if enemy.is_jumping:
-		# Increase added height until reaches jump height
-		# Move player sprite up the same amount
-		if enemy.added_height < enemy.jump_height:
-			enemy.gravity += .025 # Apply increasing rise speed
-			# Avoid jumping above jump height
-			enemy.height_change = min(enemy.RISE_SPEED + enemy.gravity, enemy.jump_height - enemy.added_height)
-
-			enemy.added_height += enemy.height_change
-			enemy.enemy_child.position.y -= enemy.height_change
-		else:
-			enemy.gravity = 0
-			enemy.is_falling = true	# Once jump_height is reached, set to falling state
-			enemy.is_jumping = false	# No longer in jump state
-	elif enemy.is_falling:
-		# Subtract from added height until reaches 0 or less
-		# Move player sprite down the same amount
-		if enemy.added_height > 0:
-			enemy.gravity += .025	# Apply increasing gravity force
-			enemy.height_change = enemy.FALL_SPEED + enemy.gravity
-			# Avoid added_height going below 0
-			if enemy.added_height - enemy.height_change < 0:
-				enemy.height_change = enemy.added_height
-			
-			# If not aerial stun attack and is in hitstun, keep enemy suspended in air
-			if not enemy.is_aerial_stun and enemy.knockback != Vector2.ZERO:
-				enemy.height_change = 0
-			
-			enemy.added_height -= enemy.height_change
-			enemy.enemy_child.position.y += enemy.height_change
-		else:
-			# Reset jump related values
-			enemy.jump_height = enemy.MAX_HEIGHT
-			enemy.added_height = 0
-			enemy.gravity = 0 	# Reset gravity
-			enemy.is_falling = false
-			enemy.has_jumped = false
+	if not enemy.is_aerial_stun and enemy.knockback != Vector2.ZERO:
+		return
+	
+	if enemy.knockdown > 0 and enemy.child_velocity.y < 0:
+		enemy.child_velocity.y = enemy.knockdown
+	
+	var initial_child_velocity = enemy.child_velocity
+	enemy.child_velocity.y += enemy.GRAVITY * delta
+	enemy.child_velocity = enemy.enemy_child.move_and_slide(enemy.child_velocity, Vector2.UP)
+	if enemy.enemy_child.get_slide_count() and enemy.knockdown > 0:
+		enemy.child_velocity = initial_child_velocity.bounce(enemy.enemy_child.get_slide_collision(0).normal) * 0.5
+		enemy.knockdown = 0
+		return
+	
+	if enemy.enemy_child.is_on_floor():
+		enemy.knockdown = 0
+		enemy.is_aerial_stun = false
+		state_machine.transition_to("Idle")
