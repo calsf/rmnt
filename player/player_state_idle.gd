@@ -11,7 +11,9 @@ func exit(data_state := {}) -> void:
 
 
 func state_process(delta: float) -> void:
-	if (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
+	if not player.player_child.is_on_floor():
+		state_machine.transition_to("Air")
+	elif (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
 		state_machine.transition_to("Air", {
 				jump = true
 			})
@@ -21,6 +23,8 @@ func state_process(delta: float) -> void:
 		state_machine.transition_to("AttackB")
 	elif Input.is_action_just_pressed("attack_c"):
 		state_machine.transition_to("AttackC")
+	elif Input.is_action_just_pressed("dash"):
+		state_machine.transition_to("Dash")
 	elif Input.is_action_pressed("move_left") \
 			or Input.is_action_pressed("move_right") \
 			or Input.is_action_pressed("move_up") \

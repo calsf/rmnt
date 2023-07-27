@@ -3,7 +3,7 @@ extends PlayerState
 
 func enter(data_state := {}) -> void:
 	player.velocity = Vector2.ZERO
-	player.anim.play("AttackC")
+	player.anim.play("AttackA3")
 
 
 func exit(data_state := {}) -> void:
@@ -13,8 +13,8 @@ func exit(data_state := {}) -> void:
 
 func handle_input(event: InputEvent) -> void:
 	# Bufferable inputs
-	if (event.is_action_pressed("attack_a") \
-			or event.is_action_pressed("attack_b") \
+	if (event.is_action_pressed("attack_b") \
+			or event.is_action_pressed("attack_c") \
 			or event.is_action_pressed("jump") \
 			or event.is_action_pressed("dash")):
 		player.last_input = event
@@ -23,10 +23,10 @@ func handle_input(event: InputEvent) -> void:
 
 func state_process(delta: float) -> void:
 	if player.can_input_cancel:
-		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
-			state_machine.transition_to("AttackA1")
-		elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
+		if Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
 			state_machine.transition_to("AttackB")
+		elif Input.is_action_just_pressed("attack_c") or player.is_input_buffered("attack_c"):
+			state_machine.transition_to("AttackC")
 		elif (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
 			state_machine.transition_to("Air", {
 				jump = true

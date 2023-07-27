@@ -7,7 +7,7 @@ func enter(data_state := {}) -> void:
 		state_machine.transition_to("Idle")
 		return
 	
-	owner.anim.play("Move")
+	player.anim.play("Move")
 
 
 func exit(data_state := {}) -> void:
@@ -21,6 +21,8 @@ func state_physics_process(delta: float) -> void:
 		state_machine.transition_to("Air", {
 				jump = true
 			})
+	elif Input.is_action_just_pressed("dash"):
+		state_machine.transition_to("Dash")
 	elif input_vector.x == 0 and input_vector.y == 0:
 		state_machine.transition_to("Idle")
 	elif Input.is_action_just_pressed("attack_a"):

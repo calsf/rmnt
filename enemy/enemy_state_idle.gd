@@ -11,7 +11,9 @@ func exit(data_state := {}) -> void:
 
 
 func state_physics_process(delta: float) -> void:
-	if enemy.is_aerial_stun:
+	if not enemy.enemy_child.is_on_floor():
+		state_machine.transition_to("HitstunAir")
+	elif enemy.is_aerial_stun:
 		state_machine.transition_to("HitstunAir")
 	elif enemy.knockback != Vector2.ZERO:
 		state_machine.transition_to("Hitstun")

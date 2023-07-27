@@ -21,7 +21,7 @@ func state_physics_process(delta: float) -> void:
 	if not enemy.is_aerial_stun and enemy.knockback != Vector2.ZERO:
 		return
 	
-	if enemy.knockdown > 0 and enemy.child_velocity.y < 0:
+	if enemy.knockdown > 0:
 		enemy.child_velocity.y = enemy.knockdown
 	
 	var initial_child_velocity = enemy.child_velocity

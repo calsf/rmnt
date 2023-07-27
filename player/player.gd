@@ -8,6 +8,8 @@ const GRAVITY = 700
 # Movement props
 var speed_x := 120.0
 var speed_y := 100.0
+var speed_x_dash := 240
+var speed_y_dash := 200
 var velocity := Vector2.ZERO
 var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
 

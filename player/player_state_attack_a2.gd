@@ -15,14 +15,18 @@ func handle_input(event: InputEvent) -> void:
 	# Bufferable inputs
 	if (event.is_action_pressed("attack_a") \
 			or event.is_action_pressed("attack_b") \
-			or event.is_action_pressed("attack_c")):
+			or event.is_action_pressed("attack_c") \
+			or event.is_action_pressed("jump") \
+			or event.is_action_pressed("dash")):
 		player.last_input = event
 		player.input_timer.start()
 
 
 func state_process(delta: float) -> void:
 	if player.can_input_cancel:
-		if Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
+		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
+			state_machine.transition_to("AttackA3")
+		elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
 			state_machine.transition_to("AttackB")
 		elif Input.is_action_just_pressed("attack_c") or player.is_input_buffered("attack_c"):
 			state_machine.transition_to("AttackC")
@@ -30,6 +34,8 @@ func state_process(delta: float) -> void:
 			state_machine.transition_to("Air", {
 				jump = true
 			})
-		
+		elif Input.is_action_just_pressed("dash") or player.is_input_buffered("dash"):
+			state_machine.transition_to("Dash")
+	
 	if not player.anim.is_playing():
 		state_machine.transition_to("Idle")

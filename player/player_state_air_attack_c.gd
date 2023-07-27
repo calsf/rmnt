@@ -1,11 +1,8 @@
 extends PlayerState
 
+
 func enter(data_state := {}) -> void:
-	if data_state.has("jump"):
-		player.anim.play("Jump")
-		player.child_velocity.y = -player.JUMP_IMPULSE
-	else:
-		player.anim.play("AirIdle")
+	player.anim.play("AirAttackC")
 
 
 func exit(data_state := {}) -> void:
@@ -30,21 +27,12 @@ func state_physics_process(delta: float) -> void:
 	player.child_velocity.y += player.GRAVITY * delta
 	player.child_velocity = player.player_child.move_and_slide(player.child_velocity, Vector2.UP)
 	
-	if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
-		state_machine.transition_to("AirAttackA")
-	elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
-		state_machine.transition_to("AirAttackB")
-	elif Input.is_action_just_pressed("attack_c") or player.is_input_buffered("attack_c"):
-		state_machine.transition_to("AirAttackC")
-	elif Input.is_action_just_pressed("dash"):
-		state_machine.transition_to("Dash")
-	
 	if player.player_child.is_on_floor():
-		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
+		if Input.is_action_just_pressed("attack_a"):
 			state_machine.transition_to("AttackA1")
-		elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
+		elif Input.is_action_just_pressed("attack_b"):
 			state_machine.transition_to("AttackB")
-		elif Input.is_action_just_pressed("attack_c") or player.is_input_buffered("attack_c"):
+		elif Input.is_action_just_pressed("attack_c"):
 			state_machine.transition_to("AttackC")
 		elif (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
 			state_machine.transition_to("Air", {
@@ -54,3 +42,14 @@ func state_physics_process(delta: float) -> void:
 			state_machine.transition_to("Dash")
 		else:
 			state_machine.transition_to("Idle")
+
+	if player.can_input_cancel:
+		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
+			state_machine.transition_to("AirAttackA")
+		elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
+			state_machine.transition_to("AirAttackB")
+		elif Input.is_action_just_pressed("dash") or player.is_input_buffered("dash"):
+			state_machine.transition_to("Dash")
+	
+	if not player.anim.is_playing():
+		state_machine.transition_to("Air")

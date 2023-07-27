@@ -50,7 +50,7 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
 				if hitbox_data["knockup"] > 0:
 					child_velocity.y = -hitbox_data["knockup"]
 					is_aerial_stun = true
-				elif hitbox_data["knockdown"] > 0:
+				elif hitbox_data["knockdown"] > 0 and not enemy_child.is_on_floor():
 					knockdown = hitbox_data["knockdown"]
 					is_aerial_stun = true
 				else:
