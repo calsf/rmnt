@@ -58,11 +58,38 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
 					# Use this to determine whether enemy should fall or stay suspended in air during hit stun
 					is_aerial_stun = false
 				
+				hitstop([self, hitbox_owner])
+				
 				return true
 	return false
 
 
-func add_collision_exception(collision):
+func add_collision_exception(collision) -> void:
 	# If not own ground collision, ignore collision
 	if collision != ground:
 		enemy_child.add_collision_exception_with(collision)
+
+
+func hitstop(objects_hit := [], duration := .05) -> void:
+	for obj in objects_hit:
+		pause_scene(obj, true)
+	yield(get_tree().create_timer(duration), "timeout")
+	for obj in objects_hit:
+		pause_scene(obj, false)
+
+
+# Pause specific node and all the children
+func pause_scene(node, is_paused):
+	pause_node(node, is_paused)
+	for child in node.get_children():
+		pause_node(child, is_paused)
+
+
+# Pause specific node
+func pause_node(node, is_paused):
+	node.set_process(!is_paused)
+	node.set_physics_process(!is_paused)
+	node.set_process_input(!is_paused)
+	node.set_process_internal(!is_paused)
+	# node.set_process_unhandled_input(!is_paused)
+	# node.set_process_unhandled_key_input(!is_paused)
