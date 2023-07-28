@@ -2,7 +2,7 @@ extends EnemyState
 
 
 func enter(data_state := {}) -> void:
-	pass
+	enemy.anim.play("Idle")
 
 
 func exit(data_state := {}) -> void:

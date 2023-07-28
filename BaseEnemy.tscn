@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://Char001.png" type="Texture" id=1]
+[ext_resource path="res://enemy/EN001/EN001-Idle.png" type="Texture" id=1]
 [ext_resource path="res://player_shadow.png" type="Texture" id=2]
 [ext_resource path="res://enemy/enemy_hurtbox.gd" type="Script" id=3]
 [ext_resource path="res://enemy/enemy.gd" type="Script" id=4]
@@ -9,15 +9,176 @@
 [ext_resource path="res://enemy/enemy_state_idle.gd" type="Script" id=7]
 [ext_resource path="res://enemy/enemy_state_hitstun.gd" type="Script" id=8]
 [ext_resource path="res://enemy/enemy_state_hitstun_air.gd" type="Script" id=9]
+[ext_resource path="res://enemy/EN001/EN001-Hit.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 14.5, 3.5 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Hit1"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Hit2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Idle"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
 
 [sub_resource type="CapsuleShape2D" id=4]
 height = 12.0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 10, 14 )
+extents = Vector2( 10.5, 14 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 11, 3 )
@@ -51,11 +212,15 @@ collision_layer = 0
 collision_mask = 256
 
 [node name="EnemySprite" type="Sprite" parent="SubBody"]
-modulate = Color( 0.231373, 0.231373, 0.231373, 1 )
 texture = ExtResource( 1 )
-hframes = 22
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SubBody"]
+autoplay = "Idle"
+anims/Hit1 = SubResource( 7 )
+anims/Hit2 = SubResource( 8 )
+anims/Idle = SubResource( 9 )
+anims/RESET = SubResource( 10 )
 
 [node name="EnemyHitbox" type="Area2D" parent="SubBody"]
 script = ExtResource( 5 )
@@ -68,6 +233,7 @@ shape = SubResource( 4 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/EnemyHurtbox"]
+position = Vector2( 0.5, 0 )
 shape = SubResource( 3 )
 
 [node name="Feet" type="CollisionShape2D" parent="SubBody"]

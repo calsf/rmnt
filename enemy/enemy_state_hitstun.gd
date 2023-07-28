@@ -20,3 +20,6 @@ func state_physics_process(delta: float) -> void:
 	enemy.knockback = enemy.move_and_slide(enemy.knockback)
 	if enemy.get_slide_count():
 		enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce
+	
+	if enemy.knockback == Vector2.ZERO:
+		state_machine.transition_to("Idle")

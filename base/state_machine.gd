@@ -44,7 +44,7 @@ func transition_to(target_state_name: String, data_state: Dictionary = {}) -> vo
 	if not has_node(target_state_name):
 		print("MISSING STATE: " + target_state_name)
 		return
-
+	
 	curr_state.exit(data_state)
 	curr_state = get_node(target_state_name)
 	curr_state.enter(data_state)

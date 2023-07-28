@@ -37,7 +37,7 @@ func state_physics_process(delta: float) -> void:
 	player.turn(player.velocity.x)
 	
 	if player.can_input_cancel:
-		if player.is_on_floor():
+		if player.player_child.is_on_floor():
 			if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
 				state_machine.transition_to("AttackA1")
 			elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):

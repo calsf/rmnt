@@ -13,11 +13,13 @@ var knockdown := 0
 var is_aerial_stun := false
 
 var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
+var hit_frame := false # Toggle to switch between hit stun frames
 
 onready var lane_detection = $LaneDetection
 onready var enemy_child = $SubBody
 onready var ground = $GroundDetection
 onready var feet = $SubBody/Feet
+onready var anim = $SubBody/AnimationPlayer
 
 
 func _init():
@@ -59,6 +61,7 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
 					is_aerial_stun = false
 				
 				hitstop([self, hitbox_owner])
+				toggle_hit_frame()
 				
 				return true
 	return false
@@ -76,6 +79,14 @@ func hitstop(objects_hit := [], duration := .05) -> void:
 	yield(get_tree().create_timer(duration), "timeout")
 	for obj in objects_hit:
 		pause_scene(obj, false)
+
+
+func toggle_hit_frame():
+	if hit_frame:
+		anim.play("Hit1")
+	else:
+		anim.play("Hit2")
+	hit_frame = not hit_frame
 
 
 # Pause specific node and all the children
