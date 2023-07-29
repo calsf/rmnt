@@ -1,16 +1,22 @@
 class_name Enemy
 extends KinematicBody2D
 
-const DECEL = 200
-
 const JUMP_IMPULSE = 300
 const GRAVITY = 700
+
+export var props : Resource
 
 var lane_collisions := []
 
 var knockback := Vector2.ZERO
 var knockdown := 0
 var is_aerial_stun := false
+
+# Enemy "adaptability" to repeated attacks
+# Deals reduced damage on repeat attacks
+var attacked_by_max = 5
+var dmg_multipliers := [.8, .7, .5, .4, .2] # Corresponding multipliers for [oldest -> most recent]
+var attacked_by_hitboxes := [] # Keep track of attacks hit by [oldest -> most recent]
 
 var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
 var hit_frame := false # Toggle to switch between hit stun frames
@@ -37,23 +43,34 @@ func _physics_process(delta):
 
 
 # Triggered by EnemyHurtbox
-func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
+func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner, hitbox) -> bool:
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
 			if area.owner == hitbox_owner:
 				print_debug(self.name + "HIT BY PLAYER")
-				# TEMP HIT STUN BEHAVIOR
+				
+				# Find the last attacked by instance which would be most recent instance of the attack
+				var attacked_by_index = attacked_by_hitboxes.find_last(hitbox)
+				var dmg_multiplier = 1 # Default multiplier
+				if attacked_by_index != -1:
+					dmg_multiplier = dmg_multipliers[attacked_by_index]
+				var hitbox_damage = (hitbox_data["damage"] * dmg_multiplier)
+				
 				# X and Y hitstun
-				var knockback_vector = Vector2(hitbox_data["knockback_x"], hitbox_data["knockback_y"])
+				var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
+				var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
+				var knockback_vector = Vector2(hitbox_knockback_x, hitbox_knockback_y)
 				knockback = knockback_vector
 				
 				# Aerial hitstun
-				if hitbox_data["knockup"] > 0:
-					child_velocity.y = -hitbox_data["knockup"]
+				var hitbox_knockup = (hitbox_data["knockup"] * props.air_hitstun_multiplier)
+				var hitbox_knockdown = (hitbox_data["knockdown"] * props.air_hitstun_multiplier)
+				if hitbox_knockup > 0:
+					child_velocity.y = -hitbox_knockup
 					is_aerial_stun = true
-				elif hitbox_data["knockdown"] > 0 and not enemy_child.is_on_floor():
-					knockdown = hitbox_data["knockdown"]
+				elif hitbox_knockdown > 0 and not enemy_child.is_on_floor():
+					knockdown = hitbox_knockdown
 					is_aerial_stun = true
 				else:
 					# If no knockback or knockdown, this is not an 'aerial hitstun' attack
@@ -62,6 +79,11 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
 				
 				hitstop([self, hitbox_owner])
 				toggle_hit_frame()
+				
+				# Push most recent attack to back
+				attacked_by_hitboxes.append(hitbox)
+				if attacked_by_hitboxes.size() > attacked_by_max:
+					attacked_by_hitboxes.pop_front() # Remove oldest which is at front
 				
 				return true
 	return false

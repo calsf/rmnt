@@ -1,15 +1,12 @@
 class_name Player
 extends KinematicBody2D
 
-const MAX_SPEED = 175
 const JUMP_IMPULSE = 300
 const GRAVITY = 700
 
+export var props : Resource
+
 # Movement props
-var speed_x := 120.0
-var speed_y := 100.0
-var speed_x_dash := 240
-var speed_y_dash := 200
 var velocity := Vector2.ZERO
 var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
 
@@ -87,8 +84,8 @@ func get_movement_input() -> Vector2:
 # Move player based on input, returns input vector
 func update_movement() -> Vector2:
 	var input_vector = get_movement_input()
-	velocity.x = speed_x * input_vector.x
-	velocity.y = speed_y * input_vector.y
+	velocity.x = props.speed_x * input_vector.x
+	velocity.y = props.speed_y * input_vector.y
 	velocity = move_and_slide(velocity)
 	turn(velocity.x)
 	

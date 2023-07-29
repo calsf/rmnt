@@ -31,8 +31,8 @@ func handle_input(event: InputEvent) -> void:
 
 
 func state_physics_process(delta: float) -> void:
-	player.velocity.x = player.speed_x_dash * initial_input_vector.x
-	player.velocity.y = player.speed_y_dash * initial_input_vector.y
+	player.velocity.x = player.props.speed_x_dash * initial_input_vector.x
+	player.velocity.y = player.props.speed_y_dash * initial_input_vector.y
 	player.velocity = player.move_and_slide(player.velocity)
 	player.turn(player.velocity.x)
 	

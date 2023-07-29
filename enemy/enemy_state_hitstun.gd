@@ -16,7 +16,7 @@ func state_physics_process(delta: float) -> void:
 			state_machine.transition_to("HitstunAir")
 	
 	var initial_knockback = enemy.knockback
-	enemy.knockback = enemy.knockback.move_toward(Vector2.ZERO, enemy.DECEL * delta)
+	enemy.knockback = enemy.knockback.move_toward(Vector2.ZERO, enemy.props.ground_decel * delta)
 	enemy.knockback = enemy.move_and_slide(enemy.knockback)
 	if enemy.get_slide_count():
 		enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce

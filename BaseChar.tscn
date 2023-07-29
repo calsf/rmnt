@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://player/player_state_air_attack_c.gd" type="Script" id=27]
 [ext_resource path="res://player/RM001/RM001-Dash.png" type="Texture" id=28]
 [ext_resource path="res://player/player_state_dash.gd" type="Script" id=29]
+[ext_resource path="res://player/RM001/RM001.tres" type="Resource" id=30]
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 12, 3 )
@@ -899,6 +900,7 @@ height = 16.0
 position = Vector2( 168, 80 )
 collision_layer = 2
 script = ExtResource( 5 )
+props = ExtResource( 30 )
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2, 1 )

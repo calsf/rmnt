@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/enemy_hurtbox.gd"
 }, {
+"base": "Resource",
+"class": "EnemyProps",
+"language": "GDScript",
+"path": "res://enemy/enemy_props.gd"
+}, {
 "base": "State",
 "class": "EnemyState",
 "language": "GDScript",
@@ -44,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player_hurtbox.gd"
 }, {
+"base": "Resource",
+"class": "PlayerProps",
+"language": "GDScript",
+"path": "res://player/player_props.gd"
+}, {
 "base": "State",
 "class": "PlayerState",
 "language": "GDScript",
@@ -63,10 +73,12 @@ _global_script_class_icons={
 "Enemy": "",
 "EnemyHitbox": "",
 "EnemyHurtbox": "",
+"EnemyProps": "",
 "EnemyState": "",
 "Player": "",
 "PlayerHitbox": "",
 "PlayerHurtbox": "",
+"PlayerProps": "",
 "PlayerState": "",
 "State": "",
 "StateMachine": ""
