@@ -6,8 +6,7 @@ func enter(data_state := {}) -> void:
 
 
 func exit(data_state := {}) -> void:
-	# Disable hitboxes?
-	pass
+	enemy.is_aerial_stun = false
 
 
 func state_physics_process(delta: float) -> void:

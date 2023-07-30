@@ -6,6 +6,14 @@ const GRAVITY = 700
 
 export var props : Resource
 
+# Movement props
+var velocity := Vector2.ZERO
+var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
+
+# By default, enemy should face right
+# Used to check if facing left for facing dependant behavior
+var is_facing_left := false
+
 var lane_collisions := []
 
 var knockback := Vector2.ZERO
@@ -18,14 +26,26 @@ var attacked_by_max = 5
 var dmg_multipliers := [.8, .7, .5, .4, .2] # Corresponding multipliers for [oldest -> most recent]
 var attacked_by_hitboxes := [] # Keep track of attacks hit by [oldest -> most recent]
 
-var child_velocity := Vector2.ZERO # Velocity for nested kinematic body
 var hit_frame := false # Toggle to switch between hit stun frames
+
+# Set of Dictionary objects from EnemyRangebox, each entry contains trigger state info
+# Trigger states are states that enemy can transition to
+# Only one Dictionary object should exist for each unique trigger state name
+var trigger_states := []
+
+# The trigger state currently waiting to trigger
+# When a trigger state is selected to trigger, delay trigger by some time based on the trigger state info
+# Should be cleared upon state trigger or when it is removed from set of trigger_states
+var waiting_state = null
 
 onready var lane_detection = $LaneDetection
 onready var enemy_child = $SubBody
 onready var ground = $GroundDetection
 onready var feet = $SubBody/Feet
 onready var anim = $SubBody/AnimationPlayer
+onready var pushbox = $Pushbox
+onready var delay_timer = $DelayTimer
+onready var players = get_tree().get_nodes_in_group("players")
 
 
 func _init():
@@ -43,7 +63,10 @@ func _physics_process(delta):
 
 
 # Triggered by EnemyHurtbox
-func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner, hitbox) -> bool:
+func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
+	var hitbox_data = hitbox.get_data_state()
+	var hitbox_owner = hitbox.owner
+		
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
@@ -87,6 +110,100 @@ func on_enemy_hurtbox_hit(hitbox_data, hitbox_owner, hitbox) -> bool:
 				
 				return true
 	return false
+
+
+func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : EnemyRangebox) -> bool:
+	var other_rangebox_owner = other_rangebox.owner
+	
+	# Objects must be in same lane for hurtbox/hitbox interaction
+	if lane_collisions:
+		for area in lane_collisions:
+			if area.owner == other_rangebox_owner:
+				# Avoid duplicate trigger states
+				if find_trigger_state(enemy_rangebox.trigger_state_name) == -1:
+					trigger_states.append({
+							"trigger_state_name": enemy_rangebox.trigger_state_name,
+							"trigger_min_delay": enemy_rangebox.trigger_min_delay,
+							"trigger_max_delay": enemy_rangebox.trigger_max_delay
+						})
+					return true
+	return false
+
+
+# Turn enemy to face left or right
+func turn(facing_x) -> void:
+	if facing_x < 0 and scale.y > 0:
+		self.scale.y = -1
+		self.rotation_degrees = 180
+		is_facing_left = true
+	elif facing_x > 0 and scale.y < 0:
+		self.scale.y = 1
+		self.rotation_degrees = 0
+		is_facing_left = false
+
+
+# Disable all hitboxes, should always be called when exiting an attack state
+func disable_all_hitboxes() -> void:
+	for child in enemy_child.get_children():
+		if child is EnemyHitbox:
+			for collision in child.get_children():
+				collision.disabled = true
+
+
+# Checks for timer and if is waiting on a state
+# Returns true if state should be triggered
+# Returns false if is waiting
+# Set random trigger state if no waiting state/no state to be triggered
+func should_trigger_random_state() -> bool:
+	if delay_timer.is_stopped():
+		if waiting_state == null:
+			# Timer is stopped and not waiting for a state to trigger
+			set_random_trigger_state()
+			return false
+		else:
+			# Timer is stopped and is waiting on a state, trigger state
+			return true
+	else:
+		# If waiting state was cleared, stop timer
+		if waiting_state == null:
+			delay_timer.stop()
+		
+		# Do not trigger state
+		return false
+
+
+# Get and set a random trigger state to wait for and start timer to wait
+func set_random_trigger_state():
+	randomize()
+	var random_state = randi() % trigger_states.size()
+	waiting_state = trigger_states[random_state]
+	
+	randomize()
+	var wait = rand_range(waiting_state.trigger_min_delay, waiting_state.trigger_max_delay)
+	
+	delay_timer.start(wait)
+
+
+# Removes trigger state and clears waiting state if trigger state was removed
+func remove_trigger_state(trigger_state : String) -> void:
+	var state_index = find_trigger_state(trigger_state)
+	if state_index != -1:
+		# Clear waiting state if trigger state is being removed
+		if waiting_state != null \
+				and waiting_state.trigger_state_name == trigger_state:
+			waiting_state = null
+		trigger_states.remove(state_index)
+
+
+# Find Dictionary entry in trigger_states for the given trigger state name
+# Returns the index of the entry, -1 if not found
+func find_trigger_state(trigger_state : String) -> int:
+	for i in range(0, trigger_states.size()):
+		if trigger_states[i].trigger_state_name == trigger_state:
+			return i
+	
+	# Not found
+	return -1
 
 
 func add_collision_exception(collision) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://player/RM001/RM001-Dash.png" type="Texture" id=28]
 [ext_resource path="res://player/player_state_dash.gd" type="Script" id=29]
 [ext_resource path="res://player/RM001/RM001.tres" type="Resource" id=30]
+[ext_resource path="res://player/player_rangebox.gd" type="Script" id=31]
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 12, 3 )
@@ -889,6 +890,9 @@ extents = Vector2( 8, 14 )
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 11, 2.5 )
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 8, 14 )
+
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 360, 3 )
 
@@ -1016,6 +1020,13 @@ shape = SubResource( 11 )
 [node name="Feet" type="CollisionShape2D" parent="SubBody"]
 position = Vector2( -1, 12.5 )
 shape = SubResource( 18 )
+
+[node name="PlayerRangebox" type="Area2D" parent="SubBody"]
+script = ExtResource( 31 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerRangebox"]
+position = Vector2( 0, 2.5 )
+shape = SubResource( 23 )
 
 [node name="LaneDetection" type="Area2D" parent="."]
 collision_layer = 2

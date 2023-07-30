@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://enemy/EN001/EN001-Idle.png" type="Texture" id=1]
 [ext_resource path="res://player_shadow.png" type="Texture" id=2]
@@ -11,9 +11,121 @@
 [ext_resource path="res://enemy/enemy_state_hitstun_air.gd" type="Script" id=9]
 [ext_resource path="res://enemy/EN001/EN001-Hit.png" type="Texture" id=10]
 [ext_resource path="res://enemy/EN001/EN001.tres" type="Resource" id=11]
+[ext_resource path="res://enemy_rangebox.gd" type="Script" id=12]
+[ext_resource path="res://enemy/EN001/EN001-AttackA.png" type="Texture" id=13]
+[ext_resource path="res://enemy/enemy_state_move.gd" type="Script" id=14]
+[ext_resource path="res://enemy/enemy_pushbox.gd" type="Script" id=15]
+[ext_resource path="res://enemy/enemy_state_attack_a.gd" type="Script" id=16]
+[ext_resource path="res://enemy/EN001/EN001-AttackB.png" type="Texture" id=17]
+[ext_resource path="res://enemy/enemy_state_attack_b.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 14.5, 3.5 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "AttackA"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackA/AttackA:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "AttackB"
+length = 1.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackB/AttackB:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Hit1"
@@ -136,6 +248,47 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "Move"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
 [sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
@@ -174,9 +327,24 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackA/AttackA:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
-[sub_resource type="CapsuleShape2D" id=4]
-height = 12.0
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 34, 13 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 25.5, 28 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10.5, 14 )
@@ -190,6 +358,15 @@ extents = Vector2( 360, 3 )
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 3.0
 height = 16.0
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 45, 13 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 26.5, 36.5 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 4, 3.5 )
 
 [node name="BaseEnemy" type="KinematicBody2D"]
 collision_layer = 16
@@ -219,17 +396,28 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SubBody"]
 autoplay = "Idle"
+anims/AttackA = SubResource( 11 )
+anims/AttackB = SubResource( 16 )
 anims/Hit1 = SubResource( 7 )
 anims/Hit2 = SubResource( 8 )
 anims/Idle = SubResource( 9 )
+anims/Move = SubResource( 13 )
 anims/RESET = SubResource( 10 )
 
-[node name="EnemyHitbox" type="Area2D" parent="SubBody"]
+[node name="AttackA" type="Area2D" parent="SubBody"]
 script = ExtResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/EnemyHitbox"]
-position = Vector2( 16, 0 )
-shape = SubResource( 4 )
+[node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA"]
+position = Vector2( 0, 3 )
+shape = SubResource( 15 )
+disabled = true
+
+[node name="AttackB" type="Area2D" parent="SubBody"]
+script = ExtResource( 5 )
+
+[node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB"]
+position = Vector2( 19.5, -12 )
+shape = SubResource( 17 )
 
 [node name="EnemyHurtbox" type="Area2D" parent="SubBody"]
 script = ExtResource( 3 )
@@ -255,6 +443,41 @@ position = Vector2( 0, 13 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
+[node name="RangeBoxAttackA" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 12 )
+trigger_state_name = "AttackA"
+trigger_min_delay = 0.1
+trigger_max_delay = 0.25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeBoxAttackA"]
+position = Vector2( 2, 3 )
+shape = SubResource( 12 )
+
+[node name="RangeBoxAttackB" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 12 )
+trigger_state_name = "AttackB"
+trigger_min_delay = 0.6
+trigger_max_delay = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeBoxAttackB"]
+position = Vector2( 20.5, -20.5 )
+shape = SubResource( 18 )
+
+[node name="Pushbox" type="Area2D" parent="."]
+script = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pushbox"]
+position = Vector2( 0, 12.5 )
+shape = SubResource( 14 )
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="States" type="Node" parent="."]
 script = ExtResource( 6 )
 initial_state = NodePath("Idle")
@@ -267,3 +490,12 @@ script = ExtResource( 8 )
 
 [node name="HitstunAir" type="Node" parent="States"]
 script = ExtResource( 9 )
+
+[node name="Move" type="Node" parent="States"]
+script = ExtResource( 14 )
+
+[node name="AttackA" type="Node" parent="States"]
+script = ExtResource( 16 )
+
+[node name="AttackB" type="Node" parent="States"]
+script = ExtResource( 18 )

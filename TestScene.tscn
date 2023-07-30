@@ -10,7 +10,7 @@ extents = Vector2( 160, 36 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 60, 90 )
 
-[node name="Scene" type="Node2D" groups=["enemies", "players"]]
+[node name="Scene" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 18

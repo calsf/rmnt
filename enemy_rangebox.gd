@@ -1,5 +1,12 @@
-class_name PlayerHurtbox
+class_name EnemyRangebox
 extends Area2D
+
+# The state name to trigger upon entering this rangebox
+export var trigger_state_name : String
+
+# The time range for delaying transitioning to the trigger state name
+export var trigger_min_delay := 0.05
+export var trigger_max_delay := 0.05
 
 # Areas currently overlapping with hurtbox
 var _curr_areas := []
@@ -9,8 +16,9 @@ func _init() -> void:
 	# No collision layer
 	collision_layer = 0
 	
-	# Collide with EnemyHitbox layers
-	collision_mask = 32
+	# Collide with PlayerRangebox layers
+	collision_mask = 1024
+
 
 func _ready():
 	connect("area_entered", self, "_on_area_entered")
@@ -23,22 +31,25 @@ func _physics_process(delta):
 		_on_area_entered(area)
 
 
-func _on_area_entered(enemy_hitbox : EnemyHitbox) -> void:
-	if enemy_hitbox == null:
+func _on_area_entered(player_rangebox : PlayerRangebox) -> void:
+	if player_rangebox == null:
 		return
 	
 	# Objects may not be in same lane on area entered and may enter lane while still overlapping
 	# Keep track of reference to area to keep checking for collision in _physics_process
 	# If hit, remove the reference to stop checking
-	if owner.has_method("on_player_hurtbox_hit"):
-		if owner.on_player_hurtbox_hit(enemy_hitbox):
-			_on_area_exited(enemy_hitbox)
-		elif not _curr_areas.has(enemy_hitbox):
-			_curr_areas.append(enemy_hitbox)
+	if owner.has_method("on_enemy_rangebox_hit"):
+		if owner.on_enemy_rangebox_hit(player_rangebox, self):
+			# Do not remove trigger state from enemy's set of trigger states until area is exited
+			return
+		elif not _curr_areas.has(player_rangebox):
+			_curr_areas.append(player_rangebox)
 
 
 func _on_area_exited(area) -> void:
 	# Also remove reference on area exit
+	if owner.has_method("remove_trigger_state"):
+		owner.remove_trigger_state(trigger_state_name)
 	var area_remove = _curr_areas.find(area)
 	if area_remove == -1:
 		return

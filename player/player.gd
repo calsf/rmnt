@@ -41,7 +41,10 @@ func _physics_process(delta):
 
 
 # Triggered by PlayerHurtbox
-func on_player_hurtbox_hit(hitbox_data, hitbox_owner) -> bool:
+func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
+	var hitbox_data = hitbox.get_data_state()
+	var hitbox_owner = hitbox.owner
+	
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:

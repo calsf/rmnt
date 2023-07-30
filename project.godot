@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/enemy_props.gd"
 }, {
+"base": "Area2D",
+"class": "EnemyRangebox",
+"language": "GDScript",
+"path": "res://enemy_rangebox.gd"
+}, {
 "base": "State",
 "class": "EnemyState",
 "language": "GDScript",
@@ -54,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player_props.gd"
 }, {
+"base": "Area2D",
+"class": "PlayerRangebox",
+"language": "GDScript",
+"path": "res://player/player_rangebox.gd"
+}, {
 "base": "State",
 "class": "PlayerState",
 "language": "GDScript",
@@ -74,11 +84,13 @@ _global_script_class_icons={
 "EnemyHitbox": "",
 "EnemyHurtbox": "",
 "EnemyProps": "",
+"EnemyRangebox": "",
 "EnemyState": "",
 "Player": "",
 "PlayerHitbox": "",
 "PlayerHurtbox": "",
 "PlayerProps": "",
+"PlayerRangebox": "",
 "PlayerState": "",
 "State": "",
 "StateMachine": ""
@@ -161,6 +173,9 @@ dash={
 2d_physics/layer_7="EnemyHurtbox"
 2d_physics/layer_8="PlayerGround"
 2d_physics/layer_9="EnemyGround"
+2d_physics/layer_10="EnemyRangebox"
+2d_physics/layer_11="PlayerRangebox"
+2d_physics/layer_12="EnemyPushbox"
 
 [physics]
 
