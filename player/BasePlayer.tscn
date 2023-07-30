@@ -1,0 +1,170 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
+[ext_resource path="res://base/state_machine.gd" type="Script" id=2]
+[ext_resource path="res://player/player_state_air.gd" type="Script" id=3]
+[ext_resource path="res://player/player_state_move.gd" type="Script" id=4]
+[ext_resource path="res://player/player.gd" type="Script" id=5]
+[ext_resource path="res://player/RM001/RM001-Idle.png" type="Texture" id=6]
+[ext_resource path="res://player_shadow.png" type="Texture" id=7]
+[ext_resource path="res://player/player_state_attack_b.gd" type="Script" id=8]
+[ext_resource path="res://player/player_state_attack_a2.gd" type="Script" id=9]
+[ext_resource path="res://player/player_state_attack_a1.gd" type="Script" id=10]
+[ext_resource path="res://player/player_hitbox.gd" type="Script" id=11]
+[ext_resource path="res://player/player_hurtbox.gd" type="Script" id=12]
+[ext_resource path="res://player/player_state_attack_c.gd" type="Script" id=13]
+[ext_resource path="res://player/player_state_air_attack_a.gd" type="Script" id=14]
+[ext_resource path="res://player/player_state_air_attack_b.gd" type="Script" id=15]
+[ext_resource path="res://player/player_state_attack_a3.gd" type="Script" id=25]
+[ext_resource path="res://player/player_state_air_attack_c.gd" type="Script" id=27]
+[ext_resource path="res://player/player_state_dash.gd" type="Script" id=29]
+[ext_resource path="res://player/RM001/RM001.tres" type="Resource" id=30]
+[ext_resource path="res://player/player_rangebox.gd" type="Script" id=31]
+[ext_resource path="res://player/player_state_hitstun.gd" type="Script" id=33]
+[ext_resource path="res://player/player_state_hitstun_air.gd" type="Script" id=34]
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 12, 3 )
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 11, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 360, 3 )
+
+[node name="BasePlayer" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 5 )
+props = ExtResource( 30 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 2, 1 )
+scale = Vector2( 2, 1 )
+texture = ExtResource( 7 )
+
+[node name="GroundDetection" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetection"]
+position = Vector2( -1, 18 )
+shape = SubResource( 17 )
+
+[node name="SubBody" type="KinematicBody2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CharSprite" type="Sprite" parent="SubBody"]
+texture = ExtResource( 6 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubBody"]
+
+[node name="AttackA1" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = 70.0
+
+[node name="AttackA2" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = -80.0
+
+[node name="AttackA3" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = -50.0
+knockup = 200.0
+
+[node name="AttackB" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = 100.0
+knockdown = 300.0
+
+[node name="AttackC" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = 100.0
+knockup = 300.0
+
+[node name="AirAttackA" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = 60.0
+knockup = 50.0
+
+[node name="AirAttackB" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = 100.0
+
+[node name="AirAttackC" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+knockback_x = 50.0
+knockdown = 450.0
+
+[node name="PlayerHurtbox" type="Area2D" parent="SubBody"]
+script = ExtResource( 12 )
+
+[node name="Feet" type="CollisionShape2D" parent="SubBody"]
+position = Vector2( -1, 12.5 )
+shape = SubResource( 26 )
+
+[node name="PlayerRangebox" type="Area2D" parent="SubBody"]
+script = ExtResource( 31 )
+
+[node name="LaneDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="LaneCollision" type="CollisionShape2D" parent="LaneDetection"]
+position = Vector2( 8, 13 )
+shape = SubResource( 10 )
+
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 13 )
+rotation = 1.5708
+
+[node name="InputTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 2 )
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource( 1 )
+
+[node name="Move" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Dash" type="Node" parent="States"]
+script = ExtResource( 29 )
+
+[node name="Air" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="AttackA1" type="Node" parent="States"]
+script = ExtResource( 10 )
+
+[node name="AttackA2" type="Node" parent="States"]
+script = ExtResource( 9 )
+
+[node name="AttackA3" type="Node" parent="States"]
+script = ExtResource( 25 )
+
+[node name="AttackB" type="Node" parent="States"]
+script = ExtResource( 8 )
+
+[node name="AttackC" type="Node" parent="States"]
+script = ExtResource( 13 )
+
+[node name="AirAttackA" type="Node" parent="States"]
+script = ExtResource( 14 )
+
+[node name="AirAttackB" type="Node" parent="States"]
+script = ExtResource( 15 )
+
+[node name="AirAttackC" type="Node" parent="States"]
+script = ExtResource( 27 )
+
+[node name="Hitstun" type="Node" parent="States"]
+script = ExtResource( 33 )
+
+[node name="HitstunAir" type="Node" parent="States"]
+script = ExtResource( 34 )
