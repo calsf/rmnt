@@ -406,6 +406,7 @@ anims/RESET = SubResource( 10 )
 
 [node name="AttackA" type="Area2D" parent="SubBody"]
 script = ExtResource( 5 )
+knockback_x = 100.0
 
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA"]
 position = Vector2( 0, 3 )
@@ -414,10 +415,13 @@ disabled = true
 
 [node name="AttackB" type="Area2D" parent="SubBody"]
 script = ExtResource( 5 )
+knockback_x = 100.0
+knockdown = 300.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB"]
 position = Vector2( 19.5, -12 )
 shape = SubResource( 17 )
+disabled = true
 
 [node name="EnemyHurtbox" type="Area2D" parent="SubBody"]
 script = ExtResource( 3 )

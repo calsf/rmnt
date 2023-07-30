@@ -2,7 +2,7 @@ extends EnemyState
 
 
 func enter(data_state := {}) -> void:
-	pass
+	enemy.child_velocity.y = 0
 
 
 func exit(data_state := {}) -> void:

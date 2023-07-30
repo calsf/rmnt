@@ -22,6 +22,13 @@ func handle_input(event: InputEvent) -> void:
 
 
 func state_process(delta: float) -> void:
+	if player.is_aerial_stun:
+		state_machine.transition_to("HitstunAir")
+		return
+	elif player.knockback != Vector2.ZERO:
+		state_machine.transition_to("Hitstun")
+		return
+	
 	if player.can_input_cancel:
 		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
 			state_machine.transition_to("AttackA1")

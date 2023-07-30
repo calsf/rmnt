@@ -25,6 +25,8 @@ func _ready():
 
 func get_data_state() -> Dictionary:
 	var x = knockback_x
+	if owner.is_facing_left:
+		x *= -1
 	
 	return {
 		"damage": damage,

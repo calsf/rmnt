@@ -15,6 +15,13 @@ func exit(data_state := {}) -> void:
 
 
 func state_physics_process(delta: float) -> void:
+	if player.is_aerial_stun:
+		state_machine.transition_to("HitstunAir")
+		return
+	elif player.knockback != Vector2.ZERO:
+		state_machine.transition_to("Hitstun")
+		return
+	
 	var input_vector = owner.update_movement()
 
 	if Input.is_action_just_pressed("jump"):

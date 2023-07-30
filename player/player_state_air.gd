@@ -25,6 +25,13 @@ func handle_input(event: InputEvent) -> void:
 
 
 func state_physics_process(delta: float) -> void:
+	if player.is_aerial_stun:
+		state_machine.transition_to("HitstunAir")
+		return
+	elif player.knockback != Vector2.ZERO:
+		state_machine.transition_to("Hitstun")
+		return
+	
 	player.update_movement()
 	
 	player.child_velocity.y += player.GRAVITY * delta

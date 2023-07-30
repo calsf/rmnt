@@ -56,6 +56,7 @@ func _init():
 func _ready():
 	# Ignore this ground for all enemies, should only collide with own ground
 	get_tree().call_group("enemies", "add_collision_exception", ground)
+	disable_all_hitboxes()
 
 
 func _physics_process(delta):

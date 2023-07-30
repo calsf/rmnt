@@ -19,6 +19,12 @@ var lane_collisions := []
 var last_input : InputEvent
 var can_input_cancel := false
 
+var knockback := Vector2.ZERO
+var knockdown := 0
+var is_aerial_stun := false
+
+var hit_frame := false # Toggle to switch between hit stun frames
+
 onready var anim = $SubBody/AnimationPlayer
 onready var player_child = $SubBody
 onready var lane_detection = $LaneDetection
@@ -34,6 +40,7 @@ func _init():
 func _ready():
 	# Ignore this ground for all players, should only collide with own ground
 	get_tree().call_group("players", "add_collision_exception", ground)
+	disable_all_hitboxes()
 
 
 func _physics_process(delta):
@@ -49,7 +56,33 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 	if lane_collisions:
 		for area in lane_collisions:
 			if area.owner == hitbox_owner:
-				print_debug(self.name + "HIT BY ENEMY")
+				print_debug(self.name + "HIT BY PLAYER")
+				
+				var hitbox_damage = hitbox_data["damage"]
+				
+				# X and Y hitstun
+				var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
+				var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
+				var knockback_vector = Vector2(hitbox_knockback_x, hitbox_knockback_y)
+				knockback = knockback_vector
+				
+				# Aerial hitstun
+				var hitbox_knockup = (hitbox_data["knockup"] * props.air_hitstun_multiplier)
+				var hitbox_knockdown = (hitbox_data["knockdown"] * props.air_hitstun_multiplier)
+				if hitbox_knockup > 0:
+					child_velocity.y = -hitbox_knockup
+					is_aerial_stun = true
+				elif hitbox_knockdown > 0 and not player_child.is_on_floor():
+					knockdown = hitbox_knockdown
+					is_aerial_stun = true
+				else:
+					# If no knockback or knockdown, this is not an 'aerial hitstun' attack
+					# Use this to determine whether enemy should fall or stay suspended in air during hit stun
+					is_aerial_stun = false
+				
+				hitstop([self, hitbox_owner])
+				toggle_hit_frame()
+				
 				return true
 	return false
 
@@ -125,3 +158,36 @@ func add_collision_exception(collision):
 	# If not own ground collision, ignore collision
 	if collision != ground:
 		player_child.add_collision_exception_with(collision)
+
+
+func hitstop(objects_hit := [], duration := .05) -> void:
+	for obj in objects_hit:
+		pause_scene(obj, true)
+	yield(get_tree().create_timer(duration), "timeout")
+	for obj in objects_hit:
+		pause_scene(obj, false)
+
+
+func toggle_hit_frame():
+	if hit_frame:
+		anim.play("Hit1")
+	else:
+		anim.play("Hit2")
+	hit_frame = not hit_frame
+
+
+# Pause specific node and all the children
+func pause_scene(node, is_paused):
+	pause_node(node, is_paused)
+	for child in node.get_children():
+		pause_node(child, is_paused)
+
+
+# Pause specific node
+func pause_node(node, is_paused):
+	node.set_process(!is_paused)
+	node.set_physics_process(!is_paused)
+	node.set_process_input(!is_paused)
+	node.set_process_internal(!is_paused)
+	# node.set_process_unhandled_input(!is_paused)
+	# node.set_process_unhandled_key_input(!is_paused)
