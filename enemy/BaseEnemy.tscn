@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://enemy/enemy_hurtbox.gd" type="Script" id=3]
 [ext_resource path="res://enemy/enemy.gd" type="Script" id=4]
@@ -6,7 +6,6 @@
 [ext_resource path="res://enemy/enemy_state_idle.gd" type="Script" id=7]
 [ext_resource path="res://enemy/enemy_state_hitstun.gd" type="Script" id=8]
 [ext_resource path="res://enemy/enemy_state_hitstun_air.gd" type="Script" id=9]
-[ext_resource path="res://enemy/EN001/EN001.tres" type="Resource" id=11]
 [ext_resource path="res://enemy/enemy_pushbox.gd" type="Script" id=15]
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -21,7 +20,6 @@ extents = Vector2( 360, 6 )
 [node name="BaseEnemy" type="KinematicBody2D"]
 collision_layer = 16
 script = ExtResource( 4 )
-props = ExtResource( 11 )
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 2, 1 )

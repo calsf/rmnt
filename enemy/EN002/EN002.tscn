@@ -1,21 +1,21 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=2]
-[ext_resource path="res://enemy_rangebox.gd" type="Script" id=3]
-[ext_resource path="res://enemy/enemy_state_attack_a.gd" type="Script" id=4]
-[ext_resource path="res://enemy/enemy_state_attack_b.gd" type="Script" id=5]
-[ext_resource path="res://enemy/enemy_state_move.gd" type="Script" id=6]
-[ext_resource path="res://enemy/EN001/EN001-Idle.png" type="Texture" id=7]
-[ext_resource path="res://enemy/EN001/EN001-AttackA.png" type="Texture" id=8]
-[ext_resource path="res://enemy/EN001/EN001-AttackB.png" type="Texture" id=9]
-[ext_resource path="res://enemy/EN001/EN001-Hit.png" type="Texture" id=10]
-[ext_resource path="res://player_shadow.png" type="Texture" id=11]
-[ext_resource path="res://enemy/EN001/EN001.tres" type="Resource" id=12]
+[ext_resource path="res://player_shadow.png" type="Texture" id=2]
+[ext_resource path="res://enemy/EN002/EN002-Idle.png" type="Texture" id=3]
+[ext_resource path="res://enemy/enemy_state_move.gd" type="Script" id=4]
+[ext_resource path="res://enemy/EN002/EN002-Hit.png" type="Texture" id=5]
+[ext_resource path="res://enemy/EN002/EN002.tres" type="Resource" id=6]
+[ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=7]
+[ext_resource path="res://enemy/EN002/EN002-AttackA.png" type="Texture" id=8]
+[ext_resource path="res://enemy/enemy_state_attack_a.gd" type="Script" id=9]
+[ext_resource path="res://enemy_rangebox.gd" type="Script" id=10]
+[ext_resource path="res://enemy/EN002/EN002-AttackB.png" type="Texture" id=11]
+[ext_resource path="res://enemy/enemy_state_attack_b.gd" type="Script" id=12]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=8]
 resource_name = "AttackA"
-length = 0.7
+length = 1.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:texture")
 tracks/0/interp = 1
@@ -38,7 +38,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 7 ]
+"values": [ 11 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("EnemySprite:frame")
@@ -47,10 +47,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("AttackA/AttackA:disabled")
@@ -59,15 +59,15 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5 ),
+"times": PoolRealArray( 0, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=12]
 resource_name = "AttackB"
-length = 1.15
+length = 1.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:texture")
@@ -79,7 +79,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 9 ) ]
+"values": [ ExtResource( 11 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -91,7 +91,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 11 ]
+"values": [ 15 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("EnemySprite:frame")
@@ -100,10 +100,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.6, 0.7, 0.75, 0.85, 0.95, 1.05, 1.15, 1.25, 1.35, 1.45, 1.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("AttackB/AttackB:disabled")
@@ -112,13 +112,13 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.65 ),
+"times": PoolRealArray( 0, 0.7, 0.95 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=5]
 resource_name = "Hit1"
 length = 0.2
 tracks/0/type = "value"
@@ -131,7 +131,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -158,7 +158,7 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=6]
 resource_name = "Hit2"
 length = 0.2
 tracks/0/type = "value"
@@ -171,7 +171,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -198,9 +198,9 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=4]
 resource_name = "Idle"
-length = 1.2
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:texture")
@@ -212,7 +212,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -233,15 +233,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=7]
 resource_name = "Move"
-length = 1.2
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:texture")
@@ -253,7 +253,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -274,13 +274,13 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:texture")
@@ -292,7 +292,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -319,110 +319,104 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 10.5, 14 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.5, 17.5 )
 
-[sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 34, 13 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 27.5, 27 )
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 25.5, 28 )
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 22, 28 )
 
-[sub_resource type="CapsuleShape2D" id=29]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 3.0
 height = 16.0
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 4, 3.5 )
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 45, 13 )
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 32.5, 13.5 )
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 26.5, 36.5 )
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 32.5, 28 )
 
-[node name="EN001" instance=ExtResource( 1 )]
-props = ExtResource( 12 )
+[node name="EN002" instance=ExtResource( 1 )]
+props = ExtResource( 6 )
 
 [node name="Shadow" parent="." index="0"]
-texture = ExtResource( 11 )
+texture = ExtResource( 2 )
 
 [node name="EnemySprite" parent="SubBody" index="0"]
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 hframes = 4
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
 autoplay = "Idle"
-anims/AttackA = SubResource( 19 )
-anims/AttackB = SubResource( 20 )
-anims/Hit1 = SubResource( 21 )
-anims/Hit2 = SubResource( 22 )
-anims/Idle = SubResource( 23 )
-anims/Move = SubResource( 24 )
-anims/RESET = SubResource( 25 )
+anims/AttackA = SubResource( 8 )
+anims/AttackB = SubResource( 12 )
+anims/Hit1 = SubResource( 5 )
+anims/Hit2 = SubResource( 6 )
+anims/Idle = SubResource( 4 )
+anims/Move = SubResource( 7 )
+anims/RESET = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/EnemyHurtbox" index="0"]
-position = Vector2( 0.5, 0 )
-shape = SubResource( 30 )
+position = Vector2( 0.5, -1.5 )
+shape = SubResource( 1 )
 
 [node name="AttackA" type="Area2D" parent="SubBody" index="4"]
-script = ExtResource( 2 )
-knockback_x = 100.0
+script = ExtResource( 7 )
+knockback_x = 50.0
+knockup = 300.0
 
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA" index="0"]
-position = Vector2( 0, 3 )
-shape = SubResource( 26 )
+position = Vector2( 16.5, -11 )
+shape = SubResource( 10 )
 disabled = true
 
 [node name="AttackB" type="Area2D" parent="SubBody" index="5"]
-script = ExtResource( 2 )
-knockback_x = 100.0
-knockdown = 300.0
+script = ExtResource( 7 )
+knockback_x = 80.0
+knockdown = 500.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
-position = Vector2( 19.5, -12 )
-shape = SubResource( 27 )
+position = Vector2( 27, -14 )
+shape = SubResource( 13 )
 disabled = true
 
-[node name="LaneCollision" parent="LaneDetection" index="0"]
-position = Vector2( 24, 12 )
-
 [node name="WorldCollision" parent="." index="4"]
-shape = SubResource( 29 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pushbox" index="0"]
 position = Vector2( 0, 12.5 )
-shape = SubResource( 31 )
+shape = SubResource( 3 )
 
 [node name="RangeboxAttackA" type="Area2D" parent="." index="6"]
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 3 )
+script = ExtResource( 10 )
 trigger_state_name = "AttackA"
 trigger_min_delay = 0.1
-trigger_max_delay = 0.25
+trigger_max_delay = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxAttackA" index="0"]
-position = Vector2( 2, 3 )
-shape = SubResource( 12 )
+position = Vector2( 22.5, 3.5 )
+shape = SubResource( 11 )
 
 [node name="RangeboxAttackB" type="Area2D" parent="." index="7"]
-collision_layer = 0
-collision_mask = 8
-script = ExtResource( 3 )
+script = ExtResource( 10 )
 trigger_state_name = "AttackB"
-trigger_min_delay = 0.6
+trigger_min_delay = 0.4
 trigger_max_delay = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxAttackB" index="0"]
-position = Vector2( 20.5, -20.5 )
-shape = SubResource( 18 )
+position = Vector2( 22.5, -11 )
+shape = SubResource( 14 )
 
 [node name="Move" type="Node" parent="States" index="3"]
-script = ExtResource( 6 )
-
-[node name="AttackA" type="Node" parent="States" index="4"]
 script = ExtResource( 4 )
 
+[node name="AttackA" type="Node" parent="States" index="4"]
+script = ExtResource( 9 )
+
 [node name="AttackB" type="Node" parent="States" index="5"]
-script = ExtResource( 5 )
+script = ExtResource( 12 )
