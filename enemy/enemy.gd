@@ -43,8 +43,10 @@ onready var enemy_child = $SubBody
 onready var ground = $GroundDetection
 onready var feet = $SubBody/Feet
 onready var anim = $SubBody/AnimationPlayer
+onready var shake_anim = $SubBody/ShakeAnim
 onready var pushbox = $Pushbox
 onready var delay_timer = $DelayTimer
+onready var state_machine = $States
 onready var players = get_tree().get_nodes_in_group("players")
 
 
@@ -81,34 +83,41 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 					dmg_multiplier = dmg_multipliers[attacked_by_index]
 				var hitbox_damage = (hitbox_data["damage"] * dmg_multiplier)
 				
-				# X and Y hitstun
-				var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
-				var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
-				var knockback_vector = Vector2(hitbox_knockback_x, hitbox_knockback_y)
-				knockback = knockback_vector
-				
-				# Aerial hitstun
-				var hitbox_knockup = (hitbox_data["knockup"] * props.air_hitstun_multiplier)
-				var hitbox_knockdown = (hitbox_data["knockdown"] * props.air_hitstun_multiplier)
-				if hitbox_knockup > 0:
-					child_velocity.y = -hitbox_knockup
-					is_aerial_stun = true
-				elif hitbox_knockdown > 0 and not enemy_child.is_on_floor():
-					knockdown = hitbox_knockdown
-					is_aerial_stun = true
-				else:
-					# If no knockback or knockdown, this is not an 'aerial hitstun' attack
-					# Use this to determine whether enemy should fall or stay suspended in air during hit stun
-					is_aerial_stun = false
+				# Always enter hitstun unless enemy is armored and attacking
+				if not props.armored or \
+						(props.armored \
+						and state_machine.curr_state.name != "AttackA" \
+						and state_machine.curr_state.name != "AttackB"):
+					# X and Y hitstun
+					var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
+					var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
+					var knockback_vector = Vector2(hitbox_knockback_x, hitbox_knockback_y)
+					knockback = knockback_vector
+					
+					# Aerial hitstun
+					var hitbox_knockup = (hitbox_data["knockup"] * props.air_hitstun_multiplier)
+					var hitbox_knockdown = (hitbox_data["knockdown"] * props.air_hitstun_multiplier)
+					if hitbox_knockup > 0:
+						child_velocity.y = -hitbox_knockup
+						is_aerial_stun = true
+					elif hitbox_knockdown > 0 and not enemy_child.is_on_floor():
+						knockdown = hitbox_knockdown
+						is_aerial_stun = true
+					else:
+						# If no knockback or knockdown, this is not an 'aerial hitstun' attack
+						# Use this to determine whether enemy should fall or stay suspended in air during hit stun
+						is_aerial_stun = false
+					
+					toggle_hit_frame()
 				
 				hitstop([self, hitbox_owner])
-				toggle_hit_frame()
 				
 				# Push most recent attack to back
 				attacked_by_hitboxes.append(hitbox)
 				if attacked_by_hitboxes.size() > attacked_by_max:
 					attacked_by_hitboxes.pop_front() # Remove oldest which is at front
 				
+				shake_anim.play("Shake")
 				return true
 	return false
 

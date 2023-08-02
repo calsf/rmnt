@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://enemy/enemy_hurtbox.gd" type="Script" id=3]
 [ext_resource path="res://enemy/enemy.gd" type="Script" id=4]
@@ -13,6 +13,38 @@ extents = Vector2( 14.5, 3.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 11, 3 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Shake"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 360, 6 )
@@ -47,6 +79,10 @@ script = ExtResource( 3 )
 [node name="Feet" type="CollisionShape2D" parent="SubBody"]
 position = Vector2( 0, 13 )
 shape = SubResource( 6 )
+
+[node name="ShakeAnim" type="AnimationPlayer" parent="SubBody"]
+anims/RESET = SubResource( 7 )
+anims/Shake = SubResource( 8 )
 
 [node name="LaneDetection" type="Area2D" parent="."]
 collision_layer = 16
