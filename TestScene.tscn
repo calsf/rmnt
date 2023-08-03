@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://background-001.png" type="Texture" id=2]
-[ext_resource path="res://enemy/EN001/EN001.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemy/EN003/EN003.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enemy/EN002/EN002.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemy/EN001/EN001.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 36 )
@@ -41,8 +42,11 @@ shape = SubResource( 2 )
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
 position = Vector2( 168, 80 )
 
-[node name="EN002" parent="World" instance=ExtResource( 4 )]
-position = Vector2( 104, 120 )
+[node name="EN003" parent="World" instance=ExtResource( 3 )]
+position = Vector2( 16, 64 )
 
-[node name="EN001" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 232, 104 )
+[node name="EN001" parent="World" instance=ExtResource( 5 )]
+position = Vector2( 106, 139 )
+
+[node name="EN002" parent="World" instance=ExtResource( 4 )]
+position = Vector2( 241, 117 )

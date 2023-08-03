@@ -20,6 +20,9 @@ var knockback := Vector2.ZERO
 var knockdown := 0
 var is_aerial_stun := false
 
+# Should be set by attack states
+var is_attacking := false
+
 # Enemy "adaptability" to repeated attacks
 # Deals reduced damage on repeat attacks
 var attacked_by_max = 5
@@ -46,7 +49,6 @@ onready var anim = $SubBody/AnimationPlayer
 onready var shake_anim = $SubBody/ShakeAnim
 onready var pushbox = $Pushbox
 onready var delay_timer = $DelayTimer
-onready var state_machine = $States
 onready var players = get_tree().get_nodes_in_group("players")
 
 
@@ -85,9 +87,7 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 				
 				# Always enter hitstun unless enemy is armored and attacking
 				if not props.armored or \
-						(props.armored \
-						and state_machine.curr_state.name != "AttackA" \
-						and state_machine.curr_state.name != "AttackB"):
+						(props.armored and not is_attacking):
 					# X and Y hitstun
 					var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
 					var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)

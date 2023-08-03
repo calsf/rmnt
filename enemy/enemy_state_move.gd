@@ -1,3 +1,4 @@
+# Basic move behavior, moves to player, stops when close
 extends EnemyState
 
 export var closest_distance := 3
@@ -15,7 +16,9 @@ func exit(data_state := {}) -> void:
 func state_physics_process(delta: float) -> void:
 	var player = enemy.players[0]
 	if player.global_position.distance_to(enemy.global_position) > closest_distance:
-		enemy.velocity = (player.global_position - enemy.global_position).normalized() * enemy.props.speed_x
+		enemy.velocity = (player.global_position - enemy.global_position).normalized()
+		enemy.velocity.x *= enemy.props.speed_x
+		enemy.velocity.y *= enemy.props.speed_y
 		enemy.velocity = enemy.move_and_slide(enemy.velocity)
 		
 		# Apply push if stacked on top of another pushbox area
