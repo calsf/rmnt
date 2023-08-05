@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://player/player_props.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+max_hp = 5
+speed_x = 60.0
+speed_y = 40.0
+speed_x_dash = 120.0
+speed_y_dash = 100.0
+ground_decel = 200
+hitstun_multiplier = 0.9
+air_hitstun_multiplier = 0.9
