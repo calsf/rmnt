@@ -930,7 +930,6 @@ anims/RESET = SubResource( 40 )
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 15, -1.5 )
 shape = SubResource( 12 )
-disabled = true
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 6, 1 )
@@ -950,7 +949,6 @@ disabled = true
 
 [node name="AirAttackA" type="CollisionPolygon2D" parent="SubBody/AirAttackA" index="0"]
 polygon = PoolVector2Array( 7, -24, 7, -9, -8, -9, -8, 9, 40, 9, 40, -24 )
-disabled = true
 
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( -0.5, -3 )
