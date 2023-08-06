@@ -29,7 +29,8 @@ func state_physics_process(delta: float) -> void:
 		state_machine.transition_to("Hitstun")
 		return
 	
-	player.update_movement()
+	# Do not allow turning during air attack
+	player.update_movement(false)
 	
 	player.child_velocity.y += player.GRAVITY * delta
 	player.child_velocity = player.player_child.move_and_slide(player.child_velocity, Vector2.UP)

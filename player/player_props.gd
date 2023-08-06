@@ -1,6 +1,8 @@
 extends Resource
 class_name PlayerProps
 
+# Y speed should be 70% of X speed
+
 export var max_hp : int
 export var speed_x : float
 export var speed_y : float

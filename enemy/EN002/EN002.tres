@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 max_hp = 100
 speed_x = 35.0
-speed_y = 20.0
+speed_y = 24.5
 speed_x_dash = 0.0
 speed_y_dash = 0.0
 armored = true

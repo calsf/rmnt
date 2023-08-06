@@ -118,12 +118,14 @@ func get_movement_input() -> Vector2:
 
 
 # Move player based on input, returns input vector
-func update_movement() -> Vector2:
+func update_movement(can_turn := true) -> Vector2:
 	var input_vector = get_movement_input()
 	velocity.x = props.speed_x * input_vector.x
 	velocity.y = props.speed_y * input_vector.y
 	velocity = move_and_slide(velocity)
-	turn(velocity.x)
+	
+	if can_turn:
+		turn(velocity.x)
 	
 	return input_vector
 

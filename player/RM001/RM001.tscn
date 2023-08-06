@@ -76,7 +76,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -105,7 +105,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -480,7 +480,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -930,10 +930,12 @@ anims/RESET = SubResource( 40 )
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 15, -1.5 )
 shape = SubResource( 12 )
+disabled = true
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 6, 1 )
 shape = SubResource( 13 )
+disabled = true
 
 [node name="AttackA3" type="CollisionPolygon2D" parent="SubBody/AttackA3" index="0"]
 polygon = PoolVector2Array( 8, -34, 42, -34, 42, 15, -5, 15, -5, -8, 8, -8 )
@@ -953,7 +955,6 @@ polygon = PoolVector2Array( 7, -24, 7, -9, -8, -9, -8, 9, 40, 9, 40, -24 )
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( -0.5, -3 )
 shape = SubResource( 21 )
-disabled = true
 
 [node name="AirAttackC" type="CollisionPolygon2D" parent="SubBody/AirAttackC" index="0"]
 polygon = PoolVector2Array( -27, -42, -27, -16, 6, -16, 6, 12, 40, 12, 40, -42 )
