@@ -968,10 +968,10 @@ extents = Vector2( 16, 8.5 )
 extents = Vector2( 14, 12.5 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 8, 14 )
+extents = Vector2( 9, 14 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 14 )
+extents = Vector2( 9, 14 )
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 3.0
