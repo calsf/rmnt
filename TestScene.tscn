@@ -2,8 +2,8 @@
 
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=1]
 [ext_resource path="res://background-001.png" type="Texture" id=2]
-[ext_resource path="res://enemy/EN002/EN002.tscn" type="PackedScene" id=3]
-[ext_resource path="res://enemy/EN003/EN003.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemy/EN001/EN001.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemy/EN004/EN004.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 36 )
@@ -38,11 +38,11 @@ shape = SubResource( 2 )
 
 [node name="World" type="YSort" parent="."]
 
-[node name="EN003" parent="World" instance=ExtResource( 4 )]
-position = Vector2( 149, 145 )
-
-[node name="EN002" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 58, 104 )
-
 [node name="RM003" parent="World" instance=ExtResource( 1 )]
 position = Vector2( 180, 89 )
+
+[node name="EN001" parent="World" instance=ExtResource( 3 )]
+position = Vector2( 68, 111 )
+
+[node name="EN004" parent="World" instance=ExtResource( 4 )]
+position = Vector2( 179, 141 )
