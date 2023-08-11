@@ -1,14 +1,18 @@
 extends PlayerState
 
+export var armored := false
+
 
 func enter(data_state := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.anim.play("AttackB")
+	player.armored = self.armored
 
 
 func exit(data_state := {}) -> void:
 	player.disable_input_cancel()
 	player.disable_all_hitboxes()
+	player.armored = false
 
 
 func handle_input(event: InputEvent) -> void:

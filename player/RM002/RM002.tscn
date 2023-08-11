@@ -941,10 +941,10 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 16, 8 )
+extents = Vector2( 17, 8 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 13, 17.5 )
+extents = Vector2( 14.5, 17.5 )
 
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 12, 10.5 )
@@ -953,19 +953,19 @@ extents = Vector2( 12, 10.5 )
 extents = Vector2( 12, 10.5 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 8, 13 )
+extents = Vector2( 11.5, 13 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 30, 12 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 16, 8 )
+extents = Vector2( 17, 8 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 16, 8.5 )
+extents = Vector2( 20.5, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 14, 12.5 )
+extents = Vector2( 15, 14 )
 
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 9, 14 )
@@ -1006,7 +1006,7 @@ anims/RESET = SubResource( 2 )
 knockback_x = 20.0
 
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
-position = Vector2( 38, -7.5 )
+position = Vector2( 37, -7.5 )
 shape = SubResource( 18 )
 
 [node name="AttackA2" parent="SubBody" index="3"]
@@ -1034,9 +1034,8 @@ knockup = 300.0
 knockdown = 0.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
-position = Vector2( 18, 3 )
+position = Vector2( 14.5, 3 )
 shape = SubResource( 8 )
-disabled = true
 
 [node name="AttackC" parent="SubBody" index="6"]
 knockback_x = 400.0
@@ -1051,15 +1050,16 @@ knockback_x = 80.0
 knockup = 100.0
 
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
-position = Vector2( 38, -7.5 )
+position = Vector2( 37, -7.5 )
 shape = SubResource( 25 )
+disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="8"]
 knockback_x = 150.0
 knockup = 100.0
 
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
-position = Vector2( 39, -5.5 )
+position = Vector2( 34.5, -5.5 )
 shape = SubResource( 26 )
 
 [node name="AirAttackC" parent="SubBody" index="9"]
@@ -1067,7 +1067,7 @@ knockback_x = 100.0
 knockdown = 300.0
 
 [node name="AirAttackC" type="CollisionShape2D" parent="SubBody/AirAttackC" index="0"]
-position = Vector2( 28, 16.5 )
+position = Vector2( 27, 16 )
 shape = SubResource( 28 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
@@ -1081,12 +1081,32 @@ shape = SubResource( 4 )
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 5 )
 
+[node name="AttackA1" parent="States" index="4"]
+armored = true
+
+[node name="AttackA2" parent="States" index="5"]
+armored = true
+
+[node name="AttackA3" parent="States" index="6"]
+armored = true
+
 [node name="AttackB" parent="States" index="7"]
 script = ExtResource( 7 )
 dash_speed = 350.0
 anim_name = "AttackB"
+armored = true
 
 [node name="AttackC" parent="States" index="8"]
 script = ExtResource( 7 )
 dash_speed = -300.0
 anim_name = "AttackC"
+armored = true
+
+[node name="AirAttackA" parent="States" index="9"]
+armored = true
+
+[node name="AirAttackB" parent="States" index="10"]
+armored = true
+
+[node name="AirAttackC" parent="States" index="11"]
+armored = true

@@ -2,6 +2,7 @@ extends PlayerState
 
 export var dash_speed : float
 export var anim_name : String
+export var armored := false
 
 var initial_dash_vector : Vector2
 var movement_enabled := false
@@ -10,7 +11,8 @@ var movement_enabled := false
 func enter(data_state := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.anim.play(anim_name)
-	
+	player.armored = self.armored
+
 	movement_enabled = false
 	
 	if player.is_facing_left:
@@ -22,6 +24,7 @@ func enter(data_state := {}) -> void:
 func exit(data_state := {}) -> void:
 	player.disable_input_cancel()
 	player.disable_all_hitboxes()
+	player.armored = false
 
 
 func handle_input(event: InputEvent) -> void:

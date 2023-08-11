@@ -19,6 +19,7 @@ var lane_collisions := []
 var last_input : InputEvent
 var can_input_cancel := false
 
+var armored := false
 var knockback := Vector2.ZERO
 var knockdown := 0
 var is_aerial_stun := false
@@ -60,28 +61,30 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 				
 				var hitbox_damage = hitbox_data["damage"]
 				
-				# X and Y hitstun
-				var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
-				var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
-				var knockback_vector = Vector2(hitbox_knockback_x, hitbox_knockback_y)
-				knockback = knockback_vector
-				
-				# Aerial hitstun
-				var hitbox_knockup = (hitbox_data["knockup"] * props.air_hitstun_multiplier)
-				var hitbox_knockdown = (hitbox_data["knockdown"] * props.air_hitstun_multiplier)
-				if hitbox_knockup > 0:
-					child_velocity.y = -hitbox_knockup
-					is_aerial_stun = true
-				elif hitbox_knockdown > 0 and not player_child.is_on_floor():
-					knockdown = hitbox_knockdown
-					is_aerial_stun = true
-				else:
-					# If no knockback or knockdown, this is not an 'aerial hitstun' attack
-					# Use this to determine whether enemy should fall or stay suspended in air during hit stun
-					is_aerial_stun = false
+				if not armored:
+					# X and Y hitstun
+					var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
+					var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
+					var knockback_vector = Vector2(hitbox_knockback_x, hitbox_knockback_y)
+					knockback = knockback_vector
+					
+					# Aerial hitstun
+					var hitbox_knockup = (hitbox_data["knockup"] * props.air_hitstun_multiplier)
+					var hitbox_knockdown = (hitbox_data["knockdown"] * props.air_hitstun_multiplier)
+					if hitbox_knockup > 0:
+						child_velocity.y = -hitbox_knockup
+						is_aerial_stun = true
+					elif hitbox_knockdown > 0 and not player_child.is_on_floor():
+						knockdown = hitbox_knockdown
+						is_aerial_stun = true
+					else:
+						# If no knockback or knockdown, this is not an 'aerial hitstun' attack
+						# Use this to determine whether enemy should fall or stay suspended in air during hit stun
+						is_aerial_stun = false
+					
+					toggle_hit_frame()
 				
 				hitstop([self, hitbox_owner])
-				toggle_hit_frame()
 				
 				return true
 	return false
