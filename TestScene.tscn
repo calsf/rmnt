@@ -38,11 +38,11 @@ shape = SubResource( 2 )
 
 [node name="World" type="YSort" parent="."]
 
-[node name="RM003" parent="World" instance=ExtResource( 1 )]
-position = Vector2( 180, 89 )
-
 [node name="EN001" parent="World" instance=ExtResource( 3 )]
 position = Vector2( 68, 111 )
 
 [node name="EN004" parent="World" instance=ExtResource( 4 )]
 position = Vector2( 179, 141 )
+
+[node name="RM003" parent="World" instance=ExtResource( 1 )]
+position = Vector2( 242, 121 )
