@@ -19,6 +19,7 @@
 
 [sub_resource type="Animation" id=23]
 resource_name = "AirAttackA"
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("CharSprite:hframes")
@@ -51,7 +52,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -77,7 +78,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.4 ),
+"times": PoolRealArray( 0, 0.15, 0.25 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -85,7 +86,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=27]
 resource_name = "AirAttackB"
-length = 0.6
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("CharSprite:hframes")
@@ -118,7 +119,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -144,7 +145,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.4 ),
+"times": PoolRealArray( 0, 0.15, 0.25 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -152,7 +153,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=24]
 resource_name = "AirAttackC"
-length = 0.7
+length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("CharSprite:hframes")
@@ -185,7 +186,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.25, 0.3, 0.4, 0.5, 0.6 ),
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
@@ -211,7 +212,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
+"times": PoolRealArray( 0, 0.25, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -292,7 +293,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -318,7 +319,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.4 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -359,7 +360,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -385,7 +386,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.4 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -426,7 +427,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.4, 0.5, 0.6 ),
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -452,7 +453,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.4 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -965,7 +966,7 @@ extents = Vector2( 17, 8 )
 extents = Vector2( 20.5, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 15, 14 )
+extents = Vector2( 17, 14 )
 
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 9, 14 )
@@ -1008,6 +1009,7 @@ knockback_x = 20.0
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 37, -7.5 )
 shape = SubResource( 18 )
+disabled = true
 
 [node name="AttackA2" parent="SubBody" index="3"]
 knockback_x = 0.0
@@ -1016,6 +1018,7 @@ knockup = 200.0
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 26.5, -1.5 )
 shape = SubResource( 19 )
+disabled = true
 
 [node name="AttackA3" parent="SubBody" index="4"]
 knockback_x = 0.0
@@ -1023,6 +1026,7 @@ knockback_x = 0.0
 [node name="AttackA3Left" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
 position = Vector2( -19, -19.5 )
 shape = SubResource( 21 )
+disabled = true
 
 [node name="AttackA3Right" type="CollisionShape2D" parent="SubBody/AttackA3" index="1"]
 position = Vector2( 20, -19.5 )
@@ -1044,6 +1048,7 @@ knockup = 150.0
 [node name="AttackC" type="CollisionShape2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 36, -6 )
 shape = SubResource( 9 )
+disabled = true
 
 [node name="AirAttackA" parent="SubBody" index="7"]
 knockback_x = 80.0
@@ -1061,14 +1066,16 @@ knockup = 100.0
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( 34.5, -5.5 )
 shape = SubResource( 26 )
+disabled = true
 
 [node name="AirAttackC" parent="SubBody" index="9"]
-knockback_x = 100.0
+knockback_x = 150.0
 knockdown = 300.0
 
 [node name="AirAttackC" type="CollisionShape2D" parent="SubBody/AirAttackC" index="0"]
-position = Vector2( 27, 16 )
+position = Vector2( 26, 16 )
 shape = SubResource( 28 )
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 position = Vector2( 0, 2.5 )

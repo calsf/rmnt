@@ -17,7 +17,7 @@ func exit(data_state := {}) -> void:
 
 func handle_input(event: InputEvent) -> void:
 	# Bufferable inputs
-	if (event.is_action_pressed("attack_a") \
+	if (not player.can_input_cancel and event.is_action_pressed("attack_a") \
 			or event.is_action_pressed("attack_b") \
 			or event.is_action_pressed("attack_c") \
 			or event.is_action_pressed("jump") \
