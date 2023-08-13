@@ -66,6 +66,12 @@ func state_physics_process(delta: float) -> void:
 
 	if not player.anim.is_playing():
 		if player.player_child.is_on_floor():
-			state_machine.transition_to("Idle")
+			if Input.is_action_pressed("move_left") \
+			or Input.is_action_pressed("move_right") \
+			or Input.is_action_pressed("move_up") \
+			or Input.is_action_pressed("move_down"):
+				state_machine.transition_to("Move")
+			else:
+				state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Air")
