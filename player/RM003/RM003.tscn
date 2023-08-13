@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003-Idle.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://player/RM003/RM003-AirAttackB.png" type="Texture" id=10]
 [ext_resource path="res://player/RM003/RM003-AttackA3.png" type="Texture" id=11]
 [ext_resource path="res://player/RM003/RM003-AirAttackA.png" type="Texture" id=12]
+[ext_resource path="res://player/RM003/RM003-AirAttackC.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=17]
 resource_name = "AirAttackA"
@@ -134,6 +135,72 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("AirAttackB/AirAttackB:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "AirAttackC"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "enable_input_cancel"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AirAttackC/AirAttackC:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -711,6 +778,9 @@ extents = Vector2( 25.5, 14 )
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 17.5, 15.5 )
 
+[sub_resource type="CircleShape2D" id=24]
+radius = 22.8035
+
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8, 15 )
 
@@ -731,6 +801,7 @@ texture = ExtResource( 2 )
 autoplay = "Idle"
 anims/AirAttackA = SubResource( 17 )
 anims/AirAttackB = SubResource( 18 )
+anims/AirAttackC = SubResource( 23 )
 anims/AirIdle = SubResource( 5 )
 anims/AttackA1 = SubResource( 11 )
 anims/AttackA2 = SubResource( 15 )
@@ -783,6 +854,13 @@ knockdown = 300.0
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( 4.5, -5.5 )
 shape = SubResource( 22 )
+
+[node name="AirAttackC" parent="SubBody" index="9"]
+knockback_x = -60.0
+knockdown = 300.0
+
+[node name="AirAttackC" type="CollisionShape2D" parent="SubBody/AirAttackC" index="0"]
+shape = SubResource( 24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 shape = SubResource( 9 )
