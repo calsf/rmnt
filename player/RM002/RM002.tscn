@@ -78,7 +78,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.25 ),
+"times": PoolRealArray( 0, 0.1, 0.25 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -145,7 +145,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 0.25 ),
+"times": PoolRealArray( 0, 0.1, 0.25 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -212,7 +212,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.25, 0.4 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -942,16 +942,16 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 17, 8 )
+extents = Vector2( 17.5, 8 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 14.5, 17.5 )
+extents = Vector2( 14.5, 18 )
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 12, 10.5 )
+extents = Vector2( 14.5, 10.5 )
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 12, 10.5 )
+extents = Vector2( 15.5, 10.5 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 11.5, 13 )
@@ -960,13 +960,13 @@ extents = Vector2( 11.5, 13 )
 extents = Vector2( 30, 12 )
 
 [sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 17, 8 )
+extents = Vector2( 17.5, 8.75 )
 
 [sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 20.5, 8.5 )
+extents = Vector2( 21, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 17, 14 )
+extents = Vector2( 17.5, 14.5 )
 
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 9, 14 )
@@ -1007,7 +1007,7 @@ anims/RESET = SubResource( 2 )
 knockback_x = 20.0
 
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
-position = Vector2( 37, -7.5 )
+position = Vector2( 36.5, -7.5 )
 shape = SubResource( 18 )
 disabled = true
 
@@ -1016,20 +1016,18 @@ knockback_x = 0.0
 knockup = 200.0
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
-position = Vector2( 26.5, -1.5 )
+position = Vector2( 26.5, -2 )
 shape = SubResource( 19 )
-disabled = true
 
 [node name="AttackA3" parent="SubBody" index="4"]
 knockback_x = 0.0
 
 [node name="AttackA3Left" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
-position = Vector2( -19, -19.5 )
+position = Vector2( -19.5, -19.5 )
 shape = SubResource( 21 )
-disabled = true
 
 [node name="AttackA3Right" type="CollisionShape2D" parent="SubBody/AttackA3" index="1"]
-position = Vector2( 20, -19.5 )
+position = Vector2( 21.5, -19.5 )
 shape = SubResource( 22 )
 
 [node name="AttackB" parent="SubBody" index="5"]
@@ -1048,14 +1046,13 @@ knockup = 150.0
 [node name="AttackC" type="CollisionShape2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 36, -6 )
 shape = SubResource( 9 )
-disabled = true
 
 [node name="AirAttackA" parent="SubBody" index="7"]
 knockback_x = 80.0
 knockup = 100.0
 
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
-position = Vector2( 37, -7.5 )
+position = Vector2( 36.5, -6.75 )
 shape = SubResource( 25 )
 disabled = true
 
@@ -1064,18 +1061,16 @@ knockback_x = 150.0
 knockup = 100.0
 
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
-position = Vector2( 34.5, -5.5 )
+position = Vector2( 34, -5.5 )
 shape = SubResource( 26 )
-disabled = true
 
 [node name="AirAttackC" parent="SubBody" index="9"]
 knockback_x = 150.0
 knockdown = 300.0
 
 [node name="AirAttackC" type="CollisionShape2D" parent="SubBody/AirAttackC" index="0"]
-position = Vector2( 26, 16 )
+position = Vector2( 25.5, 15.5 )
 shape = SubResource( 28 )
-disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 position = Vector2( 0, 2.5 )
