@@ -28,6 +28,7 @@ var hit_frame := false # Toggle to switch between hit stun frames
 
 onready var anim = $SubBody/AnimationPlayer
 onready var player_child = $SubBody
+onready var shake_anim = $SubBody/ShakeAnim
 onready var lane_detection = $LaneDetection
 onready var input_timer = $InputTimer
 onready var ground = $GroundDetection
@@ -86,6 +87,7 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 				
 				hitstop([self, hitbox_owner])
 				
+				shake_anim.play("Shake")
 				return true
 	return false
 

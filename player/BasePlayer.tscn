@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -28,6 +28,37 @@ extents = Vector2( 12, 3 )
 
 [sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 11, 2.5 )
+
+[sub_resource type="Animation" id=28]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "Shake"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 360, 3 )
@@ -106,6 +137,10 @@ shape = SubResource( 26 )
 
 [node name="PlayerRangebox" type="Area2D" parent="SubBody"]
 script = ExtResource( 31 )
+
+[node name="ShakeAnim" type="AnimationPlayer" parent="SubBody"]
+anims/RESET = SubResource( 28 )
+anims/Shake = SubResource( 27 )
 
 [node name="LaneDetection" type="Area2D" parent="."]
 collision_layer = 2
