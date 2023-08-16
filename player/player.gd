@@ -32,6 +32,7 @@ onready var shake_anim = $SubBody/ShakeAnim
 onready var lane_detection = $LaneDetection
 onready var input_timer = $InputTimer
 onready var ground = $GroundDetection
+onready var hurtbox = $SubBody/PlayerHurtbox
 
 
 func _init():
@@ -110,6 +111,16 @@ func disable_all_hitboxes() -> void:
 		if child is PlayerHitbox:
 			for collision in child.get_children():
 				collision.disabled = true
+
+
+func disable_hurtbox() -> void:
+	for collision in hurtbox.get_children():
+		collision.disabled = true
+
+
+func enable_hurtbox() -> void:
+	for collision in hurtbox.get_children():
+		collision.disabled = false
 
 
 # Return input vector, does not move player

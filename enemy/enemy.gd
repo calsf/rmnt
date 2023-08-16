@@ -4,6 +4,8 @@ extends KinematicBody2D
 const JUMP_IMPULSE = 300
 const GRAVITY = 700
 
+var Spawner = preload("res://enemy/Spawner.tscn")
+
 export var props : Resource
 
 # Movement props
@@ -49,6 +51,7 @@ onready var anim = $SubBody/AnimationPlayer
 onready var shake_anim = $SubBody/ShakeAnim
 onready var pushbox = $Pushbox
 onready var delay_timer = $DelayTimer
+onready var hurtbox = $SubBody/EnemyHurtbox
 onready var players = get_tree().get_nodes_in_group("players")
 
 
@@ -140,6 +143,12 @@ func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : Ene
 	return false
 
 
+func activate_spawner():
+	var spawn = Spawner.instance()
+	get_tree().current_scene.get_node("World").add_child(spawn)
+	spawn.global_position = self.global_position
+
+
 # Turn enemy to face left or right
 func turn(facing_x) -> void:
 	if facing_x < 0 and scale.y > 0:
@@ -158,6 +167,16 @@ func disable_all_hitboxes() -> void:
 		if child is EnemyHitbox:
 			for collision in child.get_children():
 				collision.disabled = true
+
+
+func disable_hurtbox() -> void:
+	for collision in hurtbox.get_children():
+		collision.disabled = true
+
+
+func enable_hurtbox() -> void:
+	for collision in hurtbox.get_children():
+		collision.disabled = false
 
 
 # Checks for timer and if is waiting on a state
