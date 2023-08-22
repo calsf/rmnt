@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://player/player_state_move.gd" type="Script" id=4]
 [ext_resource path="res://player/player.gd" type="Script" id=5]
 [ext_resource path="res://player/RM001/RM001-Idle.png" type="Texture" id=6]
-[ext_resource path="res://player_shadow.png" type="Texture" id=7]
 [ext_resource path="res://player/player_state_attack_b.gd" type="Script" id=8]
 [ext_resource path="res://player/player_state_attack_a2.gd" type="Script" id=9]
 [ext_resource path="res://player/player_state_attack_a1.gd" type="Script" id=10]
@@ -69,9 +68,7 @@ script = ExtResource( 5 )
 props = ExtResource( 30 )
 
 [node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 2, 1 )
-scale = Vector2( 2, 1 )
-texture = ExtResource( 7 )
+modulate = Color( 1, 1, 1, 0.764706 )
 
 [node name="GroundDetection" type="StaticBody2D" parent="."]
 collision_layer = 128

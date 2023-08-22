@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003-Idle.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://player/RM003/RM003-AirAttackC.png" type="Texture" id=13]
 [ext_resource path="res://player/RM003/RM003-AttackC.png" type="Texture" id=14]
 [ext_resource path="res://player/RM003/RM003-Dash.png" type="Texture" id=15]
+[ext_resource path="res://player/RM003/RM003-Shadow.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=17]
 resource_name = "AirAttackA"
@@ -919,6 +920,9 @@ height = 16.0
 
 [node name="RM003" instance=ExtResource( 1 )]
 props = ExtResource( 4 )
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource( 16 )
 
 [node name="CharSprite" parent="SubBody" index="0"]
 texture = ExtResource( 2 )

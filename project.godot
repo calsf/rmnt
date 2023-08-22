@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "EnemyRangebox",
 "language": "GDScript",
-"path": "res://enemy_rangebox.gd"
+"path": "res://enemy/enemy_rangebox.gd"
 }, {
 "base": "State",
 "class": "EnemyState",

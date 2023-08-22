@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Stage001.png" type="Texture" id=2]
 [ext_resource path="res://enemy/EN002/EN002.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enemy/EN001/EN001.tscn" type="PackedScene" id=4]
@@ -93,5 +93,5 @@ position = Vector2( 285, 136 )
 [node name="EN001" parent="World" instance=ExtResource( 4 )]
 position = Vector2( 176, 145 )
 
-[node name="RM001" parent="World" instance=ExtResource( 1 )]
-position = Vector2( 182, 100 )
+[node name="RM003" parent="World" instance=ExtResource( 1 )]
+position = Vector2( 196, 101 )
