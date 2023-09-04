@@ -1,14 +1,18 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/RM001-Icon.png" type="Texture" id=2]
 [ext_resource path="res://stages/RM003-Icon.png" type="Texture" id=3]
 [ext_resource path="res://stages/RmntSelect-L.png" type="Texture" id=4]
 [ext_resource path="res://stages/RmntSelect-R.png" type="Texture" id=5]
-[ext_resource path="res://stages/Stage000.png" type="Texture" id=6]
+[ext_resource path="res://stages/StageMain.png" type="Texture" id=6]
 [ext_resource path="res://stages/Stage002.png" type="Texture" id=7]
 [ext_resource path="res://stages/StagePreviewBorder.png" type="Texture" id=8]
 [ext_resource path="res://stages/RM002-Icon.png" type="Texture" id=9]
+[ext_resource path="res://stages/RM001-IconSelected.png" type="Texture" id=10]
+[ext_resource path="res://stages/rmnt_select.gd" type="Script" id=11]
+[ext_resource path="res://player/RM002/RM002.tscn" type="PackedScene" id=12]
+[ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 37.5 )
@@ -30,6 +34,7 @@ margin_top = -28.0
 margin_right = 82.0
 margin_bottom = -4.0
 alignment = 1
+script = ExtResource( 11 )
 
 [node name="Left" type="TextureRect" parent="CanvasLayer/RmntSelect"]
 margin_right = 24.0
@@ -40,7 +45,7 @@ texture = ExtResource( 4 )
 margin_left = 28.0
 margin_right = 52.0
 margin_bottom = 24.0
-texture = ExtResource( 2 )
+texture = ExtResource( 10 )
 
 [node name="RM002" type="TextureRect" parent="CanvasLayer/RmntSelect"]
 margin_left = 56.0
@@ -138,4 +143,10 @@ shape = SubResource( 2 )
 [node name="World" type="YSort" parent="."]
 
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
-position = Vector2( 183, 120 )
+position = Vector2( 160, 120 )
+
+[node name="RM002" parent="World" instance=ExtResource( 12 )]
+position = Vector2( 160, 120 )
+
+[node name="RM003" parent="World" instance=ExtResource( 13 )]
+position = Vector2( 160, 120 )
