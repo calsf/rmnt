@@ -1,0 +1,214 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/RM002/RM002.tscn" type="PackedScene" id=3]
+[ext_resource path="res://stages/main/rmnt_select.gd" type="Script" id=4]
+[ext_resource path="res://stages/main/stage_select.gd" type="Script" id=5]
+[ext_resource path="res://stages/main/RM001-Icon.png" type="Texture" id=6]
+[ext_resource path="res://stages/main/RM003-Icon.png" type="Texture" id=7]
+[ext_resource path="res://stages/main/StagePreviewBorder.png" type="Texture" id=8]
+[ext_resource path="res://stages/main/StageMain.png" type="Texture" id=9]
+[ext_resource path="res://stages/main/RM002-Icon.png" type="Texture" id=10]
+[ext_resource path="res://stages/main/RmntSelect-R.png" type="Texture" id=11]
+[ext_resource path="res://stages/Stage002.png" type="Texture" id=12]
+[ext_resource path="res://stages/main/RM001-IconSelected.png" type="Texture" id=13]
+[ext_resource path="res://stages/main/RmntSelect-L.png" type="Texture" id=14]
+[ext_resource path="res://stages/main/StageSelectSelected.png" type="Texture" id=15]
+[ext_resource path="res://stages/main/StageSelectUnselected.png" type="Texture" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 160, 37.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 60, 90 )
+
+[node name="StageMain" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RmntSelect" type="HBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -82.0
+margin_top = -28.0
+margin_right = 82.0
+margin_bottom = -4.0
+alignment = 1
+script = ExtResource( 4 )
+
+[node name="Left" type="TextureRect" parent="CanvasLayer/RmntSelect"]
+margin_right = 24.0
+margin_bottom = 24.0
+texture = ExtResource( 14 )
+
+[node name="RM001" type="TextureRect" parent="CanvasLayer/RmntSelect"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 24.0
+texture = ExtResource( 13 )
+
+[node name="RM002" type="TextureRect" parent="CanvasLayer/RmntSelect"]
+margin_left = 56.0
+margin_right = 80.0
+margin_bottom = 24.0
+texture = ExtResource( 10 )
+
+[node name="RM003" type="TextureRect" parent="CanvasLayer/RmntSelect"]
+margin_left = 84.0
+margin_right = 108.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+
+[node name="RM004" type="TextureRect" parent="CanvasLayer/RmntSelect"]
+margin_left = 112.0
+margin_right = 136.0
+margin_bottom = 24.0
+texture = ExtResource( 6 )
+
+[node name="Right" type="TextureRect" parent="CanvasLayer/RmntSelect"]
+margin_left = 140.0
+margin_right = 164.0
+margin_bottom = 24.0
+texture = ExtResource( 11 )
+
+[node name="StageSelect" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="BG" type="ColorRect" parent="CanvasLayer/StageSelect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.231373, 0.231373, 0.231373, 0.901961 )
+
+[node name="Selection" type="Control" parent="CanvasLayer/StageSelect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -60.0
+margin_right = 120.0
+margin_bottom = 60.0
+
+[node name="Preview" type="TextureRect" parent="CanvasLayer/StageSelect/Selection"]
+anchor_left = 0.167
+anchor_top = 0.042
+anchor_right = 0.833
+anchor_bottom = 0.792
+margin_left = -80.08
+margin_top = -45.04
+margin_right = 80.08
+margin_bottom = 44.96
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 160, 90 )
+texture = ExtResource( 12 )
+
+[node name="PreviewBorder" type="TextureRect" parent="CanvasLayer/StageSelect/Selection"]
+anchor_left = 0.167
+anchor_top = 0.042
+anchor_right = 0.833
+anchor_bottom = 0.792
+margin_left = -0.0800018
+margin_top = -0.0400004
+margin_right = 0.0800018
+margin_bottom = -0.0400009
+rect_pivot_offset = Vector2( 160, 90 )
+texture = ExtResource( 8 )
+
+[node name="SelectIcons" type="HBoxContainer" parent="CanvasLayer/StageSelect/Selection"]
+anchor_left = 0.167
+anchor_top = 0.833
+anchor_right = 0.833
+anchor_bottom = 0.9
+margin_left = -0.0800018
+margin_top = 0.0399933
+margin_right = 160.08
+margin_bottom = 7.99999
+rect_scale = Vector2( 0.5, 0.5 )
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Select1" type="TextureRect" parent="CanvasLayer/StageSelect/Selection/SelectIcons"]
+margin_left = 116.0
+margin_right = 132.0
+margin_bottom = 16.0
+texture = ExtResource( 15 )
+
+[node name="Select2" type="TextureRect" parent="CanvasLayer/StageSelect/Selection/SelectIcons"]
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 16.0
+texture = ExtResource( 16 )
+
+[node name="Select3" type="TextureRect" parent="CanvasLayer/StageSelect/Selection/SelectIcons"]
+margin_left = 164.0
+margin_right = 180.0
+margin_bottom = 16.0
+texture = ExtResource( 16 )
+
+[node name="Select4" type="TextureRect" parent="CanvasLayer/StageSelect/Selection/SelectIcons"]
+margin_left = 188.0
+margin_right = 204.0
+margin_bottom = 16.0
+texture = ExtResource( 16 )
+
+[node name="Left" type="TextureRect" parent="CanvasLayer/StageSelect/Selection"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 88.0
+margin_top = -23.0
+margin_right = 112.0
+margin_bottom = 1.0
+texture = ExtResource( 11 )
+
+[node name="Right" type="TextureRect" parent="CanvasLayer/StageSelect/Selection"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = -23.0
+margin_right = -88.0
+margin_bottom = 1.0
+texture = ExtResource( 14 )
+
+[node name="WorldStaticBody" type="StaticBody2D" parent="."]
+collision_mask = 18
+
+[node name="Background" type="Sprite" parent="WorldStaticBody"]
+position = Vector2( 160, 90 )
+z_index = -2
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldStaticBody"]
+position = Vector2( 160, 37.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldStaticBody"]
+position = Vector2( 160, 216 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldStaticBody"]
+position = Vector2( 376, 90 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldStaticBody"]
+position = Vector2( -56, 90 )
+shape = SubResource( 2 )
+
+[node name="World" type="YSort" parent="."]
+
+[node name="RM001" parent="World" instance=ExtResource( 1 )]
+position = Vector2( 160, 120 )
+
+[node name="RM002" parent="World" instance=ExtResource( 3 )]
+position = Vector2( 160, 120 )
+
+[node name="RM003" parent="World" instance=ExtResource( 2 )]
+position = Vector2( 160, 120 )
