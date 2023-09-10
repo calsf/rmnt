@@ -4,7 +4,7 @@ onready var rmnts := [
 	get_tree().current_scene.get_node("World/RM001"),
 	get_tree().current_scene.get_node("World/RM002"),
 	get_tree().current_scene.get_node("World/RM003"),
-	get_tree().current_scene.get_node("World/RM003")
+	get_tree().current_scene.get_node("World/RM004")
 ]
 onready var rmnt_unselected_textures := [
 	load("res://stages/main/RM001-Icon.png"),
@@ -24,6 +24,7 @@ var last_rmnt_i : int
 var curr_rmnt_i : int
 var min_rmnt_i : int
 var max_rmnt_i : int
+var activated := true
 
 
 func _ready():
@@ -37,6 +38,9 @@ func _ready():
 
 
 func _input(event):
+	if not activated:
+		return
+	
 	if event.is_action_pressed("next"):
 		last_rmnt_i = curr_rmnt_i
 		curr_rmnt_i += 1
@@ -54,6 +58,7 @@ func _input(event):
 
 
 func _select_rmnt(selected_index : int):
+	var original_position = rmnts[last_rmnt_i - min_rmnt_i].global_position
 	# Iterate through each rmnt option
 	for i in range(rmnt_options.size() - 1):
 		# If outside of range, ignore
@@ -65,14 +70,24 @@ func _select_rmnt(selected_index : int):
 		# The textures and rmnts array indices need to be adjusted because
 		# they only include corresponding values for the rmnt selections,
 		# but rmnt options includes left and right arrows
-		rmnts[i - min_rmnt_i].global_position = rmnts[last_rmnt_i - min_rmnt_i].global_position
+		rmnts[i - min_rmnt_i].global_position = original_position
 		if i == selected_index:
 			rmnt_options[i].texture = rmnt_selected_textures[i - min_rmnt_i]
 			
-			rmnts[i - min_rmnt_i].visible = true
+			rmnts[i - min_rmnt_i].activate()
 			#TODO: Save selected value
 		else:
 			rmnt_options[i].texture = rmnt_unselected_textures[i - min_rmnt_i]
 			
-			rmnts[i - min_rmnt_i].visible = false
+			rmnts[i - min_rmnt_i].deactivate()
 			#TODO: Save selected value
+
+
+func activate():
+	activated = true
+	visible = true
+
+
+func deactivate():
+	activated = false
+	visible = false

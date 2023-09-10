@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://stages/main/RmntSelect-L.png" type="Texture" id=14]
 [ext_resource path="res://stages/main/StageSelectSelected.png" type="Texture" id=15]
 [ext_resource path="res://stages/main/StageSelectUnselected.png" type="Texture" id=16]
+[ext_resource path="res://stages/main/stage_main.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 37.5 )
@@ -23,7 +24,11 @@ extents = Vector2( 160, 37.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 60, 90 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10.5, 4 )
+
 [node name="StageMain" type="Node2D"]
+script = ExtResource( 17 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -75,6 +80,7 @@ margin_bottom = 24.0
 texture = ExtResource( 11 )
 
 [node name="StageSelect" type="Control" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -204,6 +210,14 @@ shape = SubResource( 2 )
 
 [node name="World" type="YSort" parent="."]
 
+[node name="StageSelectArea" type="Area2D" parent="World"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StageSelectArea"]
+position = Vector2( 44.5, 78 )
+shape = SubResource( 3 )
+
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
 position = Vector2( 160, 120 )
 
@@ -211,4 +225,7 @@ position = Vector2( 160, 120 )
 position = Vector2( 160, 120 )
 
 [node name="RM003" parent="World" instance=ExtResource( 2 )]
+position = Vector2( 160, 120 )
+
+[node name="RM004" parent="World" instance=ExtResource( 2 )]
 position = Vector2( 160, 120 )

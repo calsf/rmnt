@@ -14,6 +14,7 @@ var select_icons := []
 var curr_stage_i : int
 var min_stage_i : int
 var max_stage_i : int
+var activated := false
 
 
 func _ready():
@@ -22,9 +23,13 @@ func _ready():
 	max_stage_i = stages.size() - 1
 	curr_stage_i = min_stage_i
 	_select_stage(curr_stage_i)
+	deactivate()
 
 
 func _input(event):
+	if not activated:
+		return
+	
 	if event.is_action_pressed("next"):
 		curr_stage_i += 1
 		if curr_stage_i > max_stage_i:
@@ -46,3 +51,13 @@ func _select_stage(selected_index : int):
 			select_icons[i].texture = selected_icon
 		else:
 			select_icons[i].texture = unselected_icon
+
+
+func activate():
+	activated = true
+	visible = true
+
+
+func deactivate():
+	activated = false
+	visible = false

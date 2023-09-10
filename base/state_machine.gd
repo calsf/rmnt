@@ -12,8 +12,13 @@ export var initial_state := NodePath()
 # Current state
 onready var curr_state: State = get_node(initial_state)
 
+# Initial state name
+var initial_state_name : String
 
 func _ready() -> void:
+	# Get initial state name
+	initial_state_name = curr_state.name
+	
 	yield(owner, "ready")
 	# Children of the state machine should be all the states
 	# Set state machine reference to this state machine for all states

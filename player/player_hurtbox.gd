@@ -6,8 +6,8 @@ var _curr_areas := []
 
 
 func _init() -> void:
-	# No collision layer
-	collision_layer = 0
+	# Player hurtbox collision layer
+	collision_layer = 8
 	
 	# Collide with EnemyHitbox layers
 	collision_mask = 32

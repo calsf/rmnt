@@ -33,6 +33,7 @@ onready var lane_detection = $LaneDetection
 onready var input_timer = $InputTimer
 onready var ground = $GroundDetection
 onready var hurtbox = $SubBody/PlayerHurtbox
+onready var state_machine = $States
 
 
 func _init():
@@ -209,3 +210,28 @@ func pause_node(node, is_paused):
 	node.set_process_internal(!is_paused)
 	# node.set_process_unhandled_input(!is_paused)
 	# node.set_process_unhandled_key_input(!is_paused)
+
+
+# Reset state and pause player
+func pause_player(is_paused):
+	state_machine.transition_to(state_machine.initial_state_name)
+	pause_scene(self, is_paused)
+
+
+# Reset state and display player
+func activate():
+	if state_machine:
+		last_input = null
+		state_machine.transition_to(state_machine.initial_state_name)
+	
+	visible = true
+
+
+# Reset state and hide player, also moves player to off screen area since state machine is still active
+func deactivate():
+	global_position = Vector2(-200, 120)
+	visible = false
+	
+	if state_machine:
+		last_input = null
+		state_machine.transition_to(state_machine.initial_state_name)
