@@ -3,7 +3,10 @@ extends Control
 
 onready var unselected_icon := load("res://stages/main/StageSelectUnselected.png")
 onready var selected_icon := load("res://stages/main/StageSelectSelected.png")
+onready var players = get_tree().get_nodes_in_group("players")
+onready var _fade = get_tree().current_scene.get_node("CanvasLayer/Fade")
 
+# An array of stage scene paths
 # To be set by child class
 onready var stages := []
 
@@ -39,6 +42,18 @@ func _input(event):
 			curr_stage_i = max_stage_i
 		
 		_select_stage(curr_stage_i)
+	
+	# "Enter" stage
+	if event.is_action_pressed("attack_a"):
+		# Deactivate stage select
+		deactivate()
+		
+		# Hide players
+		for player in players:
+			player.visible = false
+		
+		# Go to select scene
+		_fade.go_to_scene(stages[curr_stage_i])
 
 
 func _select_stage(selected_index : int):

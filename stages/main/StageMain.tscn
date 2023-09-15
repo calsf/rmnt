@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://stages/main/StageMain.png" type="Texture" id=9]
 [ext_resource path="res://stages/main/RM002-Icon.png" type="Texture" id=10]
 [ext_resource path="res://stages/main/RmntSelect-R.png" type="Texture" id=11]
+[ext_resource path="res://stages/Fade.tscn" type="PackedScene" id=12]
 [ext_resource path="res://stages/main/RM001-IconSelected.png" type="Texture" id=13]
 [ext_resource path="res://stages/main/RmntSelect-L.png" type="Texture" id=14]
 [ext_resource path="res://stages/interactable/InteractableDetection.tscn" type="PackedScene" id=15]
@@ -149,6 +150,8 @@ visible = false
 
 [node name="StageSelectBoss" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
+
+[node name="Fade" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [node name="WorldStaticBody" type="StaticBody2D" parent="."]
 collision_mask = 18
