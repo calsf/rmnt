@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://stages/main/RmntSelect-R.png" type="Texture" id=11]
 [ext_resource path="res://stages/main/RM001-IconSelected.png" type="Texture" id=13]
 [ext_resource path="res://stages/main/RmntSelect-L.png" type="Texture" id=14]
-[ext_resource path="res://InteractableDetection.tscn" type="PackedScene" id=15]
+[ext_resource path="res://stages/interactable/InteractableDetection.tscn" type="PackedScene" id=15]
 [ext_resource path="res://stages/main/stage_main.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -59,6 +59,38 @@ tracks/0/keys = {
 
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 10, 3.5 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "Interact"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -65 ), Vector2( 0, -64 ), Vector2( 0, -65 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -65 ) ]
+}
 
 [node name="StageMain" type="Node2D"]
 script = ExtResource( 17 )
@@ -164,6 +196,26 @@ anims/RESET = SubResource( 12 )
 position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
+[node name="StageSelectBoss" parent="World" instance=ExtResource( 15 )]
+position = Vector2( 275, 86 )
+
+[node name="CollisionShape2D" parent="World/StageSelectBoss/InteractableBox" index="0"]
+position = Vector2( 0, -6.5 )
+shape = SubResource( 10 )
+
+[node name="InteractLabel" parent="World/StageSelectBoss/InteractableBox" index="1"]
+visible = true
+position = Vector2( 0, -65 )
+
+[node name="AnimationPlayer" parent="World/StageSelectBoss/InteractableBox" index="2"]
+autoplay = "Interact"
+anims/Interact = SubResource( 14 )
+anims/RESET = SubResource( 15 )
+
+[node name="LaneCollision" parent="World/StageSelectBoss/LaneDetection" index="0"]
+position = Vector2( 0, -6.5 )
+shape = SubResource( 13 )
+
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
 position = Vector2( 160, 120 )
 
@@ -179,3 +231,4 @@ position = Vector2( 160, 120 )
 [node name="Interactable" parent="World" instance=ExtResource( 15 )]
 
 [editable path="World/StageSelectMob"]
+[editable path="World/StageSelectBoss"]

@@ -42,12 +42,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Interactable",
 "language": "GDScript",
-"path": "res://interactable.gd"
+"path": "res://stages/interactable/interactable.gd"
 }, {
 "base": "Area2D",
 "class": "InteractableBox",
 "language": "GDScript",
-"path": "res://interactable_box.gd"
+"path": "res://stages/interactable/interactable_box.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
