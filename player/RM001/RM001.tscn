@@ -978,5 +978,5 @@ shape = SubResource( 11 )
 position = Vector2( 0, 2.5 )
 shape = SubResource( 23 )
 
-[node name="WorldCollision" parent="." index="4"]
+[node name="WorldCollision" parent="." index="5"]
 shape = SubResource( 24 )

@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/enemy_state.gd"
 }, {
+"base": "Node",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://interactable.gd"
+}, {
+"base": "Area2D",
+"class": "InteractableBox",
+"language": "GDScript",
+"path": "res://interactable_box.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -54,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player_hurtbox.gd"
 }, {
+"base": "Area2D",
+"class": "PlayerInteractBox",
+"language": "GDScript",
+"path": "res://player/player_interact_box.gd"
+}, {
 "base": "Resource",
 "class": "PlayerProps",
 "language": "GDScript",
@@ -68,6 +83,11 @@ _global_script_classes=[ {
 "class": "PlayerState",
 "language": "GDScript",
 "path": "res://player/player_state.gd"
+}, {
+"base": "Control",
+"class": "StageSelect",
+"language": "GDScript",
+"path": "res://stages/main/stage_select.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -86,12 +106,16 @@ _global_script_class_icons={
 "EnemyProps": "",
 "EnemyRangebox": "",
 "EnemyState": "",
+"Interactable": "",
+"InteractableBox": "",
 "Player": "",
 "PlayerHitbox": "",
 "PlayerHurtbox": "",
+"PlayerInteractBox": "",
 "PlayerProps": "",
 "PlayerRangebox": "",
 "PlayerState": "",
+"StageSelect": "",
 "State": "",
 "StateMachine": ""
 }
@@ -191,6 +215,8 @@ interact={
 2d_physics/layer_10="EnemyRangebox"
 2d_physics/layer_11="PlayerRangebox"
 2d_physics/layer_12="EnemyPushbox"
+2d_physics/layer_13="PlayerInteractBox"
+2d_physics/layer_14="InteractableBox"
 
 [physics]
 

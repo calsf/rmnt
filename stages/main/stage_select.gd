@@ -1,14 +1,11 @@
+class_name StageSelect
 extends Control
 
 onready var unselected_icon := load("res://stages/main/StageSelectUnselected.png")
 onready var selected_icon := load("res://stages/main/StageSelectSelected.png")
 
-onready var stages := [
-	load("res://stages/Stage001.tscn"),
-	load("res://stages/Stage001.tscn"),
-	load("res://stages/Stage001.tscn"),
-	load("res://stages/Stage001.tscn")
-	]
+# To be set by child class
+onready var stages := []
 
 var select_icons := []
 var curr_stage_i : int
@@ -17,7 +14,7 @@ var max_stage_i : int
 var activated := false
 
 
-func _ready():
+func initialize_stage_select():
 	select_icons = get_node("Selection/SelectIcons").get_children()
 	min_stage_i = 0
 	max_stage_i = stages.size() - 1

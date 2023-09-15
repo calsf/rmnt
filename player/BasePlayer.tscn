@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://player/player_state_move.gd" type="Script" id=4]
 [ext_resource path="res://player/player.gd" type="Script" id=5]
 [ext_resource path="res://player/RM001/RM001-Idle.png" type="Texture" id=6]
+[ext_resource path="res://player/player_interact_box.gd" type="Script" id=7]
 [ext_resource path="res://player/player_state_attack_b.gd" type="Script" id=8]
 [ext_resource path="res://player/player_state_attack_a2.gd" type="Script" id=9]
 [ext_resource path="res://player/player_state_attack_a1.gd" type="Script" id=10]
@@ -58,6 +59,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 11, 14.5 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 360, 3 )
@@ -138,6 +142,13 @@ script = ExtResource( 31 )
 [node name="ShakeAnim" type="AnimationPlayer" parent="SubBody"]
 anims/RESET = SubResource( 28 )
 anims/Shake = SubResource( 27 )
+
+[node name="InteractBox" type="Area2D" parent="SubBody"]
+script = ExtResource( 7 )
+
+[node name="InteractCollision" type="CollisionShape2D" parent="SubBody/InteractBox"]
+position = Vector2( -1, 1.5 )
+shape = SubResource( 29 )
 
 [node name="LaneDetection" type="Area2D" parent="."]
 collision_layer = 2
