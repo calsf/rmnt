@@ -14,7 +14,7 @@ func exit(data_state := {}) -> void:
 
 
 func state_physics_process(delta: float) -> void:
-	var player = enemy.players[0]
+	var player = enemy.get_player_target()
 	if player.global_position.distance_to(enemy.global_position) > closest_distance:
 		enemy.velocity = (player.global_position - enemy.global_position).normalized()
 		enemy.velocity.x *= enemy.props.speed_x

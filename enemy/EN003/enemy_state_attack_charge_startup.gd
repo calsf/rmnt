@@ -13,7 +13,7 @@ func exit(data_state := {}) -> void:
 
 func state_physics_process(delta: float) -> void:
 	# Face player
-	var player = enemy.players[0]
+	var player = enemy.get_player_target()
 	if player.global_position > enemy.global_position:
 		enemy.turn(1)
 	else:

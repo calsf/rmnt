@@ -70,6 +70,15 @@ func _physics_process(delta):
 	lane_collisions = lane_detection.get_overlapping_areas()
 
 
+# Get the active player object to target
+func get_player_target() -> Player:
+	for player in players:
+		if player.visible:
+			return player
+	
+	return null
+
+
 # Triggered by EnemyHurtbox
 func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 	var hitbox_data = hitbox.get_data_state()

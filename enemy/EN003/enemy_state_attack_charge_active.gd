@@ -23,7 +23,7 @@ func enter(data_state := {}) -> void:
 	moving_down = false
 	
 	# Get initial target position
-	var player = enemy.players[0]
+	var player = enemy.get_player_target()
 	target_pos = player.global_position
 	enemy.velocity = (target_pos - enemy.global_position).normalized()
 	enemy.velocity.x *= enemy.props.speed_x_dash

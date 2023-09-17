@@ -125,6 +125,10 @@ _global_script_class_icons={
 config/name="Project-rmnt"
 config/icon="res://icon.png"
 
+[autoload]
+
+SaveLoadManager="*res://save/save_load_manager.gd"
+
 [display]
 
 window/size/width=320

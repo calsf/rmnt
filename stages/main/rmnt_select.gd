@@ -33,7 +33,9 @@ func _ready():
 	# Min and max index should ignore the left and right arrow textures
 	min_rmnt_i = 1
 	max_rmnt_i = rmnt_options.size() - 2
-	curr_rmnt_i = min_rmnt_i
+	
+	# Activate selected rmnt from save data, add offset of min_rmnt_i
+	curr_rmnt_i = min_rmnt_i + SaveLoadManager.get_save_data("selected_rmnt_i")
 	_select_rmnt(curr_rmnt_i)
 
 
@@ -75,13 +77,15 @@ func _select_rmnt(selected_index : int):
 			rmnt_options[i].texture = rmnt_selected_textures[i - min_rmnt_i]
 			
 			rmnts[i - min_rmnt_i].activate()
-			#TODO: Save selected value
+			
+			# Set selected rmnt id (does not save data)
+			SaveLoadManager.set_save_data("selected_rmnt_i", i - min_rmnt_i)
 		else:
 			rmnt_options[i].texture = rmnt_unselected_textures[i - min_rmnt_i]
 			
 			rmnts[i - min_rmnt_i].deactivate()
-			#TODO: Save selected value
-
+		
+		SaveLoadManager.save_data()
 
 func activate():
 	activated = true
