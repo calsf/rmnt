@@ -3,7 +3,6 @@ extends Node
 
 const SAVE_PATH = "user://sav.json"
 
-
 # Default data to be saved with new save file
 var _default_data := {
 	"selected_rmnt_i" : 0

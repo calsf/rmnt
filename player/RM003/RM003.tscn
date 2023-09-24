@@ -989,6 +989,7 @@ knockup = 150.0
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
 position = Vector2( 12.5, -7 )
 shape = SubResource( 21 )
+disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="8"]
 knockdown = 300.0

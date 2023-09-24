@@ -1,11 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/RM002/RM002.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/main/rmnt_select.gd" type="Script" id=4]
 [ext_resource path="res://stages/main/StageSelectMob.tscn" type="PackedScene" id=5]
-[ext_resource path="res://stages/main/RM001-Icon.png" type="Texture" id=6]
+[ext_resource path="res://stages/main/RM004-Icon.png" type="Texture" id=6]
 [ext_resource path="res://stages/main/RM003-Icon.png" type="Texture" id=7]
 [ext_resource path="res://stages/main/StageSelectBoss.tscn" type="PackedScene" id=8]
 [ext_resource path="res://stages/main/StageMain.png" type="Texture" id=9]
@@ -15,6 +15,7 @@
 [ext_resource path="res://stages/main/RM001-IconSelected.png" type="Texture" id=13]
 [ext_resource path="res://stages/main/RmntSelect-L.png" type="Texture" id=14]
 [ext_resource path="res://stages/interactable/InteractableDetection.tscn" type="PackedScene" id=15]
+[ext_resource path="res://player/RM004/RM004.tscn" type="PackedScene" id=16]
 [ext_resource path="res://stages/main/stage_main.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -228,7 +229,7 @@ position = Vector2( 160, 120 )
 [node name="RM003" parent="World" instance=ExtResource( 2 )]
 position = Vector2( 160, 120 )
 
-[node name="RM004" parent="World" instance=ExtResource( 2 )]
+[node name="RM004" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 160, 120 )
 
 [node name="Interactable" parent="World" instance=ExtResource( 15 )]

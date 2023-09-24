@@ -2,7 +2,7 @@
 
 [ext_resource path="res://stages/main/stage_select_boss.gd" type="Script" id=1]
 [ext_resource path="res://stages/StageSelect.tscn" type="PackedScene" id=2]
-[ext_resource path="res://stages/Stage001.png" type="Texture" id=3]
+[ext_resource path="res://stages/StageLocked.png" type="Texture" id=3]
 
 [node name="StageSelectBoss" instance=ExtResource( 2 )]
 script = ExtResource( 1 )

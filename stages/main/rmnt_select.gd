@@ -10,13 +10,13 @@ onready var rmnt_unselected_textures := [
 	load("res://stages/main/RM001-Icon.png"),
 	load("res://stages/main/RM002-Icon.png"),
 	load("res://stages/main/RM003-Icon.png"),
-	load("res://stages/main/RM003-Icon.png")
+	load("res://stages/main/RM004-Icon.png")
 	]
 onready var rmnt_selected_textures := [
 	load("res://stages/main/RM001-IconSelected.png"),
 	load("res://stages/main/RM002-IconSelected.png"),
 	load("res://stages/main/RM003-IconSelected.png"),
-	load("res://stages/main/RM003-IconSelected.png")
+	load("res://stages/main/RM004-IconSelected.png")
 	]
 
 var rmnt_options := []
