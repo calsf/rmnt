@@ -3,7 +3,7 @@
 [ext_resource path="res://player/player_hitbox.gd" type="Script" id=1]
 [ext_resource path="res://player/RM004/RM004-ProjectileA1.png" type="Texture" id=2]
 [ext_resource path="res://player/RM004/projectile.gd" type="Script" id=3]
-[ext_resource path="res://enemy/EN004/EN004-Shadow.png" type="Texture" id=4]
+[ext_resource path="res://player/RM004/RM004-ProjectileA1-Shadow.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 3 )
@@ -23,7 +23,8 @@ position = Vector2( 0, -22 )
 texture = ExtResource( 2 )
 
 [node name="Shadow" type="Sprite" parent="Projectile"]
-position = Vector2( 0, -15 )
+modulate = Color( 1, 1, 1, 0.764706 )
+position = Vector2( 0, 3 )
 texture = ExtResource( 4 )
 
 [node name="PlayerHitbox" type="Area2D" parent="Projectile"]
