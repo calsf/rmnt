@@ -1,6 +1,27 @@
 extends PlayerState
 
 export var armored := false
+export var projectile_path := ""
+export var spawn_offset : Vector2
+
+var Projectile
+
+
+func _ready():
+	if projectile_path != null and projectile_path != "":
+		Projectile = load(projectile_path)
+
+
+func spawn_projectile() -> void:
+	var proj = Projectile.instance()
+	get_tree().current_scene.get_node("World").add_child(proj)
+	
+	if player.is_facing_left:
+		proj.global_position = player.global_position + (spawn_offset * Vector2(-1, 1))
+		proj.set_dir(Vector2.LEFT)
+	else:
+		proj.global_position = player.global_position + spawn_offset
+		proj.set_dir(Vector2.RIGHT)
 
 
 func enter(data_state := {}) -> void:
