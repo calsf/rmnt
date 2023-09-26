@@ -1,12 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/player_hitbox.gd" type="Script" id=1]
 [ext_resource path="res://player/RM004/RM004-ProjectileA1.png" type="Texture" id=2]
 [ext_resource path="res://player/RM004/projectile.gd" type="Script" id=3]
 [ext_resource path="res://player/RM004/RM004-ProjectileA1-Shadow.png" type="Texture" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 9, 3 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 360, 3 )
@@ -33,7 +30,6 @@ script = ExtResource( 1 )
 disabled_on_start = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/PlayerHitbox"]
-shape = SubResource( 1 )
 
 [node name="LaneDetection" type="Area2D" parent="Projectile"]
 collision_layer = 2

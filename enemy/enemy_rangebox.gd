@@ -32,13 +32,13 @@ func _physics_process(delta):
 
 
 func _on_area_entered(player_rangebox : PlayerRangebox) -> void:
-	if player_rangebox == null:
+	if player_rangebox == null or not is_instance_valid(player_rangebox):
 		return
 	
 	# Objects may not be in same lane on area entered and may enter lane while still overlapping
 	# Keep track of reference to area to keep checking for collision in _physics_process
 	# If hit, remove the reference to stop checking
-	if owner.has_method("on_enemy_rangebox_hit"):
+	if is_instance_valid(owner) and owner.has_method("on_enemy_rangebox_hit"):
 		if owner.on_enemy_rangebox_hit(player_rangebox, self):
 			# Do not remove trigger state from enemy's set of trigger states until area is exited
 			return

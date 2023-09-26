@@ -144,7 +144,7 @@ func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : Ene
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
-			if area.owner == other_rangebox_owner:
+			if is_instance_valid(area) and area.owner == other_rangebox_owner:
 				# Avoid duplicate trigger states
 				if find_trigger_state(enemy_rangebox.trigger_state_name) == -1:
 					trigger_states.append({
