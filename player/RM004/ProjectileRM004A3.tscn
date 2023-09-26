@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://player/RM004/ProjectileRM.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/RM004/RM004-ProjectileA3.png" type="Texture" id=2]
+[ext_resource path="res://player/RM004/RM004-ProjectileA3-Shadow.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 6 )
+
+[node name="ProjectileRM0004A3" instance=ExtResource( 1 )]
+_speed = 300
+destroy_on_enemy_hit = false
+
+[node name="Sprite" parent="Projectile" index="0"]
+position = Vector2( 0, -12 )
+texture = ExtResource( 2 )
+
+[node name="Shadow" parent="Projectile" index="1"]
+texture = ExtResource( 3 )
+
+[node name="PlayerHitbox" parent="Projectile" index="2"]
+position = Vector2( 0, -12 )
+damage = 5.0
+knockback_x = 125.0
+
+[node name="CollisionShape2D" parent="Projectile/PlayerHitbox" index="0"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 1 )

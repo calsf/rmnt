@@ -87,7 +87,7 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
-			if area.owner == hitbox_owner:
+			if is_instance_valid(area) and area.owner == hitbox_owner:
 				if hitbox_owner is Projectile and hitbox_owner.destroy_on_enemy_hit:
 					print_debug(self.name + "HIT BY PROJECTILE")
 					hitbox_owner.destroy()
