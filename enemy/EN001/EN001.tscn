@@ -439,7 +439,6 @@ knockback_x = 100.0
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA" index="0"]
 position = Vector2( 0, 3 )
 shape = SubResource( 26 )
-disabled = true
 
 [node name="AttackB" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 2 )
