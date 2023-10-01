@@ -934,6 +934,7 @@ anims/RESET = SubResource( 40 )
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 15, -1.5 )
 shape = SubResource( 12 )
+disabled = true
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 6, 1 )

@@ -87,7 +87,11 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
-			if area.owner == hitbox_owner:
+			if is_instance_valid(area) and area.owner == hitbox_owner:
+				if hitbox_owner is Projectile and hitbox_owner.destroy_on_enemy_hit:
+					print_debug(self.name + "HIT BY PROJECTILE")
+					hitbox_owner.destroy()
+				
 				print_debug(self.name + "HIT BY PLAYER")
 				
 				# Find the last attacked by instance which would be most recent instance of the attack
@@ -140,7 +144,7 @@ func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : Ene
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
-			if area.owner == other_rangebox_owner:
+			if is_instance_valid(area) and area.owner == other_rangebox_owner:
 				# Avoid duplicate trigger states
 				if find_trigger_state(enemy_rangebox.trigger_state_name) == -1:
 					trigger_states.append({
@@ -268,6 +272,9 @@ func toggle_hit_frame():
 
 # Pause specific node and all the children
 func pause_scene(node, is_paused):
+	if not is_instance_valid(node):
+		return
+	
 	pause_node(node, is_paused)
 	for child in node.get_children():
 		pause_node(child, is_paused)
@@ -275,6 +282,9 @@ func pause_scene(node, is_paused):
 
 # Pause specific node
 func pause_node(node, is_paused):
+	if not is_instance_valid(node):
+		return
+	
 	node.set_process(!is_paused)
 	node.set_physics_process(!is_paused)
 	node.set_process_input(!is_paused)

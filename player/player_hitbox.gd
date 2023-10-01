@@ -1,6 +1,7 @@
 class_name PlayerHitbox
 extends Area2D
 
+export var disabled_on_start := true
 export var damage := 0.0
 export var knockback_x := 0.0
 export var knockback_y := 0.0
@@ -17,9 +18,9 @@ func _init():
 
 
 func _ready():
-	# Disable hitbox collision shapes on initial load
+	# Disable or enable hitbox collision shapes on initial load
 	for collision in get_children():
-		collision.disabled = true
+		collision.disabled = disabled_on_start
 
 
 func get_data_state() -> Dictionary:

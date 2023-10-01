@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://player/player_hitbox.gd" type="Script" id=1]
+[ext_resource path="res://player/RM004/RM004-ProjectileA1.png" type="Texture" id=2]
+[ext_resource path="res://player/RM004/projectile.gd" type="Script" id=3]
+[ext_resource path="res://player/RM004/RM004-ProjectileA1-Shadow.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 360, 3 )
+
+[node name="ProjectileRM" type="Node2D"]
+script = ExtResource( 3 )
+_speed = 200
+
+[node name="Projectile" type="Node2D" parent="."]
+position = Vector2( 0, 13 )
+
+[node name="Sprite" type="Sprite" parent="Projectile"]
+position = Vector2( 0, -22 )
+texture = ExtResource( 2 )
+
+[node name="Shadow" type="Sprite" parent="Projectile"]
+modulate = Color( 1, 1, 1, 0.764706 )
+position = Vector2( 0, 3 )
+texture = ExtResource( 4 )
+
+[node name="PlayerHitbox" type="Area2D" parent="Projectile"]
+position = Vector2( 0, -22 )
+script = ExtResource( 1 )
+disabled_on_start = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/PlayerHitbox"]
+
+[node name="LaneDetection" type="Area2D" parent="Projectile"]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/LaneDetection"]
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Projectile"]
+root_node = NodePath("../..")
