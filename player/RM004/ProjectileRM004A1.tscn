@@ -6,6 +6,8 @@
 extents = Vector2( 9, 3 )
 
 [node name="ProjectileRM004A1" instance=ExtResource( 1 )]
+_speed_x = 200
+_speed_y = 200
 
 [node name="PlayerHitbox" parent="Projectile" index="2"]
 damage = 5.0
