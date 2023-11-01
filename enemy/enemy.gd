@@ -7,6 +7,7 @@ const GRAVITY = 700
 var Spawner = preload("res://enemy/Spawner.tscn")
 
 export var props : Resource
+var curr_hp : int
 
 # Movement props
 var velocity := Vector2.ZERO
@@ -61,6 +62,10 @@ func _init():
 
 
 func _ready():
+	# Init
+	props = props as EnemyProps
+	curr_hp = props.max_hp
+	
 	# Ignore this ground for all enemies, should only collide with own ground
 	get_tree().call_group("enemies", "add_collision_exception", ground)
 	disable_all_hitboxes()
@@ -77,6 +82,19 @@ func get_player_target() -> Player:
 			return player
 	
 	return null
+
+
+func take_damage(dmg : int) -> void:
+	curr_hp -= dmg
+	
+	# Death check
+	if curr_hp <= 0:
+		# Instance death effect before removing enemy
+		var death = load("res://enemy/EnemyDeath.tscn").instance()
+		get_tree().current_scene.get_node("World").add_child(death)
+		death.global_position = enemy_child.global_position
+		
+		queue_free()
 
 
 # Triggered by EnemyHurtbox
@@ -103,7 +121,7 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 				
 				# Always enter hitstun unless enemy is armored and attacking
 				if not props.armored or \
-						(props.armored and not is_attacking):
+						(props.armored and not is_attacking): # Not armored
 					# X and Y hitstun
 					var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
 					var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
@@ -125,8 +143,12 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 						is_aerial_stun = false
 					
 					toggle_hit_frame()
+					take_damage(hitbox_damage)
+				else: # Armored
+					hitbox_damage = hitbox_damage / 2
+					take_damage(hitbox_damage)
 				
-				hitstop([self, hitbox_owner])
+				Pause.hitstop([self, hitbox_owner])
 				
 				# Push most recent attack to back
 				attacked_by_hitboxes.append(hitbox)
@@ -254,40 +276,9 @@ func add_collision_exception(collision) -> void:
 		enemy_child.add_collision_exception_with(collision)
 
 
-func hitstop(objects_hit := [], duration := .05) -> void:
-	for obj in objects_hit:
-		pause_scene(obj, true)
-	yield(get_tree().create_timer(duration), "timeout")
-	for obj in objects_hit:
-		pause_scene(obj, false)
-
-
 func toggle_hit_frame():
 	if hit_frame:
 		anim.play("Hit1")
 	else:
 		anim.play("Hit2")
 	hit_frame = not hit_frame
-
-
-# Pause specific node and all the children
-func pause_scene(node, is_paused):
-	if not is_instance_valid(node):
-		return
-	
-	pause_node(node, is_paused)
-	for child in node.get_children():
-		pause_node(child, is_paused)
-
-
-# Pause specific node
-func pause_node(node, is_paused):
-	if not is_instance_valid(node):
-		return
-	
-	node.set_process(!is_paused)
-	node.set_physics_process(!is_paused)
-	node.set_process_input(!is_paused)
-	node.set_process_internal(!is_paused)
-	# node.set_process_unhandled_input(!is_paused)
-	# node.set_process_unhandled_key_input(!is_paused)

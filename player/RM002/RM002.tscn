@@ -1008,6 +1008,7 @@ anims/Move = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
 [node name="AttackA1" parent="SubBody" index="2"]
+damage = 6.0
 knockback_x = 20.0
 
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
@@ -1016,6 +1017,7 @@ shape = SubResource( 18 )
 disabled = true
 
 [node name="AttackA2" parent="SubBody" index="3"]
+damage = 7.0
 knockback_x = 0.0
 knockup = 200.0
 
@@ -1024,6 +1026,7 @@ position = Vector2( 26.5, -2 )
 shape = SubResource( 19 )
 
 [node name="AttackA3" parent="SubBody" index="4"]
+damage = 8.0
 knockback_x = 0.0
 
 [node name="AttackA3Left" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
@@ -1035,6 +1038,7 @@ position = Vector2( 21.5, -19.5 )
 shape = SubResource( 22 )
 
 [node name="AttackB" parent="SubBody" index="5"]
+damage = 11.0
 knockback_x = 200.0
 knockup = 300.0
 knockdown = 0.0
@@ -1044,6 +1048,7 @@ position = Vector2( 14.5, 3 )
 shape = SubResource( 8 )
 
 [node name="AttackC" parent="SubBody" index="6"]
+damage = 20.0
 knockback_x = 400.0
 knockup = 150.0
 
@@ -1052,6 +1057,7 @@ position = Vector2( 36, -6 )
 shape = SubResource( 9 )
 
 [node name="AirAttackA" parent="SubBody" index="7"]
+damage = 5.0
 knockback_x = 80.0
 knockup = 100.0
 
@@ -1061,6 +1067,7 @@ shape = SubResource( 25 )
 disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="8"]
+damage = 5.0
 knockback_x = 150.0
 knockup = 100.0
 
@@ -1069,6 +1076,7 @@ position = Vector2( 34, -5.5 )
 shape = SubResource( 26 )
 
 [node name="AirAttackC" parent="SubBody" index="9"]
+damage = 7.0
 knockback_x = 150.0
 knockdown = 300.0
 

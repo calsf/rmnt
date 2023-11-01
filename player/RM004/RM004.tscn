@@ -1148,6 +1148,7 @@ anims/Move = SubResource( 8 )
 anims/RESET = SubResource( 5 )
 
 [node name="AttackB" parent="SubBody" index="5"]
+damage = 10.0
 knockback_x = 150.0
 knockup = 150.0
 knockdown = 0.0
@@ -1158,6 +1159,7 @@ shape = SubResource( 16 )
 disabled = true
 
 [node name="AttackC" parent="SubBody" index="6"]
+damage = 13.0
 knockback_x = 25.0
 knockup = 350.0
 

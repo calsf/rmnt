@@ -59,7 +59,7 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 	# Objects must be in same lane for hurtbox/hitbox interaction
 	if lane_collisions:
 		for area in lane_collisions:
-			if area.owner == hitbox_owner:
+			if is_instance_valid(area) and area.owner == hitbox_owner:
 				print_debug(self.name + "HIT BY PLAYER")
 				
 				var hitbox_damage = hitbox_data["damage"]
@@ -87,7 +87,7 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 					
 					toggle_hit_frame()
 				
-				hitstop([self, hitbox_owner])
+				Pause.hitstop([self, hitbox_owner])
 				
 				shake_anim.play("Shake")
 				return true
@@ -179,14 +179,6 @@ func add_collision_exception(collision):
 		player_child.add_collision_exception_with(collision)
 
 
-func hitstop(objects_hit := [], duration := .05) -> void:
-	for obj in objects_hit:
-		pause_scene(obj, true)
-	yield(get_tree().create_timer(duration), "timeout")
-	for obj in objects_hit:
-		pause_scene(obj, false)
-
-
 func toggle_hit_frame():
 	if hit_frame:
 		anim.play("Hit1")
@@ -195,27 +187,10 @@ func toggle_hit_frame():
 	hit_frame = not hit_frame
 
 
-# Pause specific node and all the children
-func pause_scene(node, is_paused):
-	pause_node(node, is_paused)
-	for child in node.get_children():
-		pause_node(child, is_paused)
-
-
-# Pause specific node
-func pause_node(node, is_paused):
-	node.set_process(!is_paused)
-	node.set_physics_process(!is_paused)
-	node.set_process_input(!is_paused)
-	node.set_process_internal(!is_paused)
-	# node.set_process_unhandled_input(!is_paused)
-	# node.set_process_unhandled_key_input(!is_paused)
-
-
 # Reset state and pause player
 func pause_player(is_paused):
 	state_machine.transition_to(state_machine.initial_state_name)
-	pause_scene(self, is_paused)
+	Pause.pause_scene(self, is_paused)
 
 
 # Reset state and display player

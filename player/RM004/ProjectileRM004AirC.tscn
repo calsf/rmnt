@@ -22,6 +22,7 @@ texture = ExtResource( 3 )
 
 [node name="PlayerHitbox" parent="Projectile" index="2"]
 position = Vector2( 0, -16 )
+damage = 10.0
 knockback_x = 50.0
 knockdown = 500.0
 

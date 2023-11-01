@@ -24,14 +24,14 @@ func _physics_process(delta):
 
 
 func _on_area_entered(enemy_hitbox : EnemyHitbox) -> void:
-	if enemy_hitbox == null:
+	if enemy_hitbox == null or not is_instance_valid(enemy_hitbox):
 		return
 	
 	# Objects may not be in same lane on area entered and may enter lane while still overlapping
 	# Keep track of reference to area to keep checking for collision in _physics_process
 	# If hit, remove the reference to stop checking
-	if owner.has_method("on_player_hurtbox_hit"):
-		if owner.on_player_hurtbox_hit(enemy_hitbox):
+	if is_instance_valid(owner) and owner.has_method("on_player_hurtbox_hit"):
+		if is_instance_valid(owner) and owner.on_player_hurtbox_hit(enemy_hitbox):
 			_on_area_exited(enemy_hitbox)
 		elif not _curr_areas.has(enemy_hitbox):
 			_curr_areas.append(enemy_hitbox)
