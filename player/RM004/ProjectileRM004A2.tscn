@@ -21,7 +21,7 @@ texture = ExtResource( 2 )
 [node name="PlayerHitbox" parent="Projectile" index="2"]
 position = Vector2( 0, -20 )
 damage = 5.0
-knockback_x = 100.0
+knockback_x = 150.0
 
 [node name="CollisionShape2D" parent="Projectile/PlayerHitbox" index="0"]
 shape = SubResource( 1 )
