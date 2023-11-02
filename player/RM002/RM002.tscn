@@ -294,7 +294,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -361,7 +361,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.5 ),
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -428,7 +428,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.5, 0.6 ),
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -593,10 +593,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("AttackC/AttackC:disabled")
@@ -1024,6 +1024,7 @@ knockup = 200.0
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 26.5, -2 )
 shape = SubResource( 19 )
+disabled = true
 
 [node name="AttackA3" parent="SubBody" index="4"]
 damage = 8.0
@@ -1032,10 +1033,12 @@ knockback_x = 0.0
 [node name="AttackA3Left" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
 position = Vector2( -19.5, -19.5 )
 shape = SubResource( 21 )
+disabled = true
 
 [node name="AttackA3Right" type="CollisionShape2D" parent="SubBody/AttackA3" index="1"]
 position = Vector2( 21.5, -19.5 )
 shape = SubResource( 22 )
+disabled = true
 
 [node name="AttackB" parent="SubBody" index="5"]
 damage = 11.0
@@ -1055,6 +1058,7 @@ knockup = 150.0
 [node name="AttackC" type="CollisionShape2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 36, -6 )
 shape = SubResource( 9 )
+disabled = true
 
 [node name="AirAttackA" parent="SubBody" index="7"]
 damage = 5.0

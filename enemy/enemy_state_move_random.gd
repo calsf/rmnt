@@ -1,11 +1,6 @@
 # Finds random position to move to, when close to target, finds new random position to move to
 extends EnemyState
 
-const MIN_X := 16
-const MAX_X := 304
-const MIN_Y := 160
-const MAX_Y := 64
-
 export var closest_distance := 3
 
 var random_pos := Vector2(0, 0)
@@ -52,10 +47,7 @@ func state_physics_process(delta: float) -> void:
 
 
 func get_random_pos() -> Vector2:
-	randomize()
-	var random_pos_x = rand_range(MIN_X, MAX_X)
-	
-	randomize()
-	var random_pos_y = rand_range(MAX_Y, MIN_Y) # "Up" or MAX_Y is lower number
+	var random_pos_x = rand_range(enemy.min_x, enemy.max_x)
+	var random_pos_y = rand_range(enemy.max_y, enemy.min_y) # "Up" or max_y is lower number
 	
 	return Vector2(random_pos_x, random_pos_y)

@@ -210,3 +210,10 @@ func deactivate():
 	if state_machine:
 		last_input = null
 		state_machine.transition_to(state_machine.initial_state_name)
+
+
+func get_player_child():
+	if player_child == null:
+		player_child = $SubBody
+	
+	return player_child

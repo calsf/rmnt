@@ -18,7 +18,7 @@ func state_process(delta: float) -> void:
 		state_machine.transition_to("Hitstun")
 		return
 	
-	if not player.player_child.is_on_floor():
+	if not player.get_player_child().is_on_floor():
 		state_machine.transition_to("Air")
 	elif (Input.is_action_just_pressed("jump") or player.is_input_buffered("jump")):
 		state_machine.transition_to("Air", {

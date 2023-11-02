@@ -25,13 +25,13 @@ func state_physics_process(delta: float) -> void:
 	
 	var initial_child_velocity = player.child_velocity
 	player.child_velocity.y += player.GRAVITY * delta
-	player.child_velocity = player.player_child.move_and_slide(player.child_velocity, Vector2.UP)
-	if player.player_child.get_slide_count() and player.knockdown > 0:
-		player.child_velocity = initial_child_velocity.bounce(player.player_child.get_slide_collision(0).normal) * 0.5
+	player.child_velocity = player.get_player_child().move_and_slide(player.child_velocity, Vector2.UP)
+	if player.get_player_child().get_slide_count() and player.knockdown > 0:
+		player.child_velocity = initial_child_velocity.bounce(player.get_player_child().get_slide_collision(0).normal) * 0.5
 		player.knockdown = 0
 		return
 	
-	if player.player_child.is_on_floor():
+	if player.get_player_child().is_on_floor():
 		player.knockdown = 0
 		player.is_aerial_stun = false
 		state_machine.transition_to("Idle")

@@ -61,6 +61,7 @@ func _input(event):
 
 func _select_rmnt(selected_index : int):
 	var original_position = rmnts[last_rmnt_i - min_rmnt_i].global_position
+	#var original_child_position = rmnts[last_rmnt_i - min_rmnt_i].get_player_child().global_position
 	# Iterate through each rmnt option
 	for i in range(rmnt_options.size() - 1):
 		# If outside of range, ignore
@@ -73,6 +74,7 @@ func _select_rmnt(selected_index : int):
 		# they only include corresponding values for the rmnt selections,
 		# but rmnt options includes left and right arrows
 		rmnts[i - min_rmnt_i].global_position = original_position
+		#rmnts[i - min_rmnt_i].get_player_child().global_position = original_child_position
 		if i == selected_index:
 			rmnt_options[i].texture = rmnt_selected_textures[i - min_rmnt_i]
 			

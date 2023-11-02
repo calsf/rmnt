@@ -14,12 +14,15 @@ func _ready():
 
 # If face left is not specified, default to player facing direction
 func spawn_projectile(face_left = null) -> void:
+	if not player.visible:
+		return
+	
 	var proj = Projectile.instance()
 	get_tree().current_scene.get_node("World").add_child(proj)
 	
 	# Spawn offset on the projectile scene root node should always offset by x only
 	# Need to apply y offset on the projectile child sprite based on player child body
-	var spawn_offset_y = Vector2(0, player.player_child.position.y)
+	var spawn_offset_y = Vector2(0, player.get_player_child().position.y)
 	
 	if face_left or (face_left == null and player.is_facing_left):
 		proj.global_position = player.global_position + (spawn_offset * Vector2(-1, 1))
@@ -65,9 +68,9 @@ func state_physics_process(delta: float) -> void:
 	player.update_movement(false)
 	
 	player.child_velocity.y += player.GRAVITY * delta
-	player.child_velocity = player.player_child.move_and_slide(player.child_velocity, Vector2.UP)
+	player.child_velocity = player.get_player_child().move_and_slide(player.child_velocity, Vector2.UP)
 	
-	if player.player_child.is_on_floor():
+	if player.get_player_child().is_on_floor():
 		if Input.is_action_just_pressed("attack_a"):
 			state_machine.transition_to("AttackA1")
 		elif Input.is_action_just_pressed("attack_b"):

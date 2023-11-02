@@ -44,6 +44,11 @@ var trigger_states := []
 # Should be cleared upon state trigger or when it is removed from set of trigger_states
 var waiting_state = null
 
+var min_x : int
+var max_x : int
+var min_y : int
+var max_y : int
+
 onready var lane_detection = $LaneDetection
 onready var enemy_child = $SubBody
 onready var ground = $GroundDetection
@@ -82,6 +87,13 @@ func get_player_target() -> Player:
 			return player
 	
 	return null
+
+
+func set_stage_bounds(min_x : int, max_x : int, min_y : int, max_y : int) -> void:
+	self.min_x = min_x
+	self.max_x = max_x
+	self.min_y = min_y
+	self.max_y = max_y
 
 
 func take_damage(dmg : int) -> void:
@@ -238,11 +250,9 @@ func should_trigger_random_state() -> bool:
 
 # Get and set a random trigger state to wait for and start timer to wait
 func set_random_trigger_state():
-	randomize()
 	var random_state = randi() % trigger_states.size()
 	waiting_state = trigger_states[random_state]
 	
-	randomize()
 	var wait = rand_range(waiting_state.trigger_min_delay, waiting_state.trigger_max_delay)
 	
 	delay_timer.start(wait)

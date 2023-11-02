@@ -13,6 +13,9 @@ func _ready():
 
 
 func spawn_projectile() -> void:
+	if not player.visible:
+		return
+	
 	var proj = Projectile.instance()
 	get_tree().current_scene.get_node("World").add_child(proj)
 	

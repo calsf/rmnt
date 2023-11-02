@@ -24,7 +24,9 @@ func state_physics_process(delta: float) -> void:
 	
 	var input_vector = owner.update_movement()
 
-	if Input.is_action_just_pressed("jump"):
+	if not player.get_player_child().is_on_floor():
+		state_machine.transition_to("Air")
+	elif Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Air", {
 				jump = true
 			})

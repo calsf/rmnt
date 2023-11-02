@@ -3,7 +3,7 @@ extends EnemyState
 
 func enter(data_state := {}) -> void:
 	### TEMP??
-	yield(owner.get_parent().get_parent(), "ready")
+	#yield(owner.get_parent().get_parent(), "ready")
 	
 	enemy.disable_hurtbox()
 	enemy.anim.play("Spawn")

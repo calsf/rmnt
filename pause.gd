@@ -1,5 +1,10 @@
-# Hitstop singleton
+# Singleton for pause behavior
 extends Node
+
+
+func _ready():
+	# Global randomize call, only called once
+	randomize()
 
 
 func hitstop(objects_hit := [], duration := .05) -> void:

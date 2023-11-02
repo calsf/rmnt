@@ -35,7 +35,7 @@ func state_physics_process(delta: float) -> void:
 	player.update_movement()
 	
 	player.child_velocity.y += player.GRAVITY * delta
-	player.child_velocity = player.player_child.move_and_slide(player.child_velocity, Vector2.UP)
+	player.child_velocity = player.get_player_child().move_and_slide(player.child_velocity, Vector2.UP)
 	
 	if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
 		state_machine.transition_to("AirAttackA")
@@ -46,7 +46,7 @@ func state_physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed("dash"):
 		state_machine.transition_to("Dash")
 	
-	if player.player_child.is_on_floor():
+	if player.get_player_child().is_on_floor():
 		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
 			state_machine.transition_to("AttackA1")
 		elif Input.is_action_just_pressed("attack_b") or player.is_input_buffered("attack_b"):
