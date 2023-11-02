@@ -1,9 +1,9 @@
-# Singleton for pause behavior
+# General Global singleton
 extends Node
 
 
 func _ready():
-	# Global randomize call, only called once
+	# Global randomize call, only need to be called once
 	randomize()
 
 

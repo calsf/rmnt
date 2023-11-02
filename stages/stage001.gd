@@ -10,7 +10,18 @@ func _ready():
 		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
 		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
 		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
-		[Enemies.EN004]
+		[Enemies.EN004],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
 	]
 	
 	start_spawn_num = 3

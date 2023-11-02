@@ -87,7 +87,7 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 					
 					toggle_hit_frame()
 				
-				Pause.hitstop([self, hitbox_owner])
+				Global.hitstop([self, hitbox_owner])
 				
 				shake_anim.play("Shake")
 				return true
@@ -190,7 +190,7 @@ func toggle_hit_frame():
 # Reset state and pause player
 func pause_player(is_paused):
 	state_machine.transition_to(state_machine.initial_state_name)
-	Pause.pause_scene(self, is_paused)
+	Global.pause_scene(self, is_paused)
 
 
 # Reset state and display player

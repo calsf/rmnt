@@ -3,7 +3,7 @@ class_name EnemyProps
 
 # Y speed should be 70% of X speed
 
-export var max_hp : int
+export var max_hp : float
 export var speed_x : float
 export var speed_y : float
 export var speed_x_dash : float

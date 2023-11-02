@@ -7,7 +7,7 @@ const GRAVITY = 700
 var Spawner = preload("res://enemy/Spawner.tscn")
 
 export var props : Resource
-var curr_hp : int
+var curr_hp : float
 
 # Movement props
 var velocity := Vector2.ZERO
@@ -71,9 +71,15 @@ func _ready():
 	props = props as EnemyProps
 	curr_hp = props.max_hp
 	
-	# Ignore this ground for all enemies, should only collide with own ground
-	get_tree().call_group("enemies", "add_collision_exception", ground)
+	# NOTE: Updating enemy collision exceptions should be handled by spawner instead
+	# update_enemy_collision_exceptions()
+	
 	disable_all_hitboxes()
+
+
+# Ignore this ground for all enemies, should only collide with own ground
+func update_enemy_collision_exceptions():
+	get_tree().call_group("enemies", "add_ground_collision_exception", ground)
 
 
 func _physics_process(delta):
@@ -96,7 +102,7 @@ func set_stage_bounds(min_x : int, max_x : int, min_y : int, max_y : int) -> voi
 	self.max_y = max_y
 
 
-func take_damage(dmg : int) -> void:
+func take_damage(dmg : float) -> void:
 	curr_hp -= dmg
 	
 	# Death check
@@ -160,7 +166,7 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 					hitbox_damage = hitbox_damage / 2
 					take_damage(hitbox_damage)
 				
-				Pause.hitstop([self, hitbox_owner])
+				Global.hitstop([self, hitbox_owner])
 				
 				# Push most recent attack to back
 				attacked_by_hitboxes.append(hitbox)
@@ -280,7 +286,7 @@ func find_trigger_state(trigger_state : String) -> int:
 	return -1
 
 
-func add_collision_exception(collision) -> void:
+func add_ground_collision_exception(collision) -> void:
 	# If not own ground collision, ignore collision
 	if collision != ground:
 		enemy_child.add_collision_exception_with(collision)

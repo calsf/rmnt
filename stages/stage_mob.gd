@@ -28,6 +28,7 @@ var max_y : float
 
 onready var spawn_timer = $SpawnTimer
 
+
 func _process(delta):
 	if spawn_timer.is_stopped():
 		# Spawn random number of enemies
@@ -55,6 +56,10 @@ func spawn_enemies(spawn_num : int) -> void:
 	
 	# Update curr count
 	curr_spawn_num = curr_spawn_num + spawn_num
+	
+	# Update all enemy collision exceptions after spawning enemies
+	# This is so enemy ground collisions only collide with their own ground collisions
+	get_tree().call_group("enemies", "update_enemy_collision_exceptions")
 
 
 # Spawns a single enemy, requires the enemy num to be specified

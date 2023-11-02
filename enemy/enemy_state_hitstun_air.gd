@@ -32,6 +32,7 @@ func state_physics_process(delta: float) -> void:
 		return
 	
 	if enemy.enemy_child.is_on_floor():
+		# enemy.enemy_child.position = Vector2.ZERO
 		enemy.knockdown = 0
 		enemy.is_aerial_stun = false
 		state_machine.transition_to("Idle")
