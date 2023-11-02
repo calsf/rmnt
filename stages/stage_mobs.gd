@@ -1,5 +1,5 @@
 extends Node
-class_name StageMob
+class_name StageMobs
 
 const Enemies = {
 	EN001 = "res://enemy/EN001/EN001.tscn",
@@ -30,6 +30,10 @@ onready var spawn_timer = $SpawnTimer
 
 
 func _process(delta):
+	# Stop spawning after maxed
+	if curr_spawn_num >= max_spawn_num:
+		return
+	
 	if spawn_timer.is_stopped():
 		# Spawn random number of enemies
 		var spawn_num = randi() % max_enemy_num + min_enemy_num
@@ -47,6 +51,16 @@ func _process(delta):
 func reset_spawn_time():
 	var wait = rand_range(min_time, max_time)
 	spawn_timer.start(wait)
+
+
+# Spawns first set of enemies
+func spawn_initial_enemies():
+	# Start timer to any long length of time to delay scheduled spawning
+	spawn_timer.start(max_time)
+	
+	yield(get_tree().create_timer(.7), "timeout")
+	spawn_enemies(start_spawn_num)
+	reset_spawn_time()
 
 
 # Spawn spawn_num of enemies and update curr_spawn_count

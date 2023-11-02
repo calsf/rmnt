@@ -1,4 +1,4 @@
-extends StageMob
+extends StageMobs
 
 
 func _ready():
@@ -41,5 +41,4 @@ func _ready():
 	min_y = 160
 	max_y = 64
 	
-	spawn_enemies(start_spawn_num)
-	reset_spawn_time()
+	spawn_initial_enemies()

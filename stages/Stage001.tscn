@@ -6,7 +6,7 @@
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=8]
 [ext_resource path="res://player/RM002/RM002.tscn" type="PackedScene" id=9]
 [ext_resource path="res://player/RM004/RM004.tscn" type="PackedScene" id=10]
-[ext_resource path="res://stages/stage001.gd" type="Script" id=11]
+[ext_resource path="res://stages/stage_mobs001.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
