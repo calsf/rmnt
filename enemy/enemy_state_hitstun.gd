@@ -11,7 +11,6 @@ func exit(data_state := {}) -> void:
 
 
 func state_physics_process(delta: float) -> void:
-	# TEMP HITSTUN BEHAVIOR
 	if enemy.is_aerial_stun:
 			state_machine.transition_to("HitstunAir")
 	

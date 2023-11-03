@@ -1165,7 +1165,7 @@ knockup = 350.0
 
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 1, -19 )
-polygon = PoolVector2Array( -7, 20, -13, -6, -18, -25, 16, -25, 11, -6, 6, 20 )
+polygon = PoolVector2Array( -7, 20, -13, -6, -18, -27, 16, -27, 11, -6, 6, 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 shape = SubResource( 1 )
