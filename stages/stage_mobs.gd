@@ -2,11 +2,13 @@ extends Node
 class_name StageMobs
 
 const Enemies = {
+	EN000 = "res://enemy/EN000/EN000.tscn",
 	EN001 = "res://enemy/EN001/EN001.tscn",
 	EN002 = "res://enemy/EN002/EN002.tscn",
 	EN003 = "res://enemy/EN003/EN003.tscn",
 	EN004 = "res://enemy/EN004/EN004.tscn",
 	EN005 = "res://enemy/EN005/EN005.tscn",
+	EN006 = "res://enemy/EN006/EN006.tscn",
 }
 
 var enemy_listing : Array
