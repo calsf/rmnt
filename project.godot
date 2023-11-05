@@ -234,6 +234,7 @@ interact={
 2d_physics/layer_12="EnemyPushbox"
 2d_physics/layer_13="PlayerInteractBox"
 2d_physics/layer_14="InteractableBox"
+2d_physics/layer_15="EnemyPushboxAir"
 
 [physics]
 
