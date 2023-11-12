@@ -5,13 +5,18 @@ export var _speed_x := 0
 export var _speed_y := 0
 export var min_y := 0
 export var has_y_movement := false
-export var destroy_on_enemy_hit := true
+export var destroy_on_hit := true
 
 onready var projectile_sprite = $Projectile/Sprite
-onready var projectile_hitbox = $Projectile/PlayerHitbox
+onready var projectile_hitbox
 
 var dir : Vector2
 var is_facing_left := false
+
+
+func _ready():
+	# Assumes hitbox object is index 2
+	projectile_hitbox = $Projectile.get_child(2)
 
 
 func _process(delta):

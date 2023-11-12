@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Char001.png-239593f33d7a80bcb744d1b9d4616c0b.stex"
+path="res://.import/Particle.png-5d20aba989cba5b8ea6a0fb984c952bc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Char001.png"
-dest_files=[ "res://.import/Char001.png-239593f33d7a80bcb744d1b9d4616c0b.stex" ]
+source_file="res://base/Particle.png"
+dest_files=[ "res://.import/Particle.png-5d20aba989cba5b8ea6a0fb984c952bc.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://enemy/ProjectileEN.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemy/EN008/EN008-ProjectileA.png" type="Texture" id=2]
+[ext_resource path="res://enemy/EN008/EN008-ProjectileA-Shadow.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 11, 3.5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Projectile"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Projectile/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Projectile/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[node name="ProjectileEN008A" instance=ExtResource( 1 )]
+_speed_x = 300
+
+[node name="Sprite" parent="Projectile" index="0"]
+position = Vector2( 0, -18 )
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="Shadow" parent="Projectile" index="1"]
+texture = ExtResource( 3 )
+
+[node name="EnemyHitbox" parent="Projectile" index="2"]
+position = Vector2( 0, -9 )
+damage = 5.0
+knockback_x = 150.0
+
+[node name="CollisionShape2D" parent="Projectile/EnemyHitbox" index="0"]
+position = Vector2( 0, -9.5 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" parent="Projectile" index="4"]
+autoplay = "Projectile"
+anims/Projectile = SubResource( 2 )
+anims/RESET = SubResource( 3 )

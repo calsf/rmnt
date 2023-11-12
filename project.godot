@@ -87,7 +87,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Projectile",
 "language": "GDScript",
-"path": "res://player/RM004/projectile.gd"
+"path": "res://base/projectile.gd"
 }, {
 "base": "Node",
 "class": "StageMobs",
@@ -140,7 +140,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SaveLoadManager="*res://save/save_load_manager.gd"
-Global="*res://global.gd"
+Global="*res://base/global.gd"
 
 [display]
 

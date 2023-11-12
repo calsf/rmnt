@@ -2,8 +2,9 @@
 
 [ext_resource path="res://player/player_hitbox.gd" type="Script" id=1]
 [ext_resource path="res://player/RM004/RM004-ProjectileA1.png" type="Texture" id=2]
-[ext_resource path="res://player/RM004/projectile.gd" type="Script" id=3]
+[ext_resource path="res://base/projectile.gd" type="Script" id=3]
 [ext_resource path="res://player/RM004/RM004-ProjectileA1-Shadow.png" type="Texture" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 360, 3 )

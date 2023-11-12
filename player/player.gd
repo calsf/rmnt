@@ -60,6 +60,10 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 	if lane_collisions:
 		for area in lane_collisions:
 			if is_instance_valid(area) and area.owner == hitbox_owner:
+				if hitbox_owner is Projectile and hitbox_owner.destroy_on_hit:
+					print_debug(self.name + "HIT BY PROJECTILE")
+					hitbox_owner.destroy()
+				
 				print_debug(self.name + "HIT BY PLAYER")
 				
 				var hitbox_damage = hitbox_data["damage"]

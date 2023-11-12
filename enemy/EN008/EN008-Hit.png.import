@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background-001.png-c018097c5c723c3498492abed1ec6412.stex"
+path="res://.import/EN008-Hit.png-451853986e5ef67250d32fde4bf7bb4f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://background-001.png"
-dest_files=[ "res://.import/background-001.png-c018097c5c723c3498492abed1ec6412.stex" ]
+source_file="res://enemy/EN008/EN008-Hit.png"
+dest_files=[ "res://.import/EN008-Hit.png-451853986e5ef67250d32fde4bf7bb4f.stex" ]
 
 [params]
 

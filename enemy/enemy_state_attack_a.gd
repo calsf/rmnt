@@ -1,9 +1,42 @@
 extends EnemyState
 
+export var projectile_path := ""
+export var spawn_offset : Vector2
+
+var Projectile
+
+
+func _ready():
+	if projectile_path != null and projectile_path != "":
+		Projectile = load(projectile_path)
+
+
+func spawn_projectile() -> void:
+	if not enemy.visible:
+		return
+	
+	var proj = Projectile.instance()
+	get_tree().current_scene.get_node("World").add_child(proj)
+	
+	if enemy.is_facing_left:
+		proj.global_position = enemy.global_position + (spawn_offset * Vector2(-1, 1))
+		proj.set_dir(Vector2.LEFT)
+	else:
+		proj.global_position = enemy.global_position + spawn_offset
+		proj.set_dir(Vector2.RIGHT)
+
 
 func enter(data_state := {}) -> void:
 	enemy.anim.play("AttackA")
 	enemy.is_attacking = true
+	
+	# If attack is a projectile, face player before spawning projectile
+	if projectile_path != null and projectile_path != "":
+		var player = enemy.get_player_target()
+		if player.global_position.x > enemy.global_position.x:
+			enemy.turn(1)
+		else:
+			enemy.turn(-1)
 
 
 func exit(data_state := {}) -> void:

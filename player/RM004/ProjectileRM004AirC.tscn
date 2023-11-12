@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://player/RM004/ProjectileRM.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/ProjectileRM.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM004/RM004-ProjectileAirC.png" type="Texture" id=2]
 [ext_resource path="res://player/RM004/RM004-ProjectileAirC-Shadow.png" type="Texture" id=3]
 
@@ -11,7 +11,7 @@ extents = Vector2( 12.5, 7.5 )
 _speed_y = 300
 min_y = -3
 has_y_movement = true
-destroy_on_enemy_hit = false
+destroy_on_hit = false
 
 [node name="Sprite" parent="Projectile" index="0"]
 position = Vector2( 0, -16 )
