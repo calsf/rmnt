@@ -282,7 +282,6 @@ air_pos = Vector2( 0, -48 )
 
 [node name="Shadow" parent="." index="0"]
 visible = false
-modulate = Color( 1, 1, 1, 0.764706 )
 texture = ExtResource( 2 )
 
 [node name="EnemySprite" parent="SubBody" index="0"]

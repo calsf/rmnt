@@ -2,6 +2,7 @@ extends EnemyState
 
 export var projectile_path := ""
 export var spawn_offset : Vector2
+export var anim_name := ""
 
 var Projectile
 
@@ -27,7 +28,7 @@ func spawn_projectile() -> void:
 
 
 func enter(data_state := {}) -> void:
-	enemy.anim.play("AttackA")
+	enemy.anim.play(anim_name)
 	enemy.is_attacking = true
 	
 	# If attack is a projectile, face player before spawning projectile

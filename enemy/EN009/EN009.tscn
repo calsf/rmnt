@@ -409,3 +409,4 @@ script = ExtResource( 7 )
 
 [node name="AttackA" type="Node" parent="States" index="5"]
 script = ExtResource( 10 )
+anim_name = "AttackA"

@@ -10,7 +10,7 @@
 [ext_resource path="res://enemy/EN008/enemy_state_move_to_lane.gd" type="Script" id=8]
 [ext_resource path="res://enemy/EN008/EN008.tres" type="Resource" id=9]
 [ext_resource path="res://enemy/enemy_rangebox.gd" type="Script" id=10]
-[ext_resource path="res://enemy/enemy_state_attack_a.gd" type="Script" id=11]
+[ext_resource path="res://enemy/enemy_state_attack.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=5]
 resource_name = "AttackA"
@@ -379,3 +379,4 @@ script = ExtResource( 8 )
 script = ExtResource( 11 )
 projectile_path = "res://enemy/EN008/ProjectileEN008A.tscn"
 spawn_offset = Vector2( 14, 0 )
+anim_name = "AttackA"

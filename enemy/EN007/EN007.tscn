@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/enemy_state_move.gd" type="Script" id=2]
@@ -10,8 +10,7 @@
 [ext_resource path="res://enemy/EN007/EN007-Shadow.png" type="Texture" id=8]
 [ext_resource path="res://enemy/EN007/EN007-Hit.png" type="Texture" id=9]
 [ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=10]
-[ext_resource path="res://enemy/enemy_state_attack_a.gd" type="Script" id=11]
-[ext_resource path="res://enemy/enemy_state_attack_b.gd" type="Script" id=12]
+[ext_resource path="res://enemy/enemy_state_attack.gd" type="Script" id=11]
 [ext_resource path="res://enemy/EN007/EN007.tres" type="Resource" id=13]
 [ext_resource path="res://enemy/enemy_rangebox.gd" type="Script" id=14]
 [ext_resource path="res://enemy/enemy_state_escape_to.gd" type="Script" id=15]
@@ -627,9 +626,11 @@ script = ExtResource( 2 )
 
 [node name="AttackA" type="Node" parent="States" index="5"]
 script = ExtResource( 11 )
+anim_name = "AttackA"
 
 [node name="AttackB" type="Node" parent="States" index="6"]
-script = ExtResource( 12 )
+script = ExtResource( 11 )
+anim_name = "AttackB"
 
 [node name="EscapeFrom" type="Node" parent="States" index="7"]
 script = ExtResource( 16 )

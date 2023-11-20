@@ -6,7 +6,7 @@
 [ext_resource path="res://enemy/EN004/EN004-AttackA.png" type="Texture" id=4]
 [ext_resource path="res://enemy/EN004/EN004-Hit.png" type="Texture" id=5]
 [ext_resource path="res://enemy/enemy_rangebox.gd" type="Script" id=6]
-[ext_resource path="res://enemy/enemy_state_attack_a.gd" type="Script" id=7]
+[ext_resource path="res://enemy/enemy_state_attack.gd" type="Script" id=7]
 [ext_resource path="res://enemy/enemy_state_move_random.gd" type="Script" id=8]
 [ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=9]
 [ext_resource path="res://enemy/EN004/EN004.tres" type="Resource" id=10]
@@ -409,3 +409,4 @@ script = ExtResource( 8 )
 
 [node name="AttackA" type="Node" parent="States" index="4"]
 script = ExtResource( 7 )
+anim_name = "AttackA"
