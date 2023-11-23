@@ -41,7 +41,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -65 ), Vector2( 0, -64 ), Vector2( 0, -65 ) ]
+"values": [ Vector2( 0, -66 ), Vector2( 0, -65 ), Vector2( 0, -66 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -65 ), Vector2( 0, -64 ), Vector2( 0, -65 ) ]
+"values": [ Vector2( 0, -66 ), Vector2( 0, -65 ), Vector2( 0, -66 ) ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -153,6 +153,7 @@ visible = false
 visible = false
 
 [node name="Fade" parent="CanvasLayer" instance=ExtResource( 12 )]
+visible = false
 
 [node name="WorldStaticBody" type="StaticBody2D" parent="."]
 collision_mask = 18
@@ -201,7 +202,7 @@ position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
 [node name="StageSelectBoss" parent="World" instance=ExtResource( 15 )]
-position = Vector2( 275, 86 )
+position = Vector2( 276, 86 )
 
 [node name="CollisionShape2D" parent="World/StageSelectBoss/InteractableBox" index="0"]
 position = Vector2( 0, -6.5 )
