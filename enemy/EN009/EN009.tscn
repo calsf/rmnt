@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/EN009/EN009-Shadow.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://enemy/enemy_rangebox.gd" type="Script" id=9]
 [ext_resource path="res://enemy/EN009/enemy_state_attack_move_forward.gd" type="Script" id=10]
 [ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=11]
+[ext_resource path="res://enemy/EN009/EN009-Hit.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=4]
 resource_name = "AttackA"
@@ -97,7 +98,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 12 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -137,7 +138,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 12 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("EnemySprite:hframes")
@@ -161,7 +162,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -386,6 +387,7 @@ knockback_x = 120.0
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA" index="0"]
 position = Vector2( 24, -4 )
 shape = SubResource( 12 )
+disabled = true
 
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 2 )
