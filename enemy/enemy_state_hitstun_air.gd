@@ -25,7 +25,9 @@ func state_physics_process(delta: float) -> void:
 	enemy.knockback = enemy.knockback.move_toward(Vector2.ZERO, enemy.props.ground_decel * delta)
 	enemy.knockback = enemy.move_and_slide(enemy.knockback)
 	if enemy.get_slide_count():
-		enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce
+		# Bounce only relevant if normal.x is not 0
+		if enemy.get_slide_collision(0).normal.x != 0:
+			enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce
 	
 	if not enemy.is_aerial_stun and enemy.knockback != Vector2.ZERO:
 		return
@@ -45,7 +47,10 @@ func state_physics_process(delta: float) -> void:
 		# enemy.enemy_child.position = Vector2.ZERO
 		enemy.knockdown = 0
 		enemy.is_aerial_stun = false
-		state_machine.transition_to("Idle")
+		if enemy.knockback == Vector2.ZERO:
+			state_machine.transition_to("Idle")
+		else:
+			state_machine.transition_to("Hitstun")
 	
 		# Escape
 	if escapeable:

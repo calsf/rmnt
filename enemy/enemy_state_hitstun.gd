@@ -31,7 +31,9 @@ func state_physics_process(delta: float) -> void:
 	enemy.knockback = enemy.knockback.move_toward(Vector2.ZERO, enemy.props.ground_decel * delta)
 	enemy.knockback = enemy.move_and_slide(enemy.knockback)
 	if enemy.get_slide_count():
-		enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce
+		# Bounce only relevant if normal.x is not 0
+		if enemy.get_slide_collision(0).normal.x != 0:
+			enemy.knockback = initial_knockback.bounce(enemy.get_slide_collision(0).normal) # Bounce
 	
 	if enemy.knockback == Vector2.ZERO:
 		state_machine.transition_to("Idle")

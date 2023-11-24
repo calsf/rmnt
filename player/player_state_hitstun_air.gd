@@ -14,7 +14,9 @@ func state_physics_process(delta: float) -> void:
 	player.knockback = player.knockback.move_toward(Vector2.ZERO, player.props.ground_decel * delta)
 	player.knockback = player.move_and_slide(player.knockback)
 	if player.get_slide_count():
-		player.knockback = initial_knockback.bounce(player.get_slide_collision(0).normal) # Bounce
+		# Bounce only relevant if normal.x is not 0
+		if player.get_slide_collision(0).normal.x != 0:
+			player.knockback = initial_knockback.bounce(player.get_slide_collision(0).normal) # Bounce
 	
 	if not player.is_aerial_stun and player.knockback != Vector2.ZERO:
 		return
@@ -33,4 +35,7 @@ func state_physics_process(delta: float) -> void:
 	if player.get_player_child().is_on_floor():
 		player.knockdown = 0
 		player.is_aerial_stun = false
-		state_machine.transition_to("Idle")
+		if player.knockback == Vector2.ZERO:
+			state_machine.transition_to("Idle")
+		else:
+			state_machine.transition_to("Hitstun")
