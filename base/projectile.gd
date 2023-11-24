@@ -1,6 +1,9 @@
 class_name Projectile
 extends Node2D
 
+const MIN_X := -80
+const MAX_X := 400
+
 export var _speed_x := 0
 export var _speed_y := 0
 export var min_y := 0
@@ -21,6 +24,7 @@ func _ready():
 
 func _process(delta):
 	_move(delta)
+	bound_check()
 
 
 func _move(delta):
@@ -35,6 +39,12 @@ func _move(delta):
 		else:
 			projectile_sprite.position += (Vector2.DOWN * _speed_y) * delta
 			projectile_hitbox.position = projectile_sprite.position
+
+
+# Checks for x bounds and destroy projectile once past
+func bound_check():
+	if position.x > MAX_X or position.x < MIN_X:
+		destroy()
 
 
 func set_dir(new_dir : Vector2) -> void:
