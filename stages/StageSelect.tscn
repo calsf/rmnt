@@ -66,26 +66,20 @@ custom_constants/separation = 8
 alignment = 1
 
 [node name="Select1" type="TextureRect" parent="Selection/SelectIcons"]
-margin_left = 116.0
-margin_right = 132.0
+margin_left = 128.0
+margin_right = 144.0
 margin_bottom = 16.0
 texture = ExtResource( 4 )
 
 [node name="Select2" type="TextureRect" parent="Selection/SelectIcons"]
-margin_left = 140.0
-margin_right = 156.0
+margin_left = 152.0
+margin_right = 168.0
 margin_bottom = 16.0
 texture = ExtResource( 7 )
 
 [node name="Select3" type="TextureRect" parent="Selection/SelectIcons"]
-margin_left = 164.0
-margin_right = 180.0
-margin_bottom = 16.0
-texture = ExtResource( 7 )
-
-[node name="Select4" type="TextureRect" parent="Selection/SelectIcons"]
-margin_left = 188.0
-margin_right = 204.0
+margin_left = 176.0
+margin_right = 192.0
 margin_bottom = 16.0
 texture = ExtResource( 7 )
 

@@ -3,12 +3,17 @@ extends Control
 
 onready var unselected_icon := load("res://stages/main/StageSelectUnselected.png")
 onready var selected_icon := load("res://stages/main/StageSelectSelected.png")
+onready var preview = $Selection/Preview
 onready var players = get_tree().get_nodes_in_group("players")
 onready var _fade = get_tree().current_scene.get_node("CanvasLayer/Fade")
 
 # An array of stage scene paths
 # To be set by child class
 onready var stages := []
+
+# Parallel array for corresponding stage icons for stages
+# To be set by child class
+onready var stage_icons := []
 
 var select_icons := []
 var curr_stage_i : int
@@ -57,6 +62,7 @@ func _input(event):
 
 
 func _select_stage(selected_index : int):
+	preview.texture = stage_icons[selected_index]
 	# Iterate through each stage option
 	for i in range(min_stage_i, max_stage_i + 1):
 		if i == selected_index:
