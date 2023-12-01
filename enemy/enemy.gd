@@ -60,6 +60,9 @@ onready var delay_timer = $DelayTimer
 onready var hurtbox = $SubBody/EnemyHurtbox
 onready var players = get_tree().get_nodes_in_group("players")
 
+signal health_updated()
+signal died()
+
 
 func _init():
 	# Add to enemies group
@@ -75,6 +78,19 @@ func _ready():
 	# update_enemy_collision_exceptions()
 	
 	disable_all_hitboxes()
+	
+	init_hud()
+
+
+# Connect and initialize hud for this enemy
+# To be called by enemy itself after initializing
+func init_hud():
+	# Connect hud signals if applicable
+	if get_tree().current_scene.has_node("HUD"):
+		var hud = get_tree().current_scene.get_node("HUD")
+		hud.init_enemy_bar(self)
+	
+	emit_signal("health_updated", self)
 
 
 # Ignore this ground for all enemies, should only collide with own ground
@@ -104,6 +120,7 @@ func set_stage_bounds(min_x : int, max_x : int, min_y : int, max_y : int) -> voi
 
 func take_damage(dmg : float) -> void:
 	curr_hp -= dmg
+	emit_signal("health_updated", self)
 	
 	# Death check
 	if curr_hp <= 0:
@@ -111,6 +128,7 @@ func take_damage(dmg : float) -> void:
 		var death = load("res://enemy/EnemyDeath.tscn").instance()
 		get_tree().current_scene.get_node("World").add_child(death)
 		death.global_position = enemy_child.global_position
+		emit_signal("died", self)
 		
 		queue_free()
 

@@ -13,3 +13,4 @@ armored = true
 ground_decel = 200
 hitstun_multiplier = 0.9
 air_hitstun_multiplier = 0.9
+hud_icon_path = "res://enemy/EN003/EN003-IconHUD.png"

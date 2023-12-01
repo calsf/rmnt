@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://stages/hud/BarBG.png" type="Texture" id=1]
 [ext_resource path="res://stages/hud/BarHealth.png" type="Texture" id=2]
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/hud/BarMeter.png" type="Texture" id=4]
-[ext_resource path="res://enemy/EN000/EN000-IconHUD.png" type="Texture" id=5]
 [ext_resource path="res://stages/Stage001.png" type="Texture" id=6]
 [ext_resource path="res://stages/stage.gd" type="Script" id=7]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=8]
@@ -77,17 +76,17 @@ rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 12 )
 
 [node name="HealthBG" type="TextureRect" parent="HUD/PlayerBar"]
-margin_left = 14.0
+margin_left = 15.0
 margin_top = 2.0
-margin_right = 62.0
+margin_right = 63.0
 margin_bottom = 14.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="HealthFill" type="TextureRect" parent="HUD/PlayerBar"]
-margin_left = 15.0
+margin_left = 16.0
 margin_top = -1.0
-margin_right = 16.0
+margin_right = 17.0
 margin_bottom = 11.0
 rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 6 )
@@ -95,90 +94,33 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="MeterBG" type="TextureRect" parent="HUD/PlayerBar"]
-margin_left = 14.0
+margin_left = 15.0
 margin_top = 8.0
-margin_right = 62.0
+margin_right = 63.0
 margin_bottom = 20.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="MeterFill" type="TextureRect" parent="HUD/PlayerBar"]
-margin_left = 15.0
+margin_left = 16.0
 margin_top = 5.0
-margin_right = 16.0
+margin_right = 17.0
 margin_bottom = 17.0
 rect_scale = Vector2( 11, 0.5 )
 rect_pivot_offset = Vector2( 0, 6 )
 texture = ExtResource( 4 )
+expand = true
 
-[node name="EnemyBars" type="HBoxContainer" parent="HUD"]
-anchor_left = 0.137
-anchor_right = 1.0
+[node name="EnemyBarContainer" type="GridContainer" parent="HUD"]
+anchor_left = 0.15
+anchor_right = 0.969
 anchor_bottom = 0.089
-margin_left = 0.159996
-margin_bottom = -0.0200005
-custom_constants/separation = 0
-
-[node name="EnemyBar" type="Control" parent="HUD/EnemyBars"]
-margin_right = 40.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 40, 16 )
-
-[node name="Icon" type="TextureRect" parent="HUD/EnemyBars/EnemyBar"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 26.0
-margin_bottom = 26.0
+margin_right = 261.92
+margin_bottom = 15.98
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="HealthBG" type="TextureRect" parent="HUD/EnemyBars/EnemyBar"]
-margin_left = 14.0
-margin_top = 5.0
-margin_right = 62.0
-margin_bottom = 17.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
-
-[node name="HealthFill" type="TextureRect" parent="HUD/EnemyBars/EnemyBar"]
-margin_left = 15.0
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-rect_pivot_offset = Vector2( 0, 6 )
-texture = ExtResource( 2 )
-
-[node name="EnemyBar2" type="Control" parent="HUD/EnemyBars"]
-margin_left = 40.0
-margin_right = 80.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 40, 16 )
-
-[node name="Icon" type="TextureRect" parent="HUD/EnemyBars/EnemyBar2"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 26.0
-margin_bottom = 26.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="HealthBG" type="TextureRect" parent="HUD/EnemyBars/EnemyBar2"]
-margin_left = 14.0
-margin_top = 5.0
-margin_right = 62.0
-margin_bottom = 17.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
-
-[node name="HealthFill" type="TextureRect" parent="HUD/EnemyBars/EnemyBar2"]
-margin_left = 15.0
-margin_top = 2.0
-margin_right = 16.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-rect_pivot_offset = Vector2( 0, 6 )
-texture = ExtResource( 2 )
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 13
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 18

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://stages/hud/BarHealth.png" type="Texture" id=1]
+[ext_resource path="res://stages/hud/BarBG.png" type="Texture" id=2]
+[ext_resource path="res://enemy/EN000/EN000-IconHUD.png" type="Texture" id=3]
+[ext_resource path="res://stages/hud/enemy_bar.gd" type="Script" id=4]
+
+[node name="EnemyBar" type="Control"]
+margin_right = 40.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 40, 16 )
+script = ExtResource( 4 )
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_left = 1.0
+margin_top = 2.0
+margin_right = 25.0
+margin_bottom = 26.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="HealthBG" type="TextureRect" parent="."]
+margin_left = 14.0
+margin_top = 5.0
+margin_right = 62.0
+margin_bottom = 17.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="HealthFill" type="TextureRect" parent="."]
+margin_left = 15.0
+margin_top = 2.0
+margin_right = 16.0
+margin_bottom = 14.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 6 )
+texture = ExtResource( 1 )
+expand = true

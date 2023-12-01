@@ -12,3 +12,4 @@ export var armored : bool
 export var ground_decel := 200 # Knockback decel
 export var hitstun_multiplier := 1.0 # Default 1.0, multiplies base knockback
 export var air_hitstun_multiplier := 1.0 # Default 1.0, multiplies base knockup/knockdown
+export var hud_icon_path : String

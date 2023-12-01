@@ -43,6 +43,12 @@ func _process(delta):
 	if spawn_timer.is_stopped():
 		# Spawn random number of enemies
 		var spawn_num = randi() % max_enemy_num + min_enemy_num
+		
+		# Limit max number of active enemies
+		# Spawn only as much as possible before reaching limit
+		if curr_spawn_num + spawn_num > Global.MAX_ACTIVE_ENEMIES:
+			spawn_num = Global.MAX_ACTIVE_ENEMIES - curr_spawn_num 
+		
 		spawn_enemies(spawn_num)
 		
 		# Update curr count

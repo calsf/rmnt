@@ -37,6 +37,7 @@ onready var hurtbox = $SubBody/PlayerHurtbox
 onready var state_machine = $States
 
 signal health_updated()
+signal died()
 
 
 func _init():
@@ -75,6 +76,7 @@ func take_damage(dmg : float) -> void:
 	# Death check
 	if curr_hp <= 0:
 		curr_hp = 0
+		emit_signal("died", self)
 		# TODO:
 		print_debug("DEAD")
 	

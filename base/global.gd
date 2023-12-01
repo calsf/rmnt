@@ -1,6 +1,9 @@
 # General Global singleton
 extends Node
 
+# Max number of active enemies allowed in a stage at once
+# Will be limited by how many can be displayed on hud
+const MAX_ACTIVE_ENEMIES = 26
 
 func _ready():
 	# Global randomize call, only need to be called once
