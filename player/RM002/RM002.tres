@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-max_hp = 0.0
+max_hp = 100
 speed_x = 60.0
 speed_y = 42.0
 speed_x_dash = 160.0
@@ -12,3 +12,4 @@ speed_y_dash = 112.0
 ground_decel = 200
 hitstun_multiplier = 0.6
 air_hitstun_multiplier = 0.6
+hud_icon_path = "res://player/RM002/RM002-IconHUD.png"

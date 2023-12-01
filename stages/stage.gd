@@ -14,5 +14,6 @@ func _ready():
 	for i in range(rmnts.size()):
 		if i == selected_rmnt_i:
 			rmnts[i].activate()
+			rmnts[i].init_hud()
 		else:
 			rmnts[i].deactivate()

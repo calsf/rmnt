@@ -5,6 +5,7 @@ const JUMP_IMPULSE = 300
 const GRAVITY = 700
 
 export var props : Resource
+var curr_hp : float
 
 # Movement props
 var velocity := Vector2.ZERO
@@ -35,6 +36,8 @@ onready var ground = $GroundDetection
 onready var hurtbox = $SubBody/PlayerHurtbox
 onready var state_machine = $States
 
+signal health_updated()
+
 
 func _init():
 	# Add to players group
@@ -45,10 +48,37 @@ func _ready():
 	# Ignore this ground for all players, should only collide with own ground
 	get_tree().call_group("players", "add_collision_exception", ground)
 	disable_all_hitboxes()
+	
+	# Init
+	props = props as PlayerProps
+	curr_hp = props.max_hp
 
 
 func _physics_process(delta):
 	lane_collisions = lane_detection.get_overlapping_areas()
+
+
+# Connect and initialize hud for this player
+# To be called by stage when activating the active player
+func init_hud():
+	# Connect hud signals if applicable
+	if get_tree().current_scene.has_node("HUD"):
+		var hud = get_tree().current_scene.get_node("HUD")
+		hud.init_player_bar(self)
+	
+	emit_signal("health_updated", self)
+
+
+func take_damage(dmg : float) -> void:
+	curr_hp -= dmg
+	
+	# Death check
+	if curr_hp <= 0:
+		curr_hp = 0
+		# TODO:
+		print_debug("DEAD")
+	
+	emit_signal("health_updated", self)
 
 
 # Triggered by PlayerHurtbox
@@ -90,6 +120,8 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 						is_aerial_stun = false
 					
 					toggle_hit_frame()
+				
+				take_damage(hitbox_damage)
 				
 				Global.hitstop([self, hitbox_owner])
 				
