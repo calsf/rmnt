@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://stages/hud/BarBG.png" type="Texture" id=1]
 [ext_resource path="res://stages/hud/BarHealth.png" type="Texture" id=2]
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/hud/BarMeter.png" type="Texture" id=4]
+[ext_resource path="res://stages/hud/BarHealthFlash.png" type="Texture" id=5]
 [ext_resource path="res://stages/Stage001.png" type="Texture" id=6]
 [ext_resource path="res://stages/stage.gd" type="Script" id=7]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=8]
@@ -12,6 +13,61 @@
 [ext_resource path="res://stages/stage_mobs001.gd" type="Script" id=11]
 [ext_resource path="res://player/RM001/RM001-IconHUD.png" type="Texture" id=12]
 [ext_resource path="res://stages/hud.gd" type="Script" id=13]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.513726, 0.513726, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -92,6 +148,10 @@ rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 6 )
 texture = ExtResource( 2 )
 expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/PlayerBar/HealthFill"]
+anims/Flash = SubResource( 5 )
+anims/RESET = SubResource( 6 )
 
 [node name="MeterBG" type="TextureRect" parent="HUD/PlayerBar"]
 margin_left = 15.0
