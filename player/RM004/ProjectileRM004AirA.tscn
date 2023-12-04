@@ -21,6 +21,7 @@ texture = ExtResource( 2 )
 damage = 5.0
 knockback_x = 150.0
 knockup = 25.0
+meter_gain = 5.0
 
 [node name="CollisionShape2D" parent="Projectile/PlayerHitbox" index="0"]
 shape = SubResource( 1 )

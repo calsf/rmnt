@@ -1179,6 +1179,7 @@ damage = 10.0
 knockback_x = 150.0
 knockup = 150.0
 knockdown = 0.0
+meter_gain = 4.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
 position = Vector2( 19, -3.5 )
@@ -1189,6 +1190,7 @@ disabled = true
 damage = 13.0
 knockback_x = 25.0
 knockup = 350.0
+meter_gain = 7.0
 
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 1, -19 )
@@ -1197,6 +1199,7 @@ polygon = PoolVector2Array( -7, 20, -13, -6, -18, -27, 16, -27, 11, -6, 6, 20 )
 [node name="AirAttackA" parent="SubBody" index="7"]
 damage = 5.0
 knockup = 0.0
+meter_gain = 1.0
 
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
 position = Vector2( 0, -3.5 )

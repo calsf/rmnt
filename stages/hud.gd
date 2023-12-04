@@ -1,17 +1,21 @@
 extends CanvasLayer
 
 const MAX_HEALTH_SIZE = 44.0
+const MAX_METER_SIZE = 44.0
 
 onready var enemy_bar = load("res://stages/hud/EnemyBar.tscn")
 onready var player_icon = $PlayerBar/Icon
 onready var health_fill = $PlayerBar/HealthFill
 onready var health_anim = $PlayerBar/HealthFill/AnimationPlayer
+onready var meter_fill = $PlayerBar/MeterFill
+onready var meter_anim = $PlayerBar/MeterFill/AnimationPlayer
 onready var enemy_bars = $EnemyBarContainer
 
 
 # Init player bar, is called by player after player has been initialized
 func init_player_bar(player : Player) -> void:
 	player.connect("health_updated", self, "_update_player_health")
+	player.connect("meter_gained", self, "_update_player_meter")
 	player_icon.texture = load(player.props.hud_icon_path)
 
 
@@ -35,4 +39,10 @@ func _update_player_health(player : Player) -> void:
 		return
 	
 	health_anim.play("Flash")
+
+
+# Update player meter bar
+func _update_player_meter(player : Player) -> void:
+	var meter_ratio = MAX_METER_SIZE / player.props.max_meter
+	meter_fill.rect_size.x = min(MAX_METER_SIZE, player.curr_meter * meter_ratio)
 

@@ -18,6 +18,7 @@ func spawn_projectile() -> void:
 	
 	var proj = Projectile.instance()
 	get_tree().current_scene.get_node("World").add_child(proj)
+	proj.projectile_hitbox.player_owner = player
 	
 	if player.is_facing_left:
 		proj.global_position = player.global_position + (spawn_offset * Vector2(-1, 1))

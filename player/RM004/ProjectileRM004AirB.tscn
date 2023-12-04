@@ -26,6 +26,7 @@ position = Vector2( 0, -14 )
 damage = 8.0
 knockback_x = 100.0
 knockdown = 300.0
+meter_gain = 5.0
 
 [node name="CollisionShape2D" parent="Projectile/PlayerHitbox" index="0"]
 position = Vector2( 0.5, 0 )

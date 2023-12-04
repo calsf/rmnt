@@ -166,10 +166,12 @@ margin_left = 16.0
 margin_top = 5.0
 margin_right = 17.0
 margin_bottom = 17.0
-rect_scale = Vector2( 11, 0.5 )
+rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 6 )
 texture = ExtResource( 4 )
 expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/PlayerBar/MeterFill"]
 
 [node name="EnemyBarContainer" type="GridContainer" parent="HUD"]
 anchor_left = 0.15

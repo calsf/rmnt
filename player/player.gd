@@ -6,6 +6,7 @@ const GRAVITY = 700
 
 export var props : Resource
 var curr_hp : float
+var curr_meter : float
 
 # Movement props
 var velocity := Vector2.ZERO
@@ -38,6 +39,7 @@ onready var state_machine = $States
 
 signal health_updated()
 signal died()
+signal meter_gained()
 
 
 func _init():
@@ -53,6 +55,7 @@ func _ready():
 	# Init
 	props = props as PlayerProps
 	curr_hp = props.max_hp
+	curr_meter = 0.0
 
 
 func _physics_process(delta):
@@ -68,6 +71,7 @@ func init_hud():
 		hud.init_player_bar(self)
 	
 	emit_signal("health_updated", self)
+	emit_signal("meter_gained", self)
 
 
 func take_damage(dmg : float) -> void:
@@ -81,6 +85,14 @@ func take_damage(dmg : float) -> void:
 		print_debug("DEAD")
 	
 	emit_signal("health_updated", self)
+
+
+func gain_meter(meter_gain : float) -> void:
+	curr_meter += meter_gain
+	if curr_meter > props.max_meter:
+		curr_meter = props.max_meter
+	
+	emit_signal("meter_gained", self)
 
 
 # Triggered by PlayerHurtbox

@@ -4,6 +4,7 @@ class_name PlayerProps
 # Y speed should be 70% of X speed
 
 export var max_hp := 100
+export var max_meter := 100
 export var speed_x : float
 export var speed_y : float
 export var speed_x_dash : float

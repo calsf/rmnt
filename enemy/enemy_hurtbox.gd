@@ -34,6 +34,7 @@ func _on_area_entered(player_hitbox : PlayerHitbox) -> void:
 	if is_instance_valid(owner) and owner.has_method("on_enemy_hurtbox_hit"):
 		if is_instance_valid(owner) and owner.on_enemy_hurtbox_hit(player_hitbox):
 			_on_area_exited(player_hitbox)
+			player_hitbox.gain_meter()
 		elif not _curr_areas.has(player_hitbox):
 			_curr_areas.append(player_hitbox)
 
