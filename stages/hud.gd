@@ -45,4 +45,9 @@ func _update_player_health(player : Player) -> void:
 func _update_player_meter(player : Player) -> void:
 	var meter_ratio = MAX_METER_SIZE / player.props.max_meter
 	meter_fill.rect_size.x = min(MAX_METER_SIZE, player.curr_meter * meter_ratio)
+	
+	if player.curr_meter == player.props.max_meter:
+		meter_anim.play("Full")
+	else:
+		meter_anim.play("Flash")
 
