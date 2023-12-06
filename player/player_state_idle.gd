@@ -11,6 +11,8 @@ func exit(data_state := {}) -> void:
 
 
 func state_process(delta: float) -> void:
+	check_attack_special()
+	
 	if player.is_aerial_stun:
 		state_machine.transition_to("HitstunAir")
 		return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003-Idle.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://player/RM003/RM003-AttackC.png" type="Texture" id=14]
 [ext_resource path="res://player/RM003/RM003-Dash.png" type="Texture" id=15]
 [ext_resource path="res://player/RM003/RM003-Shadow.png" type="Texture" id=16]
+[ext_resource path="res://player/RM003/RM003-AttackSpecial.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=17]
 resource_name = "AirAttackA"
@@ -586,6 +587,59 @@ tracks/4/keys = {
 "values": [ true, false, true ]
 }
 
+[sub_resource type="Animation" id=28]
+resource_name = "AttackSpecial"
+length = 1.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1.05, 1.15, 1.25, 1.3, 1.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackSpecial/AttackSpecial:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, false, true, false, true, false, true ]
+}
+
 [sub_resource type="Animation" id=27]
 resource_name = "Dash"
 length = 0.25
@@ -883,6 +937,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackSpecial/AttackSpecial:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 31, 15 )
@@ -907,6 +973,9 @@ extents = Vector2( 17.5, 15.5 )
 
 [sub_resource type="CircleShape2D" id=24]
 radius = 22.8035
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 40, 38 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8, 15 )
@@ -938,6 +1007,7 @@ anims/AttackA2 = SubResource( 15 )
 anims/AttackA3 = SubResource( 19 )
 anims/AttackB = SubResource( 12 )
 anims/AttackC = SubResource( 25 )
+anims/AttackSpecial = SubResource( 28 )
 anims/Dash = SubResource( 27 )
 anims/Hit1 = SubResource( 7 )
 anims/Hit2 = SubResource( 8 )
@@ -949,14 +1019,17 @@ anims/RESET = SubResource( 3 )
 [node name="AttackA1" parent="SubBody" index="2"]
 damage = 4.0
 knockback_x = -150.0
+meter_gain = 1.0
 
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 5, 2 )
 shape = SubResource( 14 )
+disabled = true
 
 [node name="AttackA2" parent="SubBody" index="3"]
 damage = 4.0
 knockback_x = 100.0
+meter_gain = 1.0
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 5, -2.5 )
@@ -964,6 +1037,7 @@ shape = SubResource( 16 )
 
 [node name="AttackA3" parent="SubBody" index="4"]
 damage = 4.0
+meter_gain = 3.0
 
 [node name="AttackA3" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
 position = Vector2( 11.5, -1 )
@@ -973,6 +1047,7 @@ shape = SubResource( 20 )
 damage = 10.0
 knockback_x = 80.0
 knockdown = 600.0
+meter_gain = 2.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
 position = Vector2( 0.5, -8.5 )
@@ -983,6 +1058,7 @@ disabled = true
 damage = 12.0
 knockback_x = -100.0
 knockup = 250.0
+meter_gain = 2.0
 
 [node name="AttackC" type="CollisionShape2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 12, -7 )
@@ -993,6 +1069,7 @@ disabled = true
 damage = 6.0
 knockback_x = 80.0
 knockup = 150.0
+meter_gain = 2.0
 
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
 position = Vector2( 12.5, -7 )
@@ -1002,6 +1079,7 @@ disabled = true
 [node name="AirAttackB" parent="SubBody" index="8"]
 damage = 7.0
 knockdown = 300.0
+meter_gain = 2.0
 
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( 4.5, -5.5 )
@@ -1011,9 +1089,19 @@ shape = SubResource( 22 )
 damage = 8.0
 knockback_x = -60.0
 knockdown = 300.0
+meter_gain = 45.0
 
 [node name="AirAttackC" type="CollisionShape2D" parent="SubBody/AirAttackC" index="0"]
 shape = SubResource( 24 )
+
+[node name="AttackSpecial" parent="SubBody" index="10"]
+damage = 5.0
+knockup = 50.0
+
+[node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
+position = Vector2( 0, -22 )
+shape = SubResource( 29 )
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 shape = SubResource( 9 )

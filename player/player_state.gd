@@ -13,3 +13,9 @@ func _ready() -> void:
 	# Cast owner to Player type
 	player = owner as Player
 	assert(player != null)
+
+
+# Should be able to transition to attack special from any player state
+func check_attack_special() -> void:
+	if player.curr_meter == player.props.max_meter and Input.is_action_pressed("attack_special"):
+		state_machine.transition_to("AttackSpecial")

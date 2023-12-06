@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://player/player_state_attack_c.gd" type="Script" id=13]
 [ext_resource path="res://player/player_state_air_attack_a.gd" type="Script" id=14]
 [ext_resource path="res://player/player_state_air_attack_b.gd" type="Script" id=15]
+[ext_resource path="res://player/player_state_attack_special.gd" type="Script" id=16]
 [ext_resource path="res://player/player_state_attack_a3.gd" type="Script" id=25]
 [ext_resource path="res://player/player_state_air_attack_c.gd" type="Script" id=27]
 [ext_resource path="res://player/player_state_dash.gd" type="Script" id=29]
@@ -129,6 +130,9 @@ script = ExtResource( 11 )
 knockback_x = 50.0
 knockdown = 450.0
 
+[node name="AttackSpecial" type="Area2D" parent="SubBody"]
+script = ExtResource( 11 )
+
 [node name="PlayerHurtbox" type="Area2D" parent="SubBody"]
 script = ExtResource( 12 )
 
@@ -205,6 +209,9 @@ script = ExtResource( 15 )
 
 [node name="AirAttackC" type="Node" parent="States"]
 script = ExtResource( 27 )
+
+[node name="AttackSpecial" type="Node" parent="States"]
+script = ExtResource( 16 )
 
 [node name="Hitstun" type="Node" parent="States"]
 script = ExtResource( 33 )

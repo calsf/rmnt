@@ -25,7 +25,7 @@ func exit(data_state := {}) -> void:
 
 func state_physics_process(delta: float) -> void:
 	if enemy.is_aerial_stun:
-			state_machine.transition_to("HitstunAir")
+		state_machine.transition_to("HitstunAir")
 	
 	var initial_knockback = enemy.knockback
 	enemy.knockback = enemy.knockback.move_toward(Vector2.ZERO, enemy.props.ground_decel * delta)
