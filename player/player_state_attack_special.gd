@@ -5,6 +5,9 @@ export var projectile_path := ""
 export var spawn_offset : Vector2
 export var is_falling_attack := false
 
+export var dash_speed : float
+export var is_dashing_attack := false
+
 var moving_dir := 0
 var has_landed := false
 var Projectile
@@ -50,6 +53,14 @@ func enter(data_state := {}) -> void:
 		moving_dir = 1
 	else:
 		moving_dir = 0
+	
+	# If is a dashing attack, should use facing direction for moving_dir
+	if is_dashing_attack:
+		if player.is_facing_left:
+			moving_dir = -1
+		else:
+			moving_dir = 1
+	
 	has_landed = false
 
 
@@ -77,9 +88,17 @@ func state_physics_process(delta: float) -> void:
 		has_landed = true
 	
 	if is_falling_attack:
-		# Maintain x velocity from initial input only while in air
+		# Maintain x velocity from initial input while in air
+		# If is dashing attack, also keeps x velocity while grounded
 		if not has_landed:
-			player.velocity.x = player.props.speed_x * moving_dir
+			if is_dashing_attack:
+				player.velocity.x = dash_speed * moving_dir
+				player.velocity = player.move_and_slide(player.velocity)
+			else:
+				player.velocity.x = player.props.speed_x * moving_dir
+				player.velocity = player.move_and_slide(player.velocity)
+		elif is_dashing_attack:
+			player.velocity.x = dash_speed * moving_dir
 			player.velocity = player.move_and_slide(player.velocity)
 	
 		player.child_velocity.y += player.GRAVITY * delta

@@ -1255,3 +1255,5 @@ armored = true
 
 [node name="AttackSpecial" parent="States" index="12"]
 is_falling_attack = true
+dash_speed = 80.0
+is_dashing_attack = true
