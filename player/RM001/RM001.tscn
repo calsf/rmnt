@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM001/RM001-AirAttackA.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://player/RM001/RM001-AirAttackC.png" type="Texture" id=13]
 [ext_resource path="res://player/RM001/RM001-Dash.png" type="Texture" id=14]
 [ext_resource path="res://player/RM001/RM001-Shadow.png" type="Texture" id=15]
+[ext_resource path="res://player/RM001/RM001-AttackSpecial.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=25]
 resource_name = "AirAttackA"
@@ -592,6 +593,71 @@ tracks/4/keys = {
 "values": [ 8 ]
 }
 
+[sub_resource type="Animation" id=41]
+resource_name = "AttackSpecial"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackSpecial/AttackSpecial:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 0.65, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../LaneDetection/LaneCollision:shape:extents")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.55, 0.6, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 360, 3 ), Vector2( 360, 3 ), Vector2( 360, 360 ), Vector2( 360, 3 ) ]
+}
+
 [sub_resource type="Animation" id=34]
 resource_name = "Dash"
 length = 0.25
@@ -887,6 +953,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 4 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("../LaneDetection/LaneCollision:shape:extents")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 360, 3 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 26, 8.5 )
@@ -896,6 +974,9 @@ extents = Vector2( 35, 11 )
 
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 41.5, 9 )
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 640, 360 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 8, 14 )
@@ -923,6 +1004,7 @@ anims/AttackA2 = SubResource( 30 )
 anims/AttackA3 = SubResource( 31 )
 anims/AttackB = SubResource( 32 )
 anims/AttackC = SubResource( 33 )
+anims/AttackSpecial = SubResource( 41 )
 anims/Dash = SubResource( 34 )
 anims/Hit1 = SubResource( 35 )
 anims/Hit2 = SubResource( 36 )
@@ -966,7 +1048,7 @@ disabled = true
 
 [node name="AttackC" parent="SubBody" index="6"]
 damage = 14.0
-meter_gain = 4.0
+meter_gain = 100.0
 
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC" index="0"]
 polygon = PoolVector2Array( 40, 16, 40, -34, -34, -34, -34, 16, -11, 16, -11, -12, 10, -12, 10, 16 )
@@ -999,6 +1081,13 @@ meter_gain = 5.0
 [node name="AirAttackC" type="CollisionPolygon2D" parent="SubBody/AirAttackC" index="0"]
 polygon = PoolVector2Array( -27, -42, -27, -16, 6, -16, 6, 12, 40, 12, 40, -42 )
 
+[node name="AttackSpecial" parent="SubBody" index="10"]
+damage = 5.0
+knockup = 350.0
+
+[node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
+shape = SubResource( 42 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 position = Vector2( 0, 2.5 )
 shape = SubResource( 11 )
@@ -1009,3 +1098,6 @@ shape = SubResource( 23 )
 
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 24 )
+
+[node name="AttackSpecial" parent="States" index="12"]
+is_falling_attack = true
