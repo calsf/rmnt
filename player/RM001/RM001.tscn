@@ -1087,6 +1087,7 @@ knockup = 350.0
 
 [node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
 shape = SubResource( 42 )
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 position = Vector2( 0, 2.5 )
