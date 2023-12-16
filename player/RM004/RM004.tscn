@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM004/RM004-Idle.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://player/RM004/RM004-AirAttackA.png" type="Texture" id=14]
 [ext_resource path="res://player/RM004/RM004-AirAttackB.png" type="Texture" id=15]
 [ext_resource path="res://player/RM004/RM004-AirAttackC.png" type="Texture" id=16]
+[ext_resource path="res://player/RM004/RM004-AttackSpecial.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=18]
 resource_name = "AirAttackA"
@@ -739,6 +740,73 @@ tracks/5/keys = {
 "values": [ true, false, true ]
 }
 
+[sub_resource type="Animation" id=22]
+resource_name = "AttackSpecial"
+length = 1.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.9, 0.95, 1, 1.05, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AttackSpecial/AttackSpecial:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.45, 0.65, 1.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../States/AttackSpecial")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_projectile"
+} ]
+}
+
 [sub_resource type="Animation" id=9]
 resource_name = "Dash"
 length = 0.25
@@ -1136,6 +1204,9 @@ extents = Vector2( 19, 12.5 )
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 11, 6.5 )
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 33, 31 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 15 )
 
@@ -1166,6 +1237,7 @@ anims/AttackA2 = SubResource( 11 )
 anims/AttackA3 = SubResource( 14 )
 anims/AttackB = SubResource( 15 )
 anims/AttackC = SubResource( 17 )
+anims/AttackSpecial = SubResource( 22 )
 anims/Dash = SubResource( 9 )
 anims/Hit1 = SubResource( 12 )
 anims/Hit2 = SubResource( 13 )
@@ -1179,7 +1251,7 @@ damage = 10.0
 knockback_x = 150.0
 knockup = 150.0
 knockdown = 0.0
-meter_gain = 4.0
+meter_gain = 100.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
 position = Vector2( 19, -3.5 )
@@ -1195,6 +1267,7 @@ meter_gain = 7.0
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 1, -19 )
 polygon = PoolVector2Array( -7, 20, -13, -6, -18, -27, 16, -27, 11, -6, 6, 20 )
+disabled = true
 
 [node name="AirAttackA" parent="SubBody" index="7"]
 damage = 5.0
@@ -1204,6 +1277,14 @@ meter_gain = 1.0
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
 position = Vector2( 0, -3.5 )
 shape = SubResource( 21 )
+
+[node name="AttackSpecial" parent="SubBody" index="10"]
+damage = 5.0
+knockup = 350.0
+
+[node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
+position = Vector2( 0, -14 )
+shape = SubResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 shape = SubResource( 1 )
@@ -1236,6 +1317,9 @@ spawn_offset = Vector2( 8, 0 )
 
 [node name="AirAttackC" parent="States" index="11"]
 projectile_path = "res://player/RM004/ProjectileRM004AirC.tscn"
+
+[node name="AttackSpecial" parent="States" index="12"]
+projectile_path = "res://player/RM004/ProjectileRMSpecial.tscn"
 
 [node name="TEMP" type="Node2D" parent="." index="7"]
 position = Vector2( 16, -8 )

@@ -26,11 +26,17 @@ func spawn_projectile() -> void:
 	get_tree().current_scene.get_node("World").add_child(proj)
 	proj.projectile_hitbox.player_owner = player
 	
+	# Spawn offset on the projectile scene root node should always offset by x only
+	# Need to apply y offset on the projectile child sprite based on player child body
+	var spawn_offset_y = Vector2(0, player.get_player_child().position.y)
+	
 	if player.is_facing_left:
 		proj.global_position = player.global_position + (spawn_offset * Vector2(-1, 1))
+		proj.set_offset_y(spawn_offset_y)
 		proj.set_dir(Vector2.LEFT)
 	else:
 		proj.global_position = player.global_position + spawn_offset
+		proj.set_offset_y(spawn_offset_y)
 		proj.set_dir(Vector2.RIGHT)
 
 
