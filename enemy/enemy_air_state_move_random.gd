@@ -34,7 +34,8 @@ func state_physics_process(delta: float) -> void:
 	enemy.turn(enemy.velocity.x)
 	
 	# Always move towards a fixed aerial position
-	if enemy.enemy_child.position.distance_to(enemy.air_pos) >= .5:
+	# Check for aerial stun to avoid overwriting y child velocity
+	if not enemy.is_aerial_stun and enemy.enemy_child.position.distance_to(enemy.air_pos) >= .5:
 		var dir = Vector2(0, (enemy.air_pos.y - enemy.enemy_child.position.y)).normalized()
 		enemy.child_velocity = dir * enemy.props.speed_y
 		enemy.child_velocity = enemy.enemy_child.move_and_slide(enemy.child_velocity)
