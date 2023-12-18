@@ -12,6 +12,7 @@ const Enemies = {
 	EN007 = "res://enemy/EN007/EN007.tscn",
 	EN008 = "res://enemy/EN008/EN008.tscn",
 	EN009 = "res://enemy/EN009/EN009.tscn",
+	EN010 = "res://enemy/EN010/EN010.tscn",
 }
 
 var enemy_listing : Array

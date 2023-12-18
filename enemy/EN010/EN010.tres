@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://enemy/enemy_props.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+max_hp = 125.0
+speed_x = 50.0
+speed_y = 35.0
+speed_x_dash = 0.0
+speed_y_dash = 0.0
+armored = false
+ground_decel = 200
+hitstun_multiplier = 1.0
+air_hitstun_multiplier = 1.0
+hud_icon_path = "res://enemy/EN010/EN010-IconHUD.png"
