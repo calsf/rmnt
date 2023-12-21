@@ -7,7 +7,7 @@ func _ready():
 		[Enemies.EN000],
 		[Enemies.EN005],
 		[Enemies.EN010],
-		[Enemies.EN009],
+		[Enemies.EN011],
 		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
 #		[Enemies.EN001, Enemies.EN002, Enemies.EN003],
 #		[Enemies.EN004],
