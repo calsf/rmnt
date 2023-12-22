@@ -1,4 +1,4 @@
-# Basic move behavior, moves to player, stops when close
+# Moves to same lane as player but from any x position, stops when close
 extends EnemyState
 
 export var closest_distance := 3
