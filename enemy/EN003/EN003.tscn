@@ -499,6 +499,7 @@ script = ExtResource( 7 )
 trigger_state_name = "AttackChargeStartup"
 trigger_min_delay = 2.0
 trigger_max_delay = 4.0
+ignore_lane_collision = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxAttackCharge" index="0"]
 shape = SubResource( 10 )

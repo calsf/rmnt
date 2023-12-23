@@ -8,6 +8,10 @@ export var trigger_state_name : String
 export var trigger_min_delay := 0.05
 export var trigger_max_delay := 0.05
 
+# Ignore lane collision for this rangebox, false by default
+# E.g when the rangebox is entire screen
+export var ignore_lane_collision := false
+
 # Areas currently overlapping with hurtbox
 var _curr_areas := []
 
@@ -39,7 +43,7 @@ func _on_area_entered(player_rangebox : PlayerRangebox) -> void:
 	# Keep track of reference to area to keep checking for collision in _physics_process
 	# If hit, remove the reference to stop checking
 	if is_instance_valid(owner) and owner.has_method("on_enemy_rangebox_hit"):
-		if owner.on_enemy_rangebox_hit(player_rangebox, self):
+		if owner.on_enemy_rangebox_hit(player_rangebox, self, ignore_lane_collision):
 			# Do not remove trigger state from enemy's set of trigger states until area is exited
 			return
 		elif not _curr_areas.has(player_rangebox):
