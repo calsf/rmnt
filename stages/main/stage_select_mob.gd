@@ -4,8 +4,8 @@ extends StageSelect
 func _ready():
 	stages = [
 		"res://stages/Stage001.tscn",
-		"res://stages/Stage001.tscn",
-		"res://stages/Stage001.tscn",
+		"res://stages/Stage002.tscn",
+		"res://stages/Stage003.tscn",
 	]
 	
 	stage_icons = [
