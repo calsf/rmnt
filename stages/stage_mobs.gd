@@ -2,6 +2,8 @@ extends Node
 class_name StageMobs
 
 const Enemies = {
+	HEALTH = "res://enemy/Potions/PotionHealth.tscn",
+	METER = "res://enemy/Potions/PotionMeter.tscn",
 	EN000 = "res://enemy/EN000/EN000.tscn",
 	EN001 = "res://enemy/EN001/EN001.tscn",
 	EN002 = "res://enemy/EN002/EN002.tscn",
@@ -39,7 +41,8 @@ onready var spawn_timer = $SpawnTimer
 
 func _process(delta):
 	# Stop spawning after maxed
-	if curr_spawn_num >= max_spawn_num:
+	# max_spawn_num is enemy_listing.size() - 1 so need to minus 1 from curr_spawn_num
+	if (curr_spawn_num - 1) >= max_spawn_num:
 		return
 	
 	if spawn_timer.is_stopped():

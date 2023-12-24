@@ -41,6 +41,9 @@ func spawn_projectile() -> void:
 
 
 func enter(data_state := {}) -> void:
+	# Spend all meter
+	player.lose_meter(player.props.max_meter)
+	
 	player.velocity = Vector2.ZERO
 	player.anim.play("AttackSpecial")
 	player.armored = self.armored

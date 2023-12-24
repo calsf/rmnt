@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 func transition_to(target_state_name: String, data_state: Dictionary = {}) -> void:
 	# If no matching state name in child Nodes, simply return
 	if not has_node(target_state_name):
-		print("MISSING STATE: " + target_state_name)
+		# print("MISSING STATE: " + target_state_name)
 		return
 	
 	curr_state.exit(data_state)

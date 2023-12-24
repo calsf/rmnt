@@ -4,7 +4,8 @@ extends StageMobs
 func _ready():
 	# Init stage props
 	enemy_listing = [
-		[Enemies.EN002],
+		[Enemies.HEALTH],
+		[Enemies.METER],
 		[Enemies.EN003],
 		[Enemies.EN011],
 		#[Enemies.EN011],

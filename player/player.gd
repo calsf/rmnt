@@ -87,10 +87,22 @@ func take_damage(dmg : float) -> void:
 	emit_signal("health_updated", self)
 
 
+func gain_health(health : float) -> void:
+	curr_hp = min(curr_hp + health, props.max_hp)
+	
+	emit_signal("health_updated", self)
+
+
 func gain_meter(meter_gain : float) -> void:
 	curr_meter += meter_gain
 	if curr_meter > props.max_meter:
 		curr_meter = props.max_meter
+	
+	emit_signal("meter_gained", self)
+
+
+func lose_meter(meter_loss : float) -> void:
+	curr_meter = min(curr_meter - meter_loss, 0)
 	
 	emit_signal("meter_gained", self)
 
