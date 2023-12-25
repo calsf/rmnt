@@ -1247,7 +1247,7 @@ anims/Move = SubResource( 8 )
 anims/RESET = SubResource( 5 )
 
 [node name="AttackB" parent="SubBody" index="5"]
-damage = 25.0
+damage = 22.0
 knockback_x = 150.0
 knockup = 150.0
 knockdown = 0.0
@@ -1280,7 +1280,7 @@ shape = SubResource( 21 )
 
 [node name="AttackSpecial" parent="SubBody" index="10"]
 damage = 30.0
-knockup = 350.0
+knockup = 300.0
 
 [node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
 position = Vector2( 0, -14 )

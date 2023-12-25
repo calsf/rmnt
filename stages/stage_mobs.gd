@@ -30,11 +30,18 @@ var max_enemy_num : int
 var min_time : float
 var max_time : float
 
+# Replaces min_enemy_num and max_enemy_num
+# Min-max enemy numbers to be used after certain spawn threshold
+var min_enemy_num_high : int
+var max_enemy_num_high : int
+
 # Spawn bounds
 var min_x : float
 var max_x :float
 var min_y : float
 var max_y : float
+
+var rng := RandomNumberGenerator.new()
 
 onready var spawn_timer = $SpawnTimer
 
@@ -55,7 +62,13 @@ func _process(delta):
 	# Spawn enemies periodically or when active enemies are 0
 	if spawn_timer.is_stopped() or (curr_spawn_num > 0 and active_spawn_num == 0):
 		# Spawn random number of enemies
-		var spawn_num = randi() % (max_enemy_num - 1) + min_enemy_num
+		var spawn_num = 0
+		if curr_spawn_num >= (max_spawn_num / 3):
+			# Past threshold, use higher spawn nums
+			spawn_num = rng.randi_range(min_enemy_num_high, max_enemy_num_high)
+		else:
+			# Regular spawn nums
+			spawn_num = rng.randi_range(min_enemy_num, max_enemy_num)
 		
 		if curr_spawn_num + spawn_num > max_spawn_num:
 			# Spawn only as much as possible before reaching overall limit
@@ -82,6 +95,8 @@ func reset_spawn_time():
 
 # Spawns first set of enemies
 func spawn_initial_enemies():
+	rng.randomize()
+	
 	# Start timer to any long length of time to delay scheduled spawning
 	spawn_timer.start(max_time)
 	
@@ -105,7 +120,6 @@ func spawn_enemies(spawn_num : int) -> void:
 
 # Spawns a single enemy, requires the enemy num to be specified
 func spawn_enemy(i : int) -> void:
-	print_debug(i)
 	if i > max_spawn_num:
 		return
 	

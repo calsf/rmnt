@@ -17,7 +17,7 @@ func _ready():
 		[Enemies.EN004],
 		[Enemies.EN004, Enemies.EN001, Enemies.EN001],
 		[Enemies.EN006, Enemies.EN004],
-		[Enemies.METER],
+		[Enemies.EN001],
 		[Enemies.EN001, Enemies.EN006, Enemies.EN004],
 		[Enemies.EN001, Enemies.EN002, Enemies.EN004],
 		[Enemies.EN006],
@@ -30,7 +30,7 @@ func _ready():
 		[Enemies.EN001, Enemies.EN000, Enemies.EN006],
 		[Enemies.EN002, Enemies.EN005, Enemies.EN001],
 		[Enemies.EN004, Enemies.EN006, Enemies.EN001],
-		[Enemies.METER],
+		[Enemies.EN002],
 		[Enemies.EN002, Enemies.EN000, Enemies.EN001],
 		[Enemies.EN001, Enemies.EN000, Enemies.EN006],
 		[Enemies.EN005, Enemies.EN006, Enemies.EN004],
@@ -42,13 +42,15 @@ func _ready():
 		[Enemies.EN005],
 		[Enemies.EN002, Enemies.EN001],
 		[Enemies.EN001, Enemies.EN002, Enemies.EN000],
-		[Enemies.METER],
+		[Enemies.EN001],
 		[Enemies.EN002],
-		[Enemies.EN004],
+		[Enemies.EN004, Enemies.EN005],
 		[Enemies.EN002],
 		[Enemies.EN005],
-		[Enemies.HEALTH],
+		[Enemies.EN001, Enemies.EN002],
 		[Enemies.EN001, Enemies.EN002, Enemies.EN005],
+		[Enemies.EN001],
+		[Enemies.EN001, Enemies.EN001],
 		[Enemies.EN000, Enemies.EN006],
 		[Enemies.EN002],
 		[Enemies.EN001, Enemies.EN000, Enemies.EN005],
@@ -57,10 +59,18 @@ func _ready():
 		[Enemies.METER],
 		[Enemies.EN006, Enemies.EN000, Enemies.EN002],
 		[Enemies.EN005, Enemies.EN004, Enemies.EN001],
-		[Enemies.METER],
+		[Enemies.EN002],
+		[Enemies.EN002, Enemies.EN001],
+		[Enemies.EN002, Enemies.EN001],
+		[Enemies.EN002],
+		[Enemies.EN002, Enemies.EN005],
+		[Enemies.EN001, Enemies.EN002, Enemies.EN005],
+		[Enemies.EN004],
+		[Enemies.EN001],
+		[Enemies.EN005, Enemies.EN004, Enemies.EN001],
 		[Enemies.EN002, Enemies.EN004, Enemies.EN000],
 		[Enemies.EN002],
-		[Enemies.EN001],
+		[Enemies.EN001, Enemies.EN005],
 		[Enemies.EN001],
 		[Enemies.EN001]
 	]
@@ -70,10 +80,15 @@ func _ready():
 	curr_spawn_num = 0
 
 	# Spawn min-max enemies every min-max time
-	min_enemy_num = 2
+	min_enemy_num = 3
 	max_enemy_num = 4
 	min_time = 10
 	max_time = 20
+	
+	# Replaces min_enemy_num and max_enemy_num
+	# Min-max enemy numbers to be used after certain spawn threshold
+	min_enemy_num_high = 4
+	max_enemy_num_high = 6
 	
 	# Spawn bounds
 	min_x = 16
