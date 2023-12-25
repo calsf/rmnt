@@ -367,6 +367,7 @@ hframes = 2
 frame = 1
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
+autoplay = "Spawn"
 anims/AttackA = SubResource( 4 )
 anims/Hit1 = SubResource( 5 )
 anims/Hit2 = SubResource( 6 )

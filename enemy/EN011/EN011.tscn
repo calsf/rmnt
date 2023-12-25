@@ -349,6 +349,7 @@ texture = ExtResource( 2 )
 hframes = 4
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
+autoplay = "Spawn"
 anims/AttackA = SubResource( 1 )
 anims/Hit1 = SubResource( 9 )
 anims/Hit2 = SubResource( 10 )

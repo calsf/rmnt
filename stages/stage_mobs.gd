@@ -40,19 +40,32 @@ onready var spawn_timer = $SpawnTimer
 
 
 func _process(delta):
-	# Stop spawning after maxed
+	# Stop spawning after reaching maxed overall limit
 	# max_spawn_num is enemy_listing.size() - 1 so need to minus 1 from curr_spawn_num
 	if (curr_spawn_num - 1) >= max_spawn_num:
 		return
 	
-	if spawn_timer.is_stopped():
+	# Stop spawning after reaching max active limit
+	var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()
+	if active_spawn_num >= Global.MAX_ACTIVE_ENEMIES:
+		# Reset spawn timer so enemies aren't spawned immediately after falling below max active threshold
+		reset_spawn_time()
+		return
+	
+	# Spawn enemies periodically or when active enemies are 0
+	if spawn_timer.is_stopped() or (curr_spawn_num > 0 and active_spawn_num == 0):
 		# Spawn random number of enemies
-		var spawn_num = randi() % max_enemy_num + min_enemy_num
+		var spawn_num = randi() % (max_enemy_num - 1) + min_enemy_num
 		
-		# Limit max number of active enemies
-		# Spawn only as much as possible before reaching limit
-		if curr_spawn_num + spawn_num > Global.MAX_ACTIVE_ENEMIES:
-			spawn_num = Global.MAX_ACTIVE_ENEMIES - curr_spawn_num 
+		if curr_spawn_num + spawn_num > max_spawn_num:
+			# Spawn only as much as possible before reaching overall limit
+			spawn_num = max_spawn_num - curr_spawn_num
+		elif active_spawn_num + spawn_num > Global.MAX_ACTIVE_ENEMIES:
+			# Limit max number of active enemies
+			spawn_num = Global.MAX_ACTIVE_ENEMIES - active_spawn_num
+		
+		if spawn_num < 0:
+			spawn_num = 0
 		
 		spawn_enemies(spawn_num)
 		
