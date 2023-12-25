@@ -9,10 +9,10 @@ func _ready():
 		[Enemies.EN000],
 		[Enemies.EN001],
 		[Enemies.EN001],
+		[Enemies.METER],
 		[Enemies.EN001],
 		[Enemies.EN000, Enemies.EN001],
 		[Enemies.EN001],
-		[Enemies.METER],
 		[Enemies.EN004, Enemies.EN001],
 		[Enemies.EN004],
 		[Enemies.EN004, Enemies.EN001, Enemies.EN001],
@@ -71,7 +71,7 @@ func _ready():
 
 	# Spawn min-max enemies every min-max time
 	min_enemy_num = 2
-	max_enemy_num = 3
+	max_enemy_num = 4
 	min_time = 10
 	max_time = 20
 	

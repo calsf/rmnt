@@ -69,9 +69,6 @@ func _process(delta):
 		
 		spawn_enemies(spawn_num)
 		
-		# Update curr count
-		curr_spawn_num = curr_spawn_num + spawn_num
-		
 		reset_spawn_time()
 	else:
 		return
@@ -108,6 +105,7 @@ func spawn_enemies(spawn_num : int) -> void:
 
 # Spawns a single enemy, requires the enemy num to be specified
 func spawn_enemy(i : int) -> void:
+	print_debug(i)
 	if i > max_spawn_num:
 		return
 	

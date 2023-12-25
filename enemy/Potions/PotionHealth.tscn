@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/Potions/PotionHealth-Shadow.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://enemy/Potions/PotionHealth.tres" type="Resource" id=4]
 [ext_resource path="res://enemy/Potions/PotionHealth-Spawn.png" type="Texture" id=5]
 [ext_resource path="res://enemy/Potions/potion_health.gd" type="Script" id=6]
+[ext_resource path="res://enemy/enemy_state_idle.gd" type="Script" id=7]
 
 [sub_resource type="Animation" id=7]
 resource_name = "Hit1"
@@ -236,11 +237,15 @@ props = ExtResource( 4 )
 visible = false
 texture = ExtResource( 2 )
 
+[node name="CollisionShape2D" parent="GroundDetection" index="0"]
+disabled = true
+
 [node name="EnemySprite" parent="SubBody" index="0"]
 texture = ExtResource( 3 )
 hframes = 2
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
+autoplay = "Spawn"
 anims/Hit1 = SubResource( 7 )
 anims/Hit2 = SubResource( 8 )
 anims/Idle = SubResource( 1 )
@@ -257,3 +262,10 @@ shape = SubResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pushbox" index="0"]
 position = Vector2( 0, 12.5 )
 shape = SubResource( 5 )
+disabled = true
+
+[node name="Hitstun" parent="States" index="2"]
+script = ExtResource( 7 )
+
+[node name="HitstunAir" parent="States" index="3"]
+script = ExtResource( 7 )

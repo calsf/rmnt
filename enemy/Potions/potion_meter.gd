@@ -1,4 +1,19 @@
+# Extends Enemy but will not be included in enemies group or in hud
+# NOTE: GroundDetection should be disabled to avoid other enemies colliding with it
+# NOTE: Hitstun states should be replaced with Idle state behavior
 extends Enemy
+
+
+# Remove self from group
+func _init():
+	remove_from_group("enemies")
+
+
+# Overrides base Enemy to avoid adding to hud
+# Connect and initialize hud for this enemy
+# To be called by enemy itself after initializing
+func init_hud():
+	pass
 
 
 func take_damage(dmg : float) -> void:

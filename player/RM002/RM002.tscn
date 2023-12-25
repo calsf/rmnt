@@ -1105,9 +1105,9 @@ anims/Move = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
 [node name="AttackA1" parent="SubBody" index="2"]
-damage = 6.0
+damage = 18.0
 knockback_x = 20.0
-meter_gain = 100.0
+meter_gain = 2.0
 
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 36.5, -7.5 )
@@ -1115,9 +1115,10 @@ shape = SubResource( 18 )
 disabled = true
 
 [node name="AttackA2" parent="SubBody" index="3"]
-damage = 7.0
+damage = 22.0
 knockback_x = 0.0
 knockup = 200.0
+meter_gain = 2.0
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 26.5, -2 )
@@ -1125,8 +1126,9 @@ shape = SubResource( 19 )
 disabled = true
 
 [node name="AttackA3" parent="SubBody" index="4"]
-damage = 8.0
+damage = 28.0
 knockback_x = 0.0
+meter_gain = 2.0
 
 [node name="AttackA3Left" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
 position = Vector2( -19.5, -19.5 )
@@ -1139,19 +1141,21 @@ shape = SubResource( 22 )
 disabled = true
 
 [node name="AttackB" parent="SubBody" index="5"]
-damage = 11.0
+damage = 38.0
 knockback_x = 200.0
 knockup = 300.0
 knockdown = 0.0
+meter_gain = 3.0
 
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
 position = Vector2( 14.5, 3 )
 shape = SubResource( 8 )
 
 [node name="AttackC" parent="SubBody" index="6"]
-damage = 20.0
+damage = 60.0
 knockback_x = 400.0
 knockup = 150.0
+meter_gain = 6.0
 
 [node name="AttackC" type="CollisionShape2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 36, -6 )
@@ -1159,9 +1163,10 @@ shape = SubResource( 9 )
 disabled = true
 
 [node name="AirAttackA" parent="SubBody" index="7"]
-damage = 5.0
+damage = 18.0
 knockback_x = 80.0
 knockup = 100.0
+meter_gain = 2.0
 
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
 position = Vector2( 36.5, -6.75 )
@@ -1169,24 +1174,27 @@ shape = SubResource( 25 )
 disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="8"]
-damage = 5.0
+damage = 20.0
 knockback_x = 150.0
 knockup = 100.0
+meter_gain = 2.0
 
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( 34, -5.5 )
 shape = SubResource( 26 )
 
 [node name="AirAttackC" parent="SubBody" index="9"]
-damage = 7.0
+damage = 25.0
 knockback_x = 150.0
 knockdown = 300.0
+meter_gain = 3.0
 
 [node name="AirAttackC" type="CollisionShape2D" parent="SubBody/AirAttackC" index="0"]
 position = Vector2( 25.5, 15.5 )
 shape = SubResource( 28 )
 
 [node name="AttackSpecial" parent="SubBody" index="10"]
+damage = 45.0
 knockback_x = 100.0
 knockup = 200.0
 

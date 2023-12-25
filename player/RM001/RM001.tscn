@@ -1014,7 +1014,7 @@ anims/Move = SubResource( 39 )
 anims/RESET = SubResource( 40 )
 
 [node name="AttackA1" parent="SubBody" index="2"]
-damage = 5.0
+damage = 10.0
 meter_gain = 2.0
 
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
@@ -1023,8 +1023,8 @@ shape = SubResource( 12 )
 disabled = true
 
 [node name="AttackA2" parent="SubBody" index="3"]
-damage = 5.0
-meter_gain = 3.0
+damage = 15.0
+meter_gain = 2.0
 
 [node name="AttackA2" type="CollisionShape2D" parent="SubBody/AttackA2" index="0"]
 position = Vector2( 6, 1 )
@@ -1032,14 +1032,14 @@ shape = SubResource( 13 )
 disabled = true
 
 [node name="AttackA3" parent="SubBody" index="4"]
-damage = 5.0
-meter_gain = 4.0
+damage = 20.0
+meter_gain = 2.0
 
 [node name="AttackA3" type="CollisionPolygon2D" parent="SubBody/AttackA3" index="0"]
 polygon = PoolVector2Array( 8, -34, 42, -34, 42, 15, -5, 15, -5, -8, 8, -8 )
 
 [node name="AttackB" parent="SubBody" index="5"]
-damage = 10.0
+damage = 30.0
 meter_gain = 3.0
 
 [node name="AttackB" type="CollisionPolygon2D" parent="SubBody/AttackB" index="0"]
@@ -1047,26 +1047,26 @@ polygon = PoolVector2Array( 40, 16, 40, -27, -18, -27, -18, -12, 10, -12, 10, 16
 disabled = true
 
 [node name="AttackC" parent="SubBody" index="6"]
-damage = 14.0
-meter_gain = 100.0
+damage = 35.0
+meter_gain = 4.0
 
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC" index="0"]
 polygon = PoolVector2Array( 40, 16, 40, -34, -34, -34, -34, 16, -11, 16, -11, -12, 10, -12, 10, 16 )
 disabled = true
 
 [node name="AirAttackA" parent="SubBody" index="7"]
-damage = 5.0
+damage = 15.0
 knockback_x = 100.0
 knockup = 0.0
-meter_gain = 3.0
+meter_gain = 2.0
 
 [node name="AirAttackA" type="CollisionPolygon2D" parent="SubBody/AirAttackA" index="0"]
 polygon = PoolVector2Array( 7, -24, 7, -9, -8, -9, -8, 9, 40, 9, 40, -24 )
 disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="8"]
-damage = 8.0
-meter_gain = 4.0
+damage = 25.0
+meter_gain = 3.0
 
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( -0.5, -3 )
@@ -1074,15 +1074,15 @@ shape = SubResource( 21 )
 disabled = true
 
 [node name="AirAttackC" parent="SubBody" index="9"]
-damage = 15.0
+damage = 35.0
 knockdown = 600.0
-meter_gain = 5.0
+meter_gain = 4.0
 
 [node name="AirAttackC" type="CollisionPolygon2D" parent="SubBody/AirAttackC" index="0"]
 polygon = PoolVector2Array( -27, -42, -27, -16, 6, -16, 6, 12, 40, 12, 40, -42 )
 
 [node name="AttackSpecial" parent="SubBody" index="10"]
-damage = 5.0
+damage = 60.0
 knockup = 350.0
 
 [node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]

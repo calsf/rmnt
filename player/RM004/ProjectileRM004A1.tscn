@@ -10,7 +10,7 @@ _speed_x = 200
 _speed_y = 200
 
 [node name="PlayerHitbox" parent="Projectile" index="2"]
-damage = 5.0
+damage = 12.0
 knockback_x = 125.0
 meter_gain = 2.0
 
