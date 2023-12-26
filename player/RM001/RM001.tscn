@@ -657,6 +657,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 360, 3 ), Vector2( 360, 3 ), Vector2( 360, 360 ), Vector2( 360, 3 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("../States/AttackSpecial")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_special"
+} ]
+}
 
 [sub_resource type="Animation" id=34]
 resource_name = "Dash"

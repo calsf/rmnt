@@ -16,6 +16,9 @@ func _ready() -> void:
 
 
 # Should be able to transition to attack special from any player state
-func check_attack_special() -> void:
+func check_attack_special() -> bool:
 	if player.curr_meter == player.props.max_meter and Input.is_action_pressed("attack_special"):
 		state_machine.transition_to("AttackSpecial")
+		return true
+	
+	return false

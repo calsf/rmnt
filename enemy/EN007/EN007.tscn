@@ -568,6 +568,7 @@ shape = SubResource( 1 )
 
 [node name="AttackA" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 10 )
+damage = 5.0
 knockback_x = 100.0
 
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA" index="0"]
@@ -577,6 +578,7 @@ disabled = true
 
 [node name="AttackB" type="Area2D" parent="SubBody" index="6"]
 script = ExtResource( 10 )
+damage = 7.0
 knockback_x = 100.0
 knockdown = 300.0
 
@@ -614,13 +616,13 @@ shape = SubResource( 15 )
 
 [node name="Hitstun" parent="States" index="2"]
 escapeable = true
-min_stun = 1.2
-max_stun = 2.2
+min_stun = 2.2
+max_stun = 4.2
 
 [node name="HitstunAir" parent="States" index="3"]
 escapeable = true
-min_stun = 1.2
-max_stun = 2.2
+min_stun = 2.2
+max_stun = 4.2
 
 [node name="Move" type="Node" parent="States" index="4"]
 script = ExtResource( 2 )

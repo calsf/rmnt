@@ -368,7 +368,7 @@ shape = SubResource( 8 )
 
 [node name="Attack" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 5 )
-damage = 5.0
+damage = 2.0
 knockback_x = 100.0
 knockup = 50.0
 

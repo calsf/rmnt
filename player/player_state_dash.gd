@@ -31,7 +31,8 @@ func handle_input(event: InputEvent) -> void:
 
 
 func state_physics_process(delta: float) -> void:
-	check_attack_special()
+	if check_attack_special():
+		return
 	
 	if player.is_aerial_stun:
 		state_machine.transition_to("HitstunAir")

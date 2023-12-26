@@ -433,6 +433,7 @@ shape = SubResource( 1 )
 
 [node name="AttackA" type="Area2D" parent="SubBody" index="4"]
 script = ExtResource( 7 )
+damage = 8.0
 knockback_x = 50.0
 knockup = 300.0
 
@@ -443,6 +444,7 @@ disabled = true
 
 [node name="AttackB" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 7 )
+damage = 6.0
 knockback_x = 80.0
 knockdown = 500.0
 

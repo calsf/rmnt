@@ -43,9 +43,9 @@ func spawn_projectile() -> void:
 func enter(data_state := {}) -> void:
 	# Spend all meter
 	player.lose_meter(player.props.max_meter)
+	player.disable_hurtbox()
 	
 	player.velocity = Vector2.ZERO
-	player.anim.play("AttackSpecial")
 	player.armored = self.armored
 	
 	player.knockback = Vector2.ZERO
@@ -53,7 +53,7 @@ func enter(data_state := {}) -> void:
 	player.child_velocity = Vector2.ZERO
 	player.is_aerial_stun = false
 	
-	player.disable_hurtbox()
+	player.anim.play("AttackSpecial")
 	
 	# Set x movement direction based only initial input
 	if Input.is_action_pressed("move_left"):
@@ -87,11 +87,6 @@ func handle_input(event: InputEvent) -> void:
 	return
 
 
-func state_process(delta: float) -> void:
-	if not player.anim.is_playing():
-		state_machine.transition_to("Idle")
-
-
 func state_physics_process(delta: float) -> void:
 	if not has_landed and player.get_player_child().is_on_floor():
 		has_landed = true
@@ -112,3 +107,7 @@ func state_physics_process(delta: float) -> void:
 	
 		player.child_velocity.y += player.GRAVITY * delta
 		player.child_velocity = player.get_player_child().move_and_slide(player.child_velocity, Vector2.UP)
+
+
+func finish_special():
+	state_machine.transition_to("Idle")

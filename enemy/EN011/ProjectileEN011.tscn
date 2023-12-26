@@ -125,7 +125,7 @@ hframes = 7
 
 [node name="EnemyHitbox" parent="Projectile" index="2"]
 position = Vector2( 0, -17 )
-damage = 10.0
+damage = 9.0
 knockup = 400.0
 
 [node name="CollisionShape2D" parent="Projectile/EnemyHitbox" index="0"]

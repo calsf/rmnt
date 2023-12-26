@@ -342,7 +342,7 @@ tracks/3/keys = {
 extents = Vector2( 10.5, 16 )
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 34, 8 )
+extents = Vector2( 29, 8 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 3.0
@@ -382,13 +382,12 @@ shape = SubResource( 1 )
 
 [node name="AttackA" type="Area2D" parent="SubBody" index="4"]
 script = ExtResource( 11 )
-damage = 10.0
+damage = 3.0
 knockback_x = 120.0
 
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA" index="0"]
-position = Vector2( 24, -4 )
+position = Vector2( 29, -4 )
 shape = SubResource( 12 )
-disabled = true
 
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 2 )

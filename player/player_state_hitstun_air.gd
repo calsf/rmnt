@@ -10,7 +10,8 @@ func exit(data_state := {}) -> void:
 
 
 func state_physics_process(delta: float) -> void:
-	check_attack_special()
+	if check_attack_special():
+		return
 	
 	var initial_knockback = player.knockback
 	player.knockback = player.knockback.move_toward(Vector2.ZERO, player.props.ground_decel * delta)

@@ -1,10 +1,5 @@
 extends EnemyState
 
-const MIN_X := 16
-const MAX_X := 304
-const MIN_Y := 160
-const MAX_Y := 64
-
 export var closest_distance := 2.5
 
 var moving_left := false
@@ -50,10 +45,10 @@ func exit(data_state := {}) -> void:
 func state_physics_process(delta: float) -> void:
 	# Keeps moving until reaches a screen bound based on the direction enemy is moving
 	# Once close to a screen bound, stop moving and enter recovery animation
-	if (moving_left and abs(enemy.global_position.x - MAX_X) <= closest_distance \
-			or not moving_left and abs(enemy.global_position.x - MIN_X) <= closest_distance \
-			or moving_down and abs(enemy.global_position.y - MIN_Y) <= closest_distance \
-			or not moving_down and abs(enemy.global_position.y - MAX_Y) <= closest_distance) \
+	if (moving_left and abs(enemy.global_position.x - enemy.max_x) <= closest_distance \
+			or not moving_left and abs(enemy.global_position.x - enemy.min_x) <= closest_distance \
+			or moving_down and abs(enemy.global_position.y - enemy.min_y) <= closest_distance \
+			or not moving_down and abs(enemy.global_position.y - enemy.max_y) <= closest_distance) \
 			and not recovering:
 		recovering = true
 		enemy.anim.play("AttackChargeRecover")

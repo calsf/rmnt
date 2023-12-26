@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource( 1 )
-max_hp = 200.0
+max_hp = 190.0
 speed_x = 65.0
 speed_y = 45.0
 speed_x_dash = 0.0
 speed_y_dash = 0.0
 armored = false
 ground_decel = 200
-hitstun_multiplier = 1.0
-air_hitstun_multiplier = 1.0
+hitstun_multiplier = 0.9
+air_hitstun_multiplier = 0.9
 hud_icon_path = "res://enemy/EN009/EN009-IconHUD.png"

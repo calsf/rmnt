@@ -266,7 +266,8 @@ func activate():
 
 # Reset state and hide player, also moves player to off screen area since state machine is still active
 func deactivate():
-	global_position = Vector2(-200, 120)
+	# Keep far away to avoid entering any large enemy rangeboxes from offscreen
+	global_position = Vector2(-1000, 120)
 	visible = false
 	
 	if state_machine:

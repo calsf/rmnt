@@ -806,6 +806,20 @@ tracks/4/keys = {
 "method": "spawn_projectile"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("../States/AttackSpecial")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_special"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Dash"
@@ -1285,6 +1299,7 @@ knockup = 300.0
 [node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
 position = Vector2( 0, -14 )
 shape = SubResource( 23 )
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/PlayerHurtbox" index="0"]
 shape = SubResource( 1 )

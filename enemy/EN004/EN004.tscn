@@ -440,6 +440,7 @@ shape = SubResource( 3 )
 
 [node name="AttackA" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 9 )
+damage = 3.0
 knockup = 200.0
 
 [node name="AttackA" type="CollisionShape2D" parent="SubBody/AttackA" index="0"]
@@ -481,5 +482,6 @@ anim_name = "AttackA"
 
 [node name="AttackB" type="Node" parent="States" index="5"]
 script = ExtResource( 7 )
-projectile_path = "res://enemy/EN008/ProjectileEN008A.tscn"
+projectile_path = "res://enemy/EN004/ProjectileEN004B.tscn"
+spawn_offset = Vector2( 19, 0 )
 anim_name = "AttackB"
