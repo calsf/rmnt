@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/EN004/EN004-Shadow.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=9]
 [ext_resource path="res://enemy/EN004/EN004.tres" type="Resource" id=10]
 [ext_resource path="res://enemy/EN004/EN004-Spawn.png" type="Texture" id=11]
+[ext_resource path="res://enemy/EN004/EN004-AttackB.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=7]
 resource_name = "AttackA"
@@ -63,6 +64,59 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "AttackB"
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemySprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemySprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EnemySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../States/AttackB")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_projectile"
+} ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -352,6 +406,9 @@ extents = Vector2( 19, 17.5 )
 radius = 3.0
 height = 16.0
 
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 360, 16 )
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 3.5 )
 
@@ -369,6 +426,7 @@ hframes = 4
 [node name="AnimationPlayer" parent="SubBody" index="1"]
 autoplay = "Spawn"
 anims/AttackA = SubResource( 7 )
+anims/AttackB = SubResource( 13 )
 anims/Hit1 = SubResource( 8 )
 anims/Hit2 = SubResource( 9 )
 anims/Idle = SubResource( 4 )
@@ -400,6 +458,16 @@ trigger_max_delay = 0.3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RangeboxAttackA" index="0"]
 polygon = PoolVector2Array( -71, -69, -71, -21, -21, -21, -21, 16, 21, 16, 21, -21, 72, -21, 72, -69 )
 
+[node name="RangeboxAttackB" type="Area2D" parent="." index="6"]
+script = ExtResource( 6 )
+trigger_state_name = "AttackB"
+trigger_min_delay = 0.6
+trigger_max_delay = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxAttackB" index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 14 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pushbox" index="0"]
 position = Vector2( 0, 12.5 )
 shape = SubResource( 2 )
@@ -410,3 +478,8 @@ script = ExtResource( 8 )
 [node name="AttackA" type="Node" parent="States" index="4"]
 script = ExtResource( 7 )
 anim_name = "AttackA"
+
+[node name="AttackB" type="Node" parent="States" index="5"]
+script = ExtResource( 7 )
+projectile_path = "res://enemy/EN008/ProjectileEN008A.tscn"
+anim_name = "AttackB"
