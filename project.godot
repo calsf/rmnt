@@ -95,9 +95,9 @@ _global_script_classes=[ {
 "path": "res://base/projectile.gd"
 }, {
 "base": "Node",
-"class": "StageMobs",
+"class": "StageNormal",
 "language": "GDScript",
-"path": "res://stages/stage_mobs.gd"
+"path": "res://stages/stage_normal.gd"
 }, {
 "base": "Control",
 "class": "StageSelect",
@@ -132,7 +132,7 @@ _global_script_class_icons={
 "PlayerRangebox": "",
 "PlayerState": "",
 "Projectile": "",
-"StageMobs": "",
+"StageNormal": "",
 "StageSelect": "",
 "State": "",
 "StateMachine": ""

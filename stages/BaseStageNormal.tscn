@@ -153,7 +153,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="BaseStageMob" type="Node2D"]
+[node name="BaseStageNormal" type="Node2D"]
 script = ExtResource( 7 )
 
 [node name="HUD" type="CanvasLayer" parent="."]

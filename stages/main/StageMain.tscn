@@ -4,10 +4,10 @@
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/RM002/RM002.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/main/rmnt_select.gd" type="Script" id=4]
-[ext_resource path="res://stages/main/StageSelectMob.tscn" type="PackedScene" id=5]
+[ext_resource path="res://stages/main/StageSelectNormal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://stages/main/RM004-Icon.png" type="Texture" id=6]
 [ext_resource path="res://stages/main/RM003-Icon.png" type="Texture" id=7]
-[ext_resource path="res://stages/main/StageSelectBoss.tscn" type="PackedScene" id=8]
+[ext_resource path="res://stages/main/StageSelectEndless.tscn" type="PackedScene" id=8]
 [ext_resource path="res://stages/main/StageMain.png" type="Texture" id=9]
 [ext_resource path="res://stages/main/RM002-Icon.png" type="Texture" id=10]
 [ext_resource path="res://stages/main/RmntSelect-R.png" type="Texture" id=11]
@@ -178,10 +178,10 @@ margin_right = 164.0
 margin_bottom = 24.0
 texture = ExtResource( 11 )
 
-[node name="StageSelectMob" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="StageSelectNormal" parent="CanvasLayer" instance=ExtResource( 5 )]
 visible = false
 
-[node name="StageSelectBoss" parent="CanvasLayer" instance=ExtResource( 8 )]
+[node name="StageSelectEndless" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
 
 [node name="Fade" parent="CanvasLayer" instance=ExtResource( 12 )]
@@ -219,43 +219,43 @@ shape = SubResource( 2 )
 
 [node name="World" type="YSort" parent="."]
 
-[node name="StageSelectMob" parent="World" instance=ExtResource( 15 )]
+[node name="StageSelectNormal" parent="World" instance=ExtResource( 15 )]
 position = Vector2( 45, 86 )
 
-[node name="CollisionShape2D" parent="World/StageSelectMob/InteractableBox" index="0"]
+[node name="CollisionShape2D" parent="World/StageSelectNormal/InteractableBox" index="0"]
 position = Vector2( 0, -6.5 )
 shape = SubResource( 10 )
 
-[node name="InteractLabel" parent="World/StageSelectMob/InteractableBox" index="1"]
+[node name="InteractLabel" parent="World/StageSelectNormal/InteractableBox" index="1"]
 visible = true
 position = Vector2( 0, -65 )
 
-[node name="AnimationPlayer" parent="World/StageSelectMob/InteractableBox" index="2"]
+[node name="AnimationPlayer" parent="World/StageSelectNormal/InteractableBox" index="2"]
 autoplay = "Interact"
 anims/Interact = SubResource( 11 )
 anims/RESET = SubResource( 12 )
 
-[node name="LaneCollision" parent="World/StageSelectMob/LaneDetection" index="0"]
+[node name="LaneCollision" parent="World/StageSelectNormal/LaneDetection" index="0"]
 position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
-[node name="StageSelectBoss" parent="World" instance=ExtResource( 15 )]
+[node name="StageSelectEndless" parent="World" instance=ExtResource( 15 )]
 position = Vector2( 276, 86 )
 
-[node name="CollisionShape2D" parent="World/StageSelectBoss/InteractableBox" index="0"]
+[node name="CollisionShape2D" parent="World/StageSelectEndless/InteractableBox" index="0"]
 position = Vector2( 0, -6.5 )
 shape = SubResource( 10 )
 
-[node name="InteractLabel" parent="World/StageSelectBoss/InteractableBox" index="1"]
+[node name="InteractLabel" parent="World/StageSelectEndless/InteractableBox" index="1"]
 visible = true
 position = Vector2( 0, -65 )
 
-[node name="AnimationPlayer" parent="World/StageSelectBoss/InteractableBox" index="2"]
+[node name="AnimationPlayer" parent="World/StageSelectEndless/InteractableBox" index="2"]
 autoplay = "Interact"
 anims/Interact = SubResource( 14 )
 anims/RESET = SubResource( 15 )
 
-[node name="LaneCollision" parent="World/StageSelectBoss/LaneDetection" index="0"]
+[node name="LaneCollision" parent="World/StageSelectEndless/LaneDetection" index="0"]
 position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
@@ -273,5 +273,5 @@ position = Vector2( 160, 120 )
 
 [node name="Interactable" parent="World" instance=ExtResource( 15 )]
 
-[editable path="World/StageSelectMob"]
-[editable path="World/StageSelectBoss"]
+[editable path="World/StageSelectNormal"]
+[editable path="World/StageSelectEndless"]

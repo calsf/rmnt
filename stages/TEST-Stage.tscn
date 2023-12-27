@@ -5,7 +5,7 @@
 [ext_resource path="res://player/RM004/RM004.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=4]
 [ext_resource path="res://stages/stage.gd" type="Script" id=5]
-[ext_resource path="res://stages/stage_mobs001.gd" type="Script" id=6]
+[ext_resource path="res://stages/stage_normal001.gd" type="Script" id=6]
 [ext_resource path="res://stages/Stage003.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=3]

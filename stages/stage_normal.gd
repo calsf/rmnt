@@ -1,5 +1,5 @@
 extends Node
-class_name StageMobs
+class_name StageNormal
 
 const Enemies = {
 	HEALTH = "res://enemy/Potions/PotionHealth.tscn",

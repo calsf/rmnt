@@ -1,4 +1,4 @@
-extends StageMobs
+extends StageNormal
 
 
 func _ready():
