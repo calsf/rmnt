@@ -100,7 +100,7 @@ func spawn_initial_enemies():
 	# Start timer to any long length of time to delay scheduled spawning
 	spawn_timer.start(max_time)
 	
-	yield(get_tree().create_timer(.7), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	spawn_enemies(start_spawn_num)
 	reset_spawn_time()
 

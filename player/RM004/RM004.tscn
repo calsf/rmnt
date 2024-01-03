@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM004/RM004-Idle.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://player/RM004/RM004-AirAttackB.png" type="Texture" id=15]
 [ext_resource path="res://player/RM004/RM004-AirAttackC.png" type="Texture" id=16]
 [ext_resource path="res://player/RM004/RM004-AttackSpecial.png" type="Texture" id=17]
+[ext_resource path="res://player/RM004/RM004-Spawn.png" type="Texture" id=18]
 
 [sub_resource type="Animation" id=18]
 resource_name = "AirAttackA"
@@ -1212,6 +1213,58 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=24]
+resource_name = "Spawn"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 19, 12.5 )
 
@@ -1241,7 +1294,7 @@ texture = ExtResource( 6 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
-autoplay = "Idle"
+autoplay = "Spawn"
 anims/AirAttackA = SubResource( 18 )
 anims/AirAttackB = SubResource( 19 )
 anims/AirAttackC = SubResource( 20 )
@@ -1259,6 +1312,7 @@ anims/Idle = SubResource( 4 )
 anims/Jump = SubResource( 7 )
 anims/Move = SubResource( 8 )
 anims/RESET = SubResource( 5 )
+anims/Spawn = SubResource( 24 )
 
 [node name="AttackB" parent="SubBody" index="5"]
 damage = 22.0
@@ -1310,30 +1364,30 @@ shape = SubResource( 2 )
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 3 )
 
-[node name="AttackA1" parent="States" index="4"]
+[node name="AttackA1" parent="States" index="5"]
 projectile_path = "res://player/RM004/ProjectileRM004A1.tscn"
 spawn_offset = Vector2( 18, 0 )
 
-[node name="AttackA2" parent="States" index="5"]
+[node name="AttackA2" parent="States" index="6"]
 projectile_path = "res://player/RM004/ProjectileRM004A2.tscn"
 spawn_offset = Vector2( 14, 0 )
 
-[node name="AttackA3" parent="States" index="6"]
+[node name="AttackA3" parent="States" index="7"]
 projectile_path = "res://player/RM004/ProjectileRM004A3.tscn"
 spawn_offset = Vector2( 14, 0 )
 
-[node name="AirAttackA" parent="States" index="9"]
+[node name="AirAttackA" parent="States" index="10"]
 projectile_path = "res://player/RM004/ProjectileRM004AirA.tscn"
 spawn_offset = Vector2( 22, 0 )
 
-[node name="AirAttackB" parent="States" index="10"]
+[node name="AirAttackB" parent="States" index="11"]
 projectile_path = "res://player/RM004/ProjectileRM004AirB.tscn"
 spawn_offset = Vector2( 8, 0 )
 
-[node name="AirAttackC" parent="States" index="11"]
+[node name="AirAttackC" parent="States" index="12"]
 projectile_path = "res://player/RM004/ProjectileRM004AirC.tscn"
 
-[node name="AttackSpecial" parent="States" index="12"]
+[node name="AttackSpecial" parent="States" index="13"]
 projectile_path = "res://player/RM004/ProjectileRMSpecial.tscn"
 
 [node name="TEMP" type="Node2D" parent="." index="7"]

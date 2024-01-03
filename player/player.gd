@@ -251,7 +251,7 @@ func toggle_hit_frame():
 
 # Reset state and pause player
 func pause_player(is_paused):
-	state_machine.transition_to(state_machine.initial_state_name)
+	state_machine.transition_to("Idle")
 	Global.pause_scene(self, is_paused)
 
 

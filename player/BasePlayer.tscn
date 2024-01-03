@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://player/player_state_air_attack_a.gd" type="Script" id=14]
 [ext_resource path="res://player/player_state_air_attack_b.gd" type="Script" id=15]
 [ext_resource path="res://player/player_state_attack_special.gd" type="Script" id=16]
+[ext_resource path="res://player/player_state_spawn.gd" type="Script" id=17]
 [ext_resource path="res://player/player_state_attack_a3.gd" type="Script" id=25]
 [ext_resource path="res://player/player_state_air_attack_c.gd" type="Script" id=27]
 [ext_resource path="res://player/player_state_dash.gd" type="Script" id=29]
@@ -172,7 +173,10 @@ one_shot = true
 
 [node name="States" type="Node" parent="."]
 script = ExtResource( 2 )
-initial_state = NodePath("Idle")
+initial_state = NodePath("Spawn")
+
+[node name="Spawn" type="Node" parent="States"]
+script = ExtResource( 17 )
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource( 1 )

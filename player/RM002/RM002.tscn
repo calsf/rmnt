@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM002/RM002-Idle.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://player/RM002/RM002-AirAttackC.png" type="Texture" id=16]
 [ext_resource path="res://player/RM002/RM002-Shadow.png" type="Texture" id=17]
 [ext_resource path="res://player/RM002/RM002-AttackSpecial.png" type="Texture" id=18]
+[ext_resource path="res://player/RM002/RM002-Spawn.png" type="Texture" id=19]
 
 [sub_resource type="Animation" id=23]
 resource_name = "AirAttackA"
@@ -1046,6 +1047,58 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=32]
+resource_name = "Spawn"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 17.5, 8 )
 
@@ -1099,7 +1152,7 @@ texture = ExtResource( 17 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
-autoplay = "Idle"
+autoplay = "Spawn"
 anims/AirAttackA = SubResource( 23 )
 anims/AirAttackB = SubResource( 27 )
 anims/AirAttackC = SubResource( 24 )
@@ -1117,6 +1170,7 @@ anims/Idle = SubResource( 1 )
 anims/Jump = SubResource( 14 )
 anims/Move = SubResource( 3 )
 anims/RESET = SubResource( 2 )
+anims/Spawn = SubResource( 32 )
 
 [node name="AttackA1" parent="SubBody" index="2"]
 damage = 18.0
@@ -1245,37 +1299,37 @@ shape = SubResource( 4 )
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 5 )
 
-[node name="AttackA1" parent="States" index="4"]
+[node name="AttackA1" parent="States" index="5"]
 armored = true
 
-[node name="AttackA2" parent="States" index="5"]
+[node name="AttackA2" parent="States" index="6"]
 armored = true
 
-[node name="AttackA3" parent="States" index="6"]
+[node name="AttackA3" parent="States" index="7"]
 armored = true
 
-[node name="AttackB" parent="States" index="7"]
+[node name="AttackB" parent="States" index="8"]
 script = ExtResource( 7 )
 dash_speed = 350.0
 anim_name = "AttackB"
 armored = true
 
-[node name="AttackC" parent="States" index="8"]
+[node name="AttackC" parent="States" index="9"]
 script = ExtResource( 7 )
 dash_speed = -300.0
 anim_name = "AttackC"
 armored = true
 
-[node name="AirAttackA" parent="States" index="9"]
+[node name="AirAttackA" parent="States" index="10"]
 armored = true
 
-[node name="AirAttackB" parent="States" index="10"]
+[node name="AirAttackB" parent="States" index="11"]
 armored = true
 
-[node name="AirAttackC" parent="States" index="11"]
+[node name="AirAttackC" parent="States" index="12"]
 armored = true
 
-[node name="AttackSpecial" parent="States" index="12"]
+[node name="AttackSpecial" parent="States" index="13"]
 is_falling_attack = true
 dash_speed = 80.0
 is_dashing_attack = true
