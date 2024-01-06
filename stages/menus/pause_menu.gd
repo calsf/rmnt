@@ -1,0 +1,87 @@
+extends Control
+
+# Path to the scene to quit to
+export var quit_to_scene : String
+
+onready var _resume_opt = $MenuOptions/Resume
+onready var _config_opt = $MenuOptions/Config
+onready var _guide_opt = $MenuOptions/Guide
+onready var _quit_opt = $MenuOptions/Quit
+
+var menu_options := []
+var last_option_i := -1
+var menu_paused := false # If pause menu is what triggered pause
+
+
+func _ready():
+	pause_mode = Node.PAUSE_MODE_PROCESS	# This will never pause
+	visible = false
+	
+	menu_options = $MenuOptions.get_children()
+	_resume_opt.connect("selected", self, "_resume")
+	_config_opt.connect("selected", self, "_toggle_config")
+	_guide_opt.connect("selected", self, "_toggle_guide")
+	_quit_opt.connect("selected", self, "_quit")
+
+
+func _input(event):
+	# Pause/unpause
+	if event.is_action_pressed("esc"):
+		if not get_tree().paused:
+			if last_option_i != -1:
+				menu_options[last_option_i].set_unselected()
+			
+			menu_options[0].set_selected()
+			last_option_i = 0
+			
+			menu_paused = true
+			get_tree().paused = true
+			visible = true
+		elif menu_paused and get_tree().paused:
+			menu_paused = false
+			get_tree().paused = false
+			visible = false
+	
+	# Move up and down options while paused
+	if menu_paused and get_tree().paused and event.is_action_pressed("move_up"):
+		menu_options[last_option_i].set_unselected()
+		last_option_i -= 1
+		
+		if last_option_i < 0:
+			last_option_i = menu_options.size() - 1
+		
+		menu_options[last_option_i].set_selected()
+	elif menu_paused and get_tree().paused and event.is_action_pressed("move_down"):
+		menu_options[last_option_i].set_unselected()
+		last_option_i += 1
+		
+		if last_option_i > menu_options.size() - 1:
+			last_option_i = 0
+		
+		menu_options[last_option_i].set_selected()
+	
+	# Select option while paused
+	if menu_paused and get_tree().paused and event.is_action_released("attack_a"):
+		menu_options[last_option_i].trigger_selection()
+
+
+# Unpause, for when button is pressed
+func _resume():
+	menu_paused = false
+	get_tree().paused = false
+	visible = false
+
+
+# Toggle config screen on/off
+func _toggle_config():
+	pass
+
+
+# Toggle guide screen on/off
+func _toggle_guide():
+	pass
+
+
+# Go to scene as specified by the quit_to_scene path
+func _quit():
+	pass
