@@ -7,7 +7,9 @@ onready var _resume_opt = $MenuOptions/Resume
 onready var _config_opt = $MenuOptions/Config
 onready var _guide_opt = $MenuOptions/Guide
 onready var _quit_opt = $MenuOptions/Quit
+onready var _guide_screen = $GuideScreen
 
+var unfocused := false # If no longer focused on pause menu
 var menu_options := []
 var last_option_i := -1
 var menu_paused := false # If pause menu is what triggered pause
@@ -16,6 +18,7 @@ var menu_paused := false # If pause menu is what triggered pause
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS	# This will never pause
 	visible = false
+	_guide_screen.visible = false
 	
 	menu_options = $MenuOptions.get_children()
 	_resume_opt.connect("selected", self, "_resume")
@@ -25,6 +28,10 @@ func _ready():
 
 
 func _input(event):
+	# Ignore input if unfocused
+	if unfocused:
+		return
+	
 	# Pause/unpause
 	if event.is_action_pressed("esc"):
 		if not get_tree().paused:
@@ -79,7 +86,12 @@ func _toggle_config():
 
 # Toggle guide screen on/off
 func _toggle_guide():
-	pass
+	if _guide_screen.visible:
+		unfocused = false
+		_guide_screen.visible = false
+	else:
+		unfocused = true
+		_guide_screen.visible = true
 
 
 # Go to scene as specified by the quit_to_scene path
