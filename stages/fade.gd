@@ -11,7 +11,7 @@ var _next_scene = ""
 
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS	# This will never pause
-	hide()
+	#hide()
 
 
 # Sets next scene to go to and play fade in animation

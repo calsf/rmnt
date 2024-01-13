@@ -16,7 +16,7 @@ func _input(event):
 	# Toggle UIs off if activated
 	# May be triggered outside the interactable area so we need to be able to handle separately
 	# Normal stage select
-	if event.is_action_pressed("interact") and stage_select_normal_ui.activated:
+	if event.is_action_released("attack_b") and stage_select_normal_ui.activated:
 		for player in players:
 			if player.visible:
 				player.pause_player(false)
@@ -27,7 +27,7 @@ func _input(event):
 		return
 	
 	# Endless stage select
-	if event.is_action_pressed("interact") and stage_select_endless_ui.activated:
+	if event.is_action_released("attack_b") and stage_select_endless_ui.activated:
 		for player in players:
 			if player.visible:
 				player.pause_player(false)

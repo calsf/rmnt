@@ -3,6 +3,7 @@ extends Control
 # Path to the scene to quit to
 export var quit_to_scene : String
 
+onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 onready var _resume_opt = $MenuOptions/Resume
 onready var _config_opt = $MenuOptions/Config
 onready var _guide_opt = $MenuOptions/Guide
@@ -28,8 +29,12 @@ func _ready():
 
 
 func _input(event):
-	# Ignore input if unfocused
+	# Ignore input if unfocused, check for "back" input
 	if unfocused:
+		# Back from guide screen
+		if _guide_screen.visible and event.is_action_released("attack_b"):
+			_toggle_guide()
+		
 		return
 	
 	# Pause/unpause
@@ -96,4 +101,10 @@ func _toggle_guide():
 
 # Go to scene as specified by the quit_to_scene path
 func _quit():
-	pass
+	unfocused = true
+	
+	# Quit game if no quit scene, else go to scene
+	if quit_to_scene.empty():
+		get_tree().quit()
+	else:
+		_fade.go_to_scene(quit_to_scene)
