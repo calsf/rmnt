@@ -14,3 +14,4 @@ ground_decel = 200
 hitstun_multiplier = 1.0
 air_hitstun_multiplier = 1.0
 hud_icon_path = "res://enemy/EN000/EN000-IconHUD.png"
+death_path = "res://enemy/EnemyDeath.tscn"

@@ -1,5 +1,7 @@
 extends Node2D
 
+const DUMMY = "res://enemy/Dummy/Dummy.tscn"
+
 onready var rmnt_select = $CanvasLayer/RmntSelect
 onready var stage_select_normal_ui = $CanvasLayer/StageSelectNormal
 onready var stage_select_normal_interactable = $World/StageSelectNormal
@@ -61,3 +63,23 @@ func _input(event):
 				stage_select_endless_ui.activate()
 				rmnt_select.deactivate()
 				stage_select_endless_interactable.set_can_interact(false)
+
+
+func _physics_process(delta):
+	if get_tree().get_nodes_in_group("enemies").size() == 0:
+		spawn_dummy()
+
+
+# Spawn up to one dummy enemy
+func spawn_dummy():
+	yield(get_tree().create_timer(2, false), "timeout")
+	
+	if get_tree().get_nodes_in_group("enemies").size() > 0:
+		return
+	
+	var x = 160
+	var y = 110
+	
+	var enemy = load(DUMMY).instance()
+	enemy.global_position = Vector2(x, y)
+	get_tree().current_scene.get_node("World").add_child(enemy)

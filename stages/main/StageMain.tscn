@@ -260,16 +260,16 @@ position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
-position = Vector2( 160, 120 )
+position = Vector2( 160, 90 )
 
 [node name="RM002" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 160, 120 )
+position = Vector2( 160, 90 )
 
 [node name="RM003" parent="World" instance=ExtResource( 2 )]
-position = Vector2( 160, 120 )
+position = Vector2( 160, 90 )
 
 [node name="RM004" parent="World" instance=ExtResource( 16 )]
-position = Vector2( 160, 120 )
+position = Vector2( 160, 90 )
 
 [node name="Interactable" parent="World" instance=ExtResource( 15 )]
 

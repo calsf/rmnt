@@ -23,7 +23,7 @@ func take_damage(dmg : float) -> void:
 	# Death check
 	if curr_hp <= 0:
 		# Instance death effect before removing enemy
-		var death = load("res://enemy/PotionMeterDeath.tscn").instance()
+		var death = load(props.death_path).instance()
 		get_tree().current_scene.get_node("World").add_child(death)
 		death.global_position = enemy_child.global_position
 		emit_signal("died", self)
