@@ -1,8 +1,5 @@
 extends Control
 
-# Path to the scene to quit to
-export var quit_to_scene : String
-
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 onready var _resume_opt = $MenuOptions/Resume
 onready var _config_opt = $MenuOptions/Config
@@ -14,6 +11,9 @@ var unfocused := false # If no longer focused on pause menu
 var menu_options := []
 var last_option_i := -1
 var menu_paused := false # If pause menu is what triggered pause
+
+# Path to the scene to quit to, set from parent HUD
+var quit_to_scene : String
 
 
 func _ready():

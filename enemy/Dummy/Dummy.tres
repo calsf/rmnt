@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-max_hp = 400.0
+max_hp = 500.0
 speed_x = 0.0
 speed_y = 0.0
 speed_x_dash = 0.0
@@ -13,5 +13,5 @@ armored = false
 ground_decel = 200
 hitstun_multiplier = 1.0
 air_hitstun_multiplier = 1.0
-hud_icon_path = ""
+hud_icon_path = "res://enemy/Dummy/Dummy-IconHUD.png"
 death_path = "res://enemy/Dummy/DummyDeath.tscn"

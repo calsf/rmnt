@@ -5,7 +5,7 @@ onready var unselected_icon := load("res://stages/main/StageSelectUnselected.png
 onready var selected_icon := load("res://stages/main/StageSelectSelected.png")
 onready var preview = $Selection/Preview
 onready var players = get_tree().get_nodes_in_group("players")
-onready var _fade = get_tree().current_scene.get_node("CanvasLayer/Fade")
+onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 
 # An array of stage scene paths
 # To be set by child class

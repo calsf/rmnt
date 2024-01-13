@@ -70,6 +70,19 @@ func init_hud():
 		var hud = get_tree().current_scene.get_node("HUD")
 		hud.init_player_bar(self)
 	
+	curr_hp = props.max_hp
+	curr_meter = 0.0
+	emit_signal("health_updated", self)
+	emit_signal("meter_gained", self)
+
+
+# For main stage, sets player bar to display current player info
+# Requires all players to have init and connected signals to hud
+func set_as_player_bar():
+	if get_tree().current_scene.has_node("HUD"):
+		var hud = get_tree().current_scene.get_node("HUD")
+		hud.set_as_player_bar(self)
+	
 	emit_signal("health_updated", self)
 	emit_signal("meter_gained", self)
 

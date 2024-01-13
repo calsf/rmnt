@@ -11,7 +11,7 @@
 [ext_resource path="res://stages/main/StageMain.png" type="Texture" id=9]
 [ext_resource path="res://stages/main/RM002-Icon.png" type="Texture" id=10]
 [ext_resource path="res://stages/main/RmntSelect-R.png" type="Texture" id=11]
-[ext_resource path="res://stages/Fade.tscn" type="PackedScene" id=12]
+[ext_resource path="res://stages/hud/HUD.tscn" type="PackedScene" id=12]
 [ext_resource path="res://stages/main/RM001-IconSelected.png" type="Texture" id=13]
 [ext_resource path="res://stages/main/RmntSelect-L.png" type="Texture" id=14]
 [ext_resource path="res://stages/interactable/InteractableDetection.tscn" type="PackedScene" id=15]
@@ -129,6 +129,9 @@ tracks/0/keys = {
 [node name="StageMain" type="Node2D"]
 script = ExtResource( 17 )
 
+[node name="HUD" parent="." instance=ExtResource( 12 )]
+layer = 2
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RmntSelect" type="HBoxContainer" parent="CanvasLayer"]
@@ -182,9 +185,6 @@ texture = ExtResource( 11 )
 visible = false
 
 [node name="StageSelectEndless" parent="CanvasLayer" instance=ExtResource( 8 )]
-visible = false
-
-[node name="Fade" parent="CanvasLayer" instance=ExtResource( 12 )]
 visible = false
 
 [node name="WorldStaticBody" type="StaticBody2D" parent="."]

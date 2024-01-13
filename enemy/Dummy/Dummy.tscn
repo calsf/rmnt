@@ -194,9 +194,11 @@ visible = false
 texture = ExtResource( 3 )
 
 [node name="EnemySprite" parent="SubBody" index="0"]
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
+hframes = 8
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
+autoplay = "Spawn"
 anims/Hit1 = SubResource( 1 )
 anims/Hit2 = SubResource( 2 )
 anims/Idle = SubResource( 3 )
