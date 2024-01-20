@@ -7,6 +7,7 @@ onready var stage_select_normal_ui = $CanvasLayer/StageSelectNormal
 onready var stage_select_normal_interactable = $World/StageSelectNormal
 onready var stage_select_endless_ui = $CanvasLayer/StageSelectEndless
 onready var stage_select_endless_interactable = $World/StageSelectEndless
+onready var swap_timer = $CanvasLayer/RmntSelect/Timer
 
 onready var players = get_tree().get_nodes_in_group("players")
 
@@ -15,6 +16,10 @@ var is_overlapping_player_hurtbox := false
 
 
 func _input(event):
+	# Avoid interaction while mid swap
+	if not swap_timer.is_stopped():
+		return
+	
 	# Toggle UIs off if activated
 	# May be triggered outside the interactable area so we need to be able to handle separately
 	# Normal stage select
@@ -72,8 +77,6 @@ func _physics_process(delta):
 
 # Spawn up to one dummy enemy
 func spawn_dummy():
-	yield(get_tree().create_timer(2, false), "timeout")
-	
 	if get_tree().get_nodes_in_group("enemies").size() > 0:
 		return
 	

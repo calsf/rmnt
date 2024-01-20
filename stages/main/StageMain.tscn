@@ -181,6 +181,9 @@ margin_right = 164.0
 margin_bottom = 24.0
 texture = ExtResource( 11 )
 
+[node name="Timer" type="Timer" parent="CanvasLayer/RmntSelect"]
+one_shot = true
+
 [node name="StageSelectNormal" parent="CanvasLayer" instance=ExtResource( 5 )]
 visible = false
 

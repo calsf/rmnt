@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://player/BasePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM001/RM001-AirAttackA.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://player/RM001/RM001-Shadow.png" type="Texture" id=15]
 [ext_resource path="res://player/RM001/RM001-AttackSpecial.png" type="Texture" id=16]
 [ext_resource path="res://player/RM001/RM001-Spawn.png" type="Texture" id=17]
+[ext_resource path="res://player/RM001/RM001-Despawn.png" type="Texture" id=18]
 
 [sub_resource type="Animation" id=25]
 resource_name = "AirAttackA"
@@ -728,6 +729,110 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=44]
+resource_name = "Death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "Despawn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [sub_resource type="Animation" id=35]
 resource_name = "Hit1"
 length = 0.2
@@ -992,6 +1097,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=43]
 resource_name = "Spawn"
@@ -1044,6 +1161,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("..:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 26, 8.5 )
@@ -1086,6 +1215,8 @@ anims/AttackB = SubResource( 32 )
 anims/AttackC = SubResource( 33 )
 anims/AttackSpecial = SubResource( 41 )
 anims/Dash = SubResource( 34 )
+anims/Death = SubResource( 44 )
+anims/Despawn = SubResource( 45 )
 anims/Hit1 = SubResource( 35 )
 anims/Hit2 = SubResource( 36 )
 anims/Idle = SubResource( 37 )
@@ -1161,6 +1292,7 @@ meter_gain = 4.0
 
 [node name="AirAttackC" type="CollisionPolygon2D" parent="SubBody/AirAttackC" index="0"]
 polygon = PoolVector2Array( -27, -42, -27, -16, 6, -16, 6, 12, 40, 12, 40, -42 )
+disabled = true
 
 [node name="AttackSpecial" parent="SubBody" index="10"]
 damage = 60.0

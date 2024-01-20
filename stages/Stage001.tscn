@@ -58,8 +58,3 @@ shape = SubResource( 5 )
 
 [node name="World" parent="." index="2"]
 script = ExtResource( 11 )
-
-[editable path="HUD/PauseMenu/MenuOptions/Resume"]
-[editable path="HUD/PauseMenu/MenuOptions/Config"]
-[editable path="HUD/PauseMenu/MenuOptions/Guide"]
-[editable path="HUD/PauseMenu/MenuOptions/Quit"]

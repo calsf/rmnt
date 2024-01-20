@@ -18,6 +18,8 @@ const Enemies = {
 	EN011 = "res://enemy/EN011/EN011.tscn"
 }
 
+onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
+
 var enemy_listing : Array
 
 var start_spawn_num : int
@@ -43,6 +45,8 @@ var max_y : float
 
 var rng := RandomNumberGenerator.new()
 
+var is_cleared := false
+
 onready var spawn_timer = $SpawnTimer
 
 
@@ -50,6 +54,19 @@ func _process(delta):
 	# Stop spawning after reaching maxed overall limit
 	# max_spawn_num is enemy_listing.size() - 1 so need to minus 1 from curr_spawn_num
 	if (curr_spawn_num - 1) >= max_spawn_num:
+		# If reached maxed overall limit and no more active enemies, stage is cleared
+		var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()
+		if active_spawn_num == 0 and not is_cleared:
+			is_cleared = true
+			for player in get_tree().get_nodes_in_group("players"):
+				if player.visible:
+					# Force transition to despawn
+					player.state_machine.transition_to("Despawn")
+					
+					# Wait and then return to main stage
+					yield(get_tree().create_timer(2.5, false), "timeout")
+					_fade.go_to_scene("res://stages/main/StageMain.tscn")
+		
 		return
 	
 	# Stop spawning after reaching max active limit

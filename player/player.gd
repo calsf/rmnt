@@ -94,8 +94,9 @@ func take_damage(dmg : float) -> void:
 	if curr_hp <= 0:
 		curr_hp = 0
 		emit_signal("died", self)
-		# TODO:
-		print_debug("DEAD")
+		
+		# Force transition to death state
+		state_machine.transition_to("Death")
 	
 	emit_signal("health_updated", self)
 
@@ -122,6 +123,10 @@ func lose_meter(meter_loss : float) -> void:
 
 # Triggered by PlayerHurtbox
 func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
+	# Ignore if dead
+	if curr_hp <= 0:
+		return false
+	
 	var hitbox_data = hitbox.get_data_state()
 	var hitbox_owner = hitbox.owner
 	
@@ -186,17 +191,17 @@ func disable_all_hitboxes() -> void:
 	for child in player_child.get_children():
 		if child is PlayerHitbox:
 			for collision in child.get_children():
-				collision.disabled = true
+				collision.call_deferred("set_disabled", true)
 
 
 func disable_hurtbox() -> void:
 	for collision in hurtbox.get_children():
-		collision.disabled = true
+		collision.call_deferred("set_disabled", true)
 
 
 func enable_hurtbox() -> void:
 	for collision in hurtbox.get_children():
-		collision.disabled = false
+		collision.call_deferred("set_disabled", false)
 
 
 # Return input vector, does not move player
@@ -269,12 +274,17 @@ func pause_player(is_paused):
 
 
 # Reset state and display player
-func activate():
+# Can set position to activate at
+func activate(position = null):
 	if state_machine:
 		last_input = null
 		state_machine.transition_to(state_machine.initial_state_name)
 	
 	visible = true
+	
+	yield(get_tree(), "idle_frame")
+	if position != null:
+		global_position = position
 
 
 # Reset state and hide player, also moves player to off screen area since state machine is still active

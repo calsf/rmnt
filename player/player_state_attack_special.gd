@@ -110,4 +110,8 @@ func state_physics_process(delta: float) -> void:
 
 
 func finish_special():
+	# Ignore if in despawn state
+	if player.state_machine.curr_state.name == "Despawn":
+		return
+	
 	state_machine.transition_to("Idle")
