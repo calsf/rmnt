@@ -17,6 +17,7 @@ func _ready():
 # Sets next scene to go to and play fade in animation
 func go_to_scene(scene_name):
 	if not _in_transition:
+		Global.reset_kill_count()
 		_in_transition = true
 		_next_scene = scene_name
 		color.a = 0

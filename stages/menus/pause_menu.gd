@@ -11,6 +11,7 @@ var unfocused := false # If no longer focused on pause menu
 var menu_options := []
 var last_option_i := -1
 var menu_paused := false # If pause menu is what triggered pause
+var can_pause := true
 
 # Path to the scene to quit to, set from parent HUD
 var quit_to_scene : String
@@ -29,6 +30,9 @@ func _ready():
 
 
 func _input(event):
+	if not can_pause:
+		return
+	
 	# Ignore input if unfocused, check for "back" input
 	if unfocused:
 		# Back from guide screen

@@ -95,6 +95,11 @@ _global_script_classes=[ {
 "path": "res://base/projectile.gd"
 }, {
 "base": "Node",
+"class": "StageEndless",
+"language": "GDScript",
+"path": "res://stages/stage_endless.gd"
+}, {
+"base": "Node",
 "class": "StageNormal",
 "language": "GDScript",
 "path": "res://stages/stage_normal.gd"
@@ -132,6 +137,7 @@ _global_script_class_icons={
 "PlayerRangebox": "",
 "PlayerState": "",
 "Projectile": "",
+"StageEndless": "",
 "StageNormal": "",
 "StageSelect": "",
 "State": "",

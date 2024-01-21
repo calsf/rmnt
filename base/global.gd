@@ -5,6 +5,10 @@ extends Node
 # Will be limited by how many can be displayed on hud
 const MAX_ACTIVE_ENEMIES = 26
 
+# Reference for endless stage kill counts
+var kill_count := 0
+
+
 func _ready():
 	# Global randomize call, only need to be called once
 	randomize()
@@ -41,3 +45,11 @@ func pause_node(node, is_paused):
 	node.set_process_internal(!is_paused)
 	# node.set_process_unhandled_input(!is_paused)
 	# node.set_process_unhandled_key_input(!is_paused)
+
+
+func add_kill_count():
+	kill_count += 1
+
+
+func reset_kill_count():
+	kill_count = 0

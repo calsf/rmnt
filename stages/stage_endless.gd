@@ -1,5 +1,6 @@
+# Similar to StageNormal, but spawns a set of enemies endlessly
 extends Node
-class_name StageNormal
+class_name StageEndless
 
 const Enemies = {
 	HEALTH = "res://enemy/Potions/PotionHealth.tscn",
@@ -17,13 +18,17 @@ const Enemies = {
 	EN010 = "res://enemy/EN010/EN010.tscn",
 	EN011 = "res://enemy/EN011/EN011.tscn"
 }
+const METER_SPAWN_NUM = 5		# Chance to spawn meter every x enemy num
+const HEALTH_SPAWN_NUM = 10		# Chance to spawn health every x enemy num
+const INCREASE_SPAWN_NUM = 10	# Increase min and max spawn num every x enemy num
 
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
+onready var _kill_count_label = get_tree().current_scene.get_node("HUD/KillCount/Label")
 
-var enemy_listing : Array
+# An array of possible enemies for this stage
+var normal_enemy_listing : Array
 
 var start_spawn_num : int
-var max_spawn_num : int
 var curr_spawn_num : int
 
 # Spawn min-max enemies every min-max time
@@ -31,11 +36,6 @@ var min_enemy_num : int
 var max_enemy_num : int
 var min_time : float
 var max_time : float
-
-# Replaces min_enemy_num and max_enemy_num
-# Min-max enemy numbers to be used after certain spawn threshold
-var min_enemy_num_high : int
-var max_enemy_num_high : int
 
 # Spawn bounds
 var min_x : float
@@ -46,30 +46,14 @@ var max_y : float
 var rng := RandomNumberGenerator.new()
 
 var is_cleared := false
-var first_spawn := false
+var first_spawn := true
 
 onready var spawn_timer = $SpawnTimer
 
 
 func _process(delta):
-	# Stop spawning after reaching maxed overall limit
-	# max_spawn_num is enemy_listing.size() - 1 so need to minus 1 from curr_spawn_num
-	if (curr_spawn_num - 1) >= max_spawn_num:
-		# If reached maxed overall limit and no more active enemies, stage is cleared
-		var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()
-		if active_spawn_num == 0 and not is_cleared:
-			is_cleared = true
-			for player in get_tree().get_nodes_in_group("players"):
-				if player.visible:
-					# Force transition to despawn
-					player.state_machine.transition_to("Despawn")
-					
-					# Wait and then return to main stage
-					get_tree().current_scene.get_node("HUD/PauseMenu").can_pause = false
-					yield(get_tree().create_timer(2.5, false), "timeout")
-					_fade.go_to_scene("res://stages/main/StageMain.tscn")
-		
-		return
+	# Update kill count label
+	_kill_count_label.text = str(Global.kill_count)
 	
 	# Stop spawning after reaching max active limit
 	var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()
@@ -82,22 +66,14 @@ func _process(delta):
 	if spawn_timer.is_stopped() or (curr_spawn_num > 0 and active_spawn_num == 0):
 		# Spawn random number of enemies
 		var spawn_num = 0
-		if curr_spawn_num >= (max_spawn_num / 3):
-			# Past threshold, use higher spawn nums
-			spawn_num = rng.randi_range(min_enemy_num_high, max_enemy_num_high)
-		else:
-			# Regular spawn nums
-			spawn_num = rng.randi_range(min_enemy_num, max_enemy_num)
+		spawn_num = rng.randi_range(min_enemy_num, max_enemy_num)
 		
 		# Handle initial spawns
 		if first_spawn:
 			spawn_num = start_spawn_num
 			first_spawn = false
 		
-		if (curr_spawn_num - 1) + spawn_num > max_spawn_num:
-			# Spawn only as much as possible before reaching overall limit
-			spawn_num = max_spawn_num - (curr_spawn_num - 1)
-		elif active_spawn_num + spawn_num > Global.MAX_ACTIVE_ENEMIES:
+		if active_spawn_num + spawn_num > Global.MAX_ACTIVE_ENEMIES:
 			# Limit max number of active enemies
 			spawn_num = Global.MAX_ACTIVE_ENEMIES - active_spawn_num
 		
@@ -107,6 +83,11 @@ func _process(delta):
 		spawn_enemies(spawn_num)
 		
 		reset_spawn_time()
+		
+		# Every x enemies, increase min and max enemy spawn num
+		if curr_spawn_num % INCREASE_SPAWN_NUM == 0:
+			min_enemy_num = min(min_enemy_num + 1, Global.MAX_ACTIVE_ENEMIES)
+			max_enemy_num = min(max_enemy_num + 1, Global.MAX_ACTIVE_ENEMIES)
 	else:
 		return
 
@@ -141,14 +122,19 @@ func spawn_enemies(spawn_num : int) -> void:
 
 # Spawns a single enemy, requires the enemy num to be specified
 func spawn_enemy(i : int) -> void:
-	if i > max_spawn_num:
-		return
-	
 	# Randomize location
 	var x = rand_range(min_x, max_x)
 	var y = rand_range(min_y, max_y)
 	
-	var possible_enemies = enemy_listing[i]
+	var possible_enemies = normal_enemy_listing.duplicate()
+	
+	# Chance of meter every x spawns
+	if i % METER_SPAWN_NUM == 0:
+		possible_enemies.append(Enemies.METER)
+	
+	# Chance of health every x spawns
+	if i % HEALTH_SPAWN_NUM == 0:
+		possible_enemies.append(Enemies.HEALTH)
 	
 	# Randomize enemy
 	var enemy_path = possible_enemies[randi() % possible_enemies.size()]

@@ -132,6 +132,9 @@ script = ExtResource( 17 )
 [node name="HUD" parent="." instance=ExtResource( 12 )]
 layer = 2
 
+[node name="KillCount" parent="HUD" index="2"]
+visible = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RmntSelect" type="HBoxContainer" parent="CanvasLayer"]
@@ -276,5 +279,6 @@ position = Vector2( 160, 90 )
 
 [node name="Interactable" parent="World" instance=ExtResource( 15 )]
 
+[editable path="HUD"]
 [editable path="World/StageSelectNormal"]
 [editable path="World/StageSelectEndless"]

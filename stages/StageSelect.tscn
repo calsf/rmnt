@@ -106,19 +106,18 @@ margin_bottom = 13.0
 texture = ExtResource( 8 )
 
 [node name="Confirm" type="TextureRect" parent="Selection"]
-anchor_left = 0.333
-anchor_right = 0.467
+anchor_left = 0.35
+anchor_right = 0.483
 anchor_bottom = 0.123
-margin_left = 0.0800018
-margin_right = -0.0800018
+margin_right = 0.0799942
 margin_bottom = 0.00999928
 texture = ExtResource( 6 )
 
 [node name="Cancel" type="TextureRect" parent="Selection"]
-anchor_left = 0.533
-anchor_right = 0.667
+anchor_left = 0.517
+anchor_right = 0.65
 anchor_bottom = 0.123
-margin_left = 0.0799866
-margin_right = -0.0800171
+margin_left = -0.0800018
+margin_right = -1.52588e-05
 margin_bottom = 0.00999928
 texture = ExtResource( 5 )

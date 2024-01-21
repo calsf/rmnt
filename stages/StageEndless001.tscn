@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://stages/BaseStageNormal.tscn" type="PackedScene" id=1]
-[ext_resource path="res://stages/Stage001.png" type="Texture" id=6]
-[ext_resource path="res://stages/stage_normal001.gd" type="Script" id=11]
+[ext_resource path="res://stages/stage_endless001.gd" type="Script" id=1]
+[ext_resource path="res://stages/BaseStageEndless.tscn" type="PackedScene" id=2]
+[ext_resource path="res://stages/Stage001.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -33,10 +33,17 @@ extents = Vector2( 60, 90 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 60, 90 )
 
-[node name="Stage001" instance=ExtResource( 1 )]
+[node name="StageEndless001" instance=ExtResource( 2 )]
+
+[node name="KillCount" parent="HUD" index="4"]
+margin_top = 0.0800018
+
+[node name="Label" parent="HUD/KillCount" index="1"]
+anchor_bottom = 0.9
+margin_bottom = 8.0
 
 [node name="Background" parent="StaticBody2D" index="0"]
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 hframes = 4
 
 [node name="AnimationPlayer" parent="StaticBody2D/Background" index="0"]
@@ -56,4 +63,6 @@ shape = SubResource( 4 )
 shape = SubResource( 5 )
 
 [node name="World" parent="." index="2"]
-script = ExtResource( 11 )
+script = ExtResource( 1 )
+
+[editable path="HUD"]

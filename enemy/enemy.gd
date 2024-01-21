@@ -128,6 +128,7 @@ func take_damage(dmg : float) -> void:
 		var death = load(props.death_path).instance()
 		get_tree().current_scene.get_node("World").add_child(death)
 		death.global_position = enemy_child.global_position
+		Global.add_kill_count()
 		emit_signal("died", self)
 		
 		queue_free()
