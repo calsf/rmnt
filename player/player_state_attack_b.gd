@@ -46,7 +46,8 @@ func state_process(delta: float) -> void:
 				jump = true
 			})
 		elif Input.is_action_just_pressed("dash") or player.is_input_buffered("dash"):
-			state_machine.transition_to("Dash")
+			if transition_to_dash():
+				return
 		
 	if not player.anim.is_playing():
 		state_machine.transition_to("Idle")

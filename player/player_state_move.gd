@@ -34,7 +34,8 @@ func state_physics_process(delta: float) -> void:
 				jump = true
 			})
 	elif Input.is_action_just_pressed("dash"):
-		state_machine.transition_to("Dash")
+		if transition_to_dash():
+			return
 	elif input_vector.x == 0 and input_vector.y == 0:
 		state_machine.transition_to("Idle")
 	elif Input.is_action_just_pressed("attack_a"):

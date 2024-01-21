@@ -22,3 +22,12 @@ func check_attack_special() -> bool:
 		return true
 	
 	return false
+
+
+func transition_to_dash() -> bool:
+	if player.dash_timer.is_stopped():
+		player.dash_timer.start()
+		state_machine.transition_to("Dash")
+		return true
+	
+	return false

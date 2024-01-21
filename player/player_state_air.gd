@@ -47,7 +47,8 @@ func state_physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed("attack_c") or player.is_input_buffered("attack_c"):
 		state_machine.transition_to("AirAttackC")
 	elif Input.is_action_just_pressed("dash"):
-		state_machine.transition_to("Dash")
+		if transition_to_dash():
+			return
 	
 	if player.get_player_child().is_on_floor():
 		if Input.is_action_just_pressed("attack_a") or player.is_input_buffered("attack_a"):
@@ -61,6 +62,7 @@ func state_physics_process(delta: float) -> void:
 				jump = true
 			})
 		elif Input.is_action_just_pressed("dash") or player.is_input_buffered("dash"):
-			state_machine.transition_to("Dash")
+			if transition_to_dash():
+				return
 		else:
 			state_machine.transition_to("Idle")

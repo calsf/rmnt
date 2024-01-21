@@ -33,7 +33,8 @@ func state_process(delta: float) -> void:
 			or Input.is_action_pressed("move_down"):
 		state_machine.transition_to("Move")
 	elif Input.is_action_just_pressed("dash"):
-		state_machine.transition_to("Dash")
+			if transition_to_dash():
+				return
 	elif Input.is_action_just_pressed("attack_a"):
 		state_machine.transition_to("AttackA1")
 	elif Input.is_action_just_pressed("attack_b"):

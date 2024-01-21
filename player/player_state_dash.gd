@@ -4,6 +4,7 @@ var initial_input_vector : Vector2
 
 
 func enter(data_state := {}) -> void:
+	player.disable_hurtbox()
 	initial_input_vector = player.get_movement_input()
 	
 	if initial_input_vector.x == 0 and initial_input_vector.y == 0:
@@ -15,6 +16,7 @@ func enter(data_state := {}) -> void:
 
 
 func exit(data_state := {}) -> void:
+	player.enable_hurtbox()
 	player.disable_input_cancel()
 	player.disable_all_hitboxes()
 

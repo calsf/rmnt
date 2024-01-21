@@ -33,6 +33,7 @@ onready var player_child = $SubBody
 onready var shake_anim = $SubBody/ShakeAnim
 onready var lane_detection = $LaneDetection
 onready var input_timer = $InputTimer
+onready var dash_timer = $DashTimer
 onready var ground = $GroundDetection
 onready var hurtbox = $SubBody/PlayerHurtbox
 onready var state_machine = $States
