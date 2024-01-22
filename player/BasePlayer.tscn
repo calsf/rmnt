@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://player/player_state_idle.gd" type="Script" id=1]
 [ext_resource path="res://base/state_machine.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://player/player_state_spawn.gd" type="Script" id=17]
 [ext_resource path="res://player/player_state_death.gd" type="Script" id=18]
 [ext_resource path="res://player/player_state_despawn.gd" type="Script" id=19]
+[ext_resource path="res://player/char_sprite_copy.gd" type="Script" id=20]
 [ext_resource path="res://player/player_state_attack_a3.gd" type="Script" id=25]
 [ext_resource path="res://player/player_state_air_attack_c.gd" type="Script" id=27]
 [ext_resource path="res://player/player_state_dash.gd" type="Script" id=29]
@@ -93,6 +94,11 @@ collision_mask = 128
 [node name="CharSprite" type="Sprite" parent="SubBody"]
 texture = ExtResource( 6 )
 hframes = 4
+
+[node name="CharSpiteCopy" type="Sprite" parent="SubBody"]
+modulate = Color( 1, 1, 1, 0.333333 )
+z_index = 2
+script = ExtResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SubBody"]
 
