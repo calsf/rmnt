@@ -50,6 +50,10 @@ func _input(event):
 	
 	# "Enter" stage
 	if event.is_action_pressed("attack_a"):
+		# Validate if can enter
+		if not validate():
+			return
+		
 		# Deactivate stage select
 		deactivate()
 		
@@ -79,3 +83,7 @@ func activate():
 func deactivate():
 	activated = false
 	visible = false
+
+
+func validate() -> bool:
+	return false

@@ -5,7 +5,11 @@ const SAVE_PATH = "user://sav.json"
 
 # Default data to be saved with new save file
 var _default_data := {
-	"selected_rmnt_i" : 0
+	"selected_rmnt_i" : 0,
+	
+	"normal_stage_unlocks": [true, false, false],
+	"endless_stage_unlocks": [true, false, false],
+	"endless_stage_scores": [0, 0, 0]
 }
 
 # Data loaded from save
@@ -15,6 +19,38 @@ var loaded_data := {}
 # Get save data
 func _init():
 	loaded_data = _load_data()
+
+
+func get_selected_rmnt_i() -> int:
+	return get_save_data("selected_rmnt_i")
+
+
+func set_selected_rmnt_i(val) -> void:
+	set_save_data("selected_rmnt_i", val)
+
+
+func get_normal_stage_unlocks() -> bool:
+	return get_save_data("normal_stage_unlocks")
+
+
+func set_normal_stage_unlocks(val) -> void:
+	set_save_data("normal_stage_unlocks", val)
+
+
+func get_endless_stage_unlocks() -> bool:
+	return get_save_data("endless_stage_unlocks")
+
+
+func set_endless_stage_unlocks(val) -> void:
+	set_save_data("endless_stage_unlocks", val)
+
+
+func get_endless_stage_scores() -> int:
+	return get_save_data("endless_stage_scores")
+
+
+func set_endless_stage_scores(val) -> void:
+	set_save_data("endless_stage_scores", val)
 
 
 # Save and overwrite save file with data arg or current loaded_data by default

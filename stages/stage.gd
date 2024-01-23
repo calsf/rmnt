@@ -12,7 +12,7 @@ onready var rmnts := [
 
 func _ready():
 	# Activate selected rmnt from save data
-	var selected_rmnt_i = SaveLoadManager.get_save_data("selected_rmnt_i")
+	var selected_rmnt_i = SaveLoadManager.get_selected_rmnt_i()
 	for i in range(rmnts.size()):
 		if i == selected_rmnt_i:
 			rmnts[i].activate()

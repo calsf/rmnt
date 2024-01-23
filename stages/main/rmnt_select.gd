@@ -42,7 +42,7 @@ func _ready():
 		rmnt.init_hud()
 	
 	# Activate selected rmnt from save data, add offset of min_rmnt_i
-	curr_rmnt_i = min_rmnt_i + SaveLoadManager.get_save_data("selected_rmnt_i")
+	curr_rmnt_i = min_rmnt_i + SaveLoadManager.get_selected_rmnt_i()
 	_select_rmnt(curr_rmnt_i)
 
 
@@ -103,7 +103,7 @@ func _select_rmnt(selected_index : int):
 			rmnts[i - min_rmnt_i].set_as_player_bar()
 			
 			# Set selected rmnt id (does not save data)
-			SaveLoadManager.set_save_data("selected_rmnt_i", i - min_rmnt_i)
+			SaveLoadManager.set_selected_rmnt_i(i - min_rmnt_i)
 		else:
 			rmnt_options[i].texture = rmnt_unselected_textures[i - min_rmnt_i]
 			rmnts[i - min_rmnt_i].deactivate()
