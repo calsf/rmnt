@@ -143,7 +143,7 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 				
 				var hitbox_damage = hitbox_data["damage"]
 				
-				if not armored:
+				if not armored: # Not armored
 					# X and Y hitstun
 					var hitbox_knockback_x = (hitbox_data["knockback_x"] * props.hitstun_multiplier)
 					var hitbox_knockback_y = (hitbox_data["knockback_y"] * props.hitstun_multiplier)
@@ -165,8 +165,10 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 						is_aerial_stun = false
 					
 					toggle_hit_frame()
-				
-				take_damage(hitbox_damage)
+					take_damage(hitbox_damage)
+				else: # Armored
+					hitbox_damage = hitbox_damage / 2
+					take_damage(hitbox_damage)
 				
 				Global.hitstop([self, hitbox_owner])
 				
