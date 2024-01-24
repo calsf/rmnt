@@ -25,6 +25,11 @@ func _ready():
 
 func _on_player_death(rmnt : Player):
 	if get_tree().current_scene.has_node("World/DeathOverlay"):
+		# Check and save stage score for endless stages
+		var stage = $World
+		if stage is StageEndless:
+			stage.save_stage_score()
+		
 		# Pause entire tree
 		get_tree().paused = true
 		

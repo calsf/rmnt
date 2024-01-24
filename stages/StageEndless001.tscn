@@ -35,12 +35,8 @@ extents = Vector2( 60, 90 )
 
 [node name="StageEndless001" instance=ExtResource( 2 )]
 
-[node name="KillCount" parent="HUD" index="4"]
+[node name="KillCount" parent="HUD" index="2"]
 margin_top = 0.0800018
-
-[node name="Label" parent="HUD/KillCount" index="1"]
-anchor_bottom = 0.9
-margin_bottom = 8.0
 
 [node name="Background" parent="StaticBody2D" index="0"]
 texture = ExtResource( 3 )

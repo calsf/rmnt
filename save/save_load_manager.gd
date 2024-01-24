@@ -8,7 +8,8 @@ var _default_data := {
 	"selected_rmnt_i" : 0,
 	
 	"normal_stage_unlocks": [true, false, false],
-	"endless_stage_unlocks": [true, false, false],
+	"endless_stage_unlocks": [false, false, false],
+	"normal_stage_clears": [false, false, false],
 	"endless_stage_scores": [0, 0, 0]
 }
 
@@ -29,7 +30,7 @@ func set_selected_rmnt_i(val) -> void:
 	set_save_data("selected_rmnt_i", val)
 
 
-func get_normal_stage_unlocks() -> bool:
+func get_normal_stage_unlocks() -> Array:
 	return get_save_data("normal_stage_unlocks")
 
 
@@ -37,7 +38,7 @@ func set_normal_stage_unlocks(val) -> void:
 	set_save_data("normal_stage_unlocks", val)
 
 
-func get_endless_stage_unlocks() -> bool:
+func get_endless_stage_unlocks() -> Array:
 	return get_save_data("endless_stage_unlocks")
 
 
@@ -45,7 +46,15 @@ func set_endless_stage_unlocks(val) -> void:
 	set_save_data("endless_stage_unlocks", val)
 
 
-func get_endless_stage_scores() -> int:
+func get_normal_stage_clears() -> Array:
+	return get_save_data("normal_stage_clears")
+
+
+func set_normal_stage_clears(val) -> void:
+	set_save_data("normal_stage_clears", val)
+
+
+func get_endless_stage_scores() -> Array:
 	return get_save_data("endless_stage_scores")
 
 

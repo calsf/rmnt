@@ -14,7 +14,7 @@ script = ExtResource( 7 )
 [node name="HUD" parent="." instance=ExtResource( 1 )]
 quit_to_scene = "res://stages/main/StageMain.tscn"
 
-[node name="KillCount" parent="HUD" index="3"]
+[node name="KillCount" parent="HUD" index="2"]
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

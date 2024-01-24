@@ -22,6 +22,9 @@ const METER_SPAWN_NUM = 5		# Chance to spawn meter every x enemy num
 const HEALTH_SPAWN_NUM = 10		# Chance to spawn health every x enemy num
 const INCREASE_SPAWN_NUM = 10	# Increase min and max spawn num every x enemy num
 
+# Corresponds to indices in save data e.g 0, 1, or 2
+export var stage_num : int
+
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 onready var _kill_count_label = get_tree().current_scene.get_node("HUD/KillCount/Label")
 
@@ -143,3 +146,12 @@ func spawn_enemy(i : int) -> void:
 	enemy.set_stage_bounds(min_x, max_x, min_y, max_y)
 	enemy.global_position = Vector2(x, y)
 	get_tree().current_scene.get_node("World").add_child(enemy)
+
+
+# Check and save stage scores on player death in stage.gd
+func save_stage_score() -> void:
+	var scores = SaveLoadManager.get_endless_stage_scores()
+	if Global.kill_count > scores[stage_num]:
+		scores[stage_num] = Global.kill_count
+		SaveLoadManager.set_endless_stage_scores(scores)
+		SaveLoadManager.save_data()

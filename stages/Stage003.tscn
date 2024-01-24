@@ -58,3 +58,6 @@ shape = SubResource( 5 )
 
 [node name="World" parent="." index="2"]
 script = ExtResource( 3 )
+stage_num = 2
+
+[editable path="HUD"]

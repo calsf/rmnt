@@ -18,6 +18,9 @@ const Enemies = {
 	EN011 = "res://enemy/EN011/EN011.tscn"
 }
 
+# Corresponds to indices in save data e.g 0, 1, or 2
+export var stage_num : int
+
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 
 var enemy_listing : Array
@@ -61,6 +64,25 @@ func _process(delta):
 			is_cleared = true
 			for player in get_tree().get_nodes_in_group("players"):
 				if player.visible:
+					# Update normal stage as cleared
+					var stage_clears = SaveLoadManager.get_normal_stage_clears()
+					stage_clears[stage_num] = true
+					SaveLoadManager.set_normal_stage_clears(stage_clears)
+					
+					# Unlock next normal stage
+					var normal_stage_unlocks = SaveLoadManager.get_normal_stage_unlocks()
+					if stage_num + 1 < normal_stage_unlocks.size():
+						normal_stage_unlocks[stage_num + 1] = true
+						SaveLoadManager.set_normal_stage_unlocks(normal_stage_unlocks)
+					
+					# Unlock corresponding endless stage
+					var endless_stage_unlocks = SaveLoadManager.get_endless_stage_unlocks()
+					endless_stage_unlocks[stage_num] = true
+					SaveLoadManager.set_endless_stage_unlocks(endless_stage_unlocks)
+					
+					# Save
+					SaveLoadManager.save_data()
+					
 					# Force transition to despawn
 					player.state_machine.transition_to("Despawn")
 					
