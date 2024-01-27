@@ -12,7 +12,7 @@ func _ready():
 		Projectile = load(projectile_path)
 
 
-func spawn_projectile() -> void:
+func spawn_projectile(y_dir := 0) -> void:
 	if not enemy.visible:
 		return
 	
@@ -26,11 +26,11 @@ func spawn_projectile() -> void:
 	if enemy.is_facing_left:
 		proj.global_position = enemy.global_position + (spawn_offset * Vector2(-1, 1))
 		proj.set_offset_y(spawn_offset_y)
-		proj.set_dir(Vector2.LEFT)
+		proj.set_dir(Vector2(-1, y_dir).normalized())
 	else:
 		proj.global_position = enemy.global_position + spawn_offset
 		proj.set_offset_y(spawn_offset_y)
-		proj.set_dir(Vector2.RIGHT)
+		proj.set_dir(Vector2(1, y_dir).normalized())
 
 
 # Spawns projectile at player position
