@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BS001-Spin.png-f820730fd258535e438b2df56f762ae8.stex"
+path="res://.import/BS001-SpinActive.png-fce4904b7d99a9ff853d77a176dec050.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/BS001/BS001-Spin.png"
-dest_files=[ "res://.import/BS001-Spin.png-f820730fd258535e438b2df56f762ae8.stex" ]
+source_file="res://enemy/BS001/BS001-SpinActive.png"
+dest_files=[ "res://.import/BS001-SpinActive.png-fce4904b7d99a9ff853d77a176dec050.stex" ]
 
 [params]
 
