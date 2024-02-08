@@ -27,7 +27,7 @@ func _on_area_entered(enemy_hitbox : EnemyHitbox) -> void:
 	if enemy_hitbox == null or not is_instance_valid(enemy_hitbox):
 		return
 	
-	print_debug(owner.get_player_child().is_on_floor())
+	# Special case for grounded hitboxes, only apply if player is also grounded
 	if enemy_hitbox.is_grounded and !owner.get_player_child().is_on_floor():
 		return
 	

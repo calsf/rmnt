@@ -1,4 +1,5 @@
 # Escape to random position and immediately transition to an attack state
+# Also escapes to a grounded position
 extends EnemyState
 
 # Array of possible attack state names to immediately transition to after escaping
