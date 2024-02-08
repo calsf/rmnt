@@ -6,6 +6,7 @@ export var knockback_x := 0.0
 export var knockback_y := 0.0
 export var knockup := 0.0
 export var knockdown := 0.0
+export var is_grounded := false
 
 
 func _init():
@@ -33,5 +34,6 @@ func get_data_state() -> Dictionary:
 		"knockback_x": x,
 		"knockback_y": knockback_y,
 		"knockup": knockup,
-		"knockdown": knockdown
+		"knockdown": knockdown,
+		"is_grounded" : is_grounded
 	}

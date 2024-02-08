@@ -27,6 +27,10 @@ func _on_area_entered(enemy_hitbox : EnemyHitbox) -> void:
 	if enemy_hitbox == null or not is_instance_valid(enemy_hitbox):
 		return
 	
+	print_debug(owner.get_player_child().is_on_floor())
+	if enemy_hitbox.is_grounded and !owner.get_player_child().is_on_floor():
+		return
+	
 	# Objects may not be in same lane on area entered and may enter lane while still overlapping
 	# Keep track of reference to area to keep checking for collision in _physics_process
 	# If hit, remove the reference to stop checking

@@ -45,6 +45,22 @@ func spawn_projectile_on_player() -> void:
 	proj.global_position = player.global_position
 
 
+# Spawns projectile at position
+func spawn_projectile_at_pos(pos : Vector2) -> void:
+	if not enemy.visible:
+		return
+	
+	var proj = Projectile.instance()
+	get_tree().current_scene.get_node("World").add_child(proj)
+	
+	if enemy.is_facing_left:
+		proj.global_position = pos
+		proj.set_dir(Vector2(-1, 0).normalized())
+	else:
+		proj.global_position = pos
+		proj.set_dir(Vector2(1, 0).normalized())
+
+
 func enter(data_state := {}) -> void:
 	enemy.anim.play(anim_name)
 	enemy.is_attacking = true
