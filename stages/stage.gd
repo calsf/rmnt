@@ -1,6 +1,13 @@
 extends Node2D
 
+const SHAKE_DECAY_RATE = 5.0
+const SHAKE_RANGE = 3
+
+onready var _stage_bg = $StaticBody2D/Background
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
+onready var _random = RandomNumberGenerator.new()
+
+var shake := 0.0
 
 onready var rmnts := [
 	get_tree().current_scene.get_node("World/RM001"),
@@ -21,6 +28,12 @@ func _ready():
 			rmnts[i].connect("died", self, "_on_player_death")
 		else:
 			rmnts[i].deactivate()
+
+
+func _process(delta):
+	shake = lerp(shake, 0, SHAKE_DECAY_RATE * delta)
+
+	_stage_bg.offset = _get_random_offset()
 
 
 func _on_player_death(rmnt : Player):
@@ -46,4 +59,18 @@ func _on_player_death(rmnt : Player):
 		yield(rmnt.anim, "animation_finished")
 		yield(get_tree().create_timer(.8, true), "timeout")
 		_fade.go_to_scene("res://stages/main/StageMain.tscn")
-		
+
+
+# Call to shake the stage background
+func shake():
+	shake = SHAKE_RANGE
+
+
+# Only shakes vertically
+func _get_random_offset():
+	if shake == 0:
+		return Vector2.ZERO
+	else:
+		_random.randomize()
+		var y = _random.randf_range(-shake, shake)
+		return Vector2(0, y)

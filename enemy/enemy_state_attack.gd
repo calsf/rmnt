@@ -61,6 +61,12 @@ func spawn_projectile_at_pos(pos : Vector2) -> void:
 		proj.set_dir(Vector2(1, 0).normalized())
 
 
+# Extra method to shake stage during attack animations if needed
+func shake_stage() -> void:
+	var stage = get_tree().current_scene
+	stage.shake()
+
+
 func enter(data_state := {}) -> void:
 	enemy.anim.play(anim_name)
 	enemy.is_attacking = true
