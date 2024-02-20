@@ -35,6 +35,9 @@ extents = Vector2( 60, 90 )
 
 [node name="Stage001" instance=ExtResource( 1 )]
 
+[node name="StaticBody2D" parent="." index="1"]
+z_index = -2
+
 [node name="Background" parent="StaticBody2D" index="0"]
 texture = ExtResource( 6 )
 hframes = 4

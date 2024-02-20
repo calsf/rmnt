@@ -1,5 +1,6 @@
 extends EnemyState
 
+export var activate_spawner := true
 
 func enter(data_state := {}) -> void:
 	### TEMP??
@@ -7,7 +8,8 @@ func enter(data_state := {}) -> void:
 	
 	enemy.disable_hurtbox()
 	enemy.anim.play("Spawn")
-	enemy.activate_spawner()
+	if activate_spawner:
+		enemy.activate_spawner()
 
 
 func exit(data_state := {}) -> void:

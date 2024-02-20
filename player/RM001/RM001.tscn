@@ -1202,7 +1202,7 @@ height = 16.0
 visible = false
 texture = ExtResource( 15 )
 
-[node name="AnimationPlayer" parent="SubBody" index="1"]
+[node name="AnimationPlayer" parent="SubBody" index="2"]
 autoplay = "Spawn"
 anims/AirAttackA = SubResource( 25 )
 anims/AirAttackB = SubResource( 26 )
@@ -1225,7 +1225,7 @@ anims/Move = SubResource( 39 )
 anims/RESET = SubResource( 40 )
 anims/Spawn = SubResource( 43 )
 
-[node name="AttackA1" parent="SubBody" index="2"]
+[node name="AttackA1" parent="SubBody" index="3"]
 damage = 10.0
 meter_gain = 2.0
 
@@ -1234,7 +1234,7 @@ position = Vector2( 15, -1.5 )
 shape = SubResource( 12 )
 disabled = true
 
-[node name="AttackA2" parent="SubBody" index="3"]
+[node name="AttackA2" parent="SubBody" index="4"]
 damage = 15.0
 meter_gain = 2.0
 
@@ -1243,14 +1243,14 @@ position = Vector2( 6, 1 )
 shape = SubResource( 13 )
 disabled = true
 
-[node name="AttackA3" parent="SubBody" index="4"]
+[node name="AttackA3" parent="SubBody" index="5"]
 damage = 18.0
 meter_gain = 2.0
 
 [node name="AttackA3" type="CollisionPolygon2D" parent="SubBody/AttackA3" index="0"]
 polygon = PoolVector2Array( 8, -34, 42, -34, 42, 15, -5, 15, -5, -8, 8, -8 )
 
-[node name="AttackB" parent="SubBody" index="5"]
+[node name="AttackB" parent="SubBody" index="6"]
 damage = 22.0
 meter_gain = 3.0
 
@@ -1258,7 +1258,7 @@ meter_gain = 3.0
 polygon = PoolVector2Array( 40, 16, 40, -27, -18, -27, -18, -12, 10, -12, 10, 16 )
 disabled = true
 
-[node name="AttackC" parent="SubBody" index="6"]
+[node name="AttackC" parent="SubBody" index="7"]
 damage = 25.0
 meter_gain = 4.0
 
@@ -1266,7 +1266,7 @@ meter_gain = 4.0
 polygon = PoolVector2Array( 40, 16, 40, -34, -34, -34, -34, 16, -11, 16, -11, -12, 10, -12, 10, 16 )
 disabled = true
 
-[node name="AirAttackA" parent="SubBody" index="7"]
+[node name="AirAttackA" parent="SubBody" index="8"]
 damage = 12.0
 knockback_x = 100.0
 knockup = 0.0
@@ -1276,7 +1276,7 @@ meter_gain = 2.0
 polygon = PoolVector2Array( 7, -24, 7, -9, -8, -9, -8, 9, 40, 9, 40, -24 )
 disabled = true
 
-[node name="AirAttackB" parent="SubBody" index="8"]
+[node name="AirAttackB" parent="SubBody" index="9"]
 damage = 22.0
 meter_gain = 3.0
 
@@ -1285,7 +1285,7 @@ position = Vector2( -0.5, -3 )
 shape = SubResource( 21 )
 disabled = true
 
-[node name="AirAttackC" parent="SubBody" index="9"]
+[node name="AirAttackC" parent="SubBody" index="10"]
 damage = 25.0
 knockdown = 600.0
 meter_gain = 4.0
@@ -1294,7 +1294,7 @@ meter_gain = 4.0
 polygon = PoolVector2Array( -27, -42, -27, -16, 6, -16, 6, 12, 40, 12, 40, -42 )
 disabled = true
 
-[node name="AttackSpecial" parent="SubBody" index="10"]
+[node name="AttackSpecial" parent="SubBody" index="11"]
 damage = 60.0
 knockup = 350.0
 

@@ -4,6 +4,11 @@ extends Node2D
 const MIN_X := -80
 const MAX_X := 400
 
+# Check for y bounds?
+export var check_y_bound := false
+export var y_bound_min := 0
+export var y_bound_max := 0
+
 export var _speed_x := 0
 export var _speed_y := 0
 export var min_y := 0
@@ -44,6 +49,9 @@ func _move(delta):
 # Checks for x bounds and destroy projectile once past
 func bound_check():
 	if position.x > MAX_X or position.x < MIN_X:
+		destroy()
+	
+	if check_y_bound and (position.y > y_bound_min or position.y < y_bound_max):
 		destroy()
 
 

@@ -12,7 +12,7 @@ func _ready():
 		Projectile = load(projectile_path)
 
 
-func spawn_projectile() -> void:
+func spawn_projectile(y_dir := 0) -> void:
 	if not enemy.visible:
 		return
 	
@@ -26,11 +26,11 @@ func spawn_projectile() -> void:
 	if enemy.is_facing_left:
 		proj.global_position = enemy.global_position + (spawn_offset * Vector2(-1, 1))
 		proj.set_offset_y(spawn_offset_y)
-		proj.set_dir(Vector2.LEFT)
+		proj.set_dir(Vector2(-1, y_dir).normalized())
 	else:
 		proj.global_position = enemy.global_position + spawn_offset
 		proj.set_offset_y(spawn_offset_y)
-		proj.set_dir(Vector2.RIGHT)
+		proj.set_dir(Vector2(1, y_dir).normalized())
 
 
 # Spawns projectile at player position
@@ -43,6 +43,28 @@ func spawn_projectile_on_player() -> void:
 	
 	var player = enemy.get_player_target()
 	proj.global_position = player.global_position
+
+
+# Spawns projectile at position
+func spawn_projectile_at_pos(pos : Vector2) -> void:
+	if not enemy.visible:
+		return
+	
+	var proj = Projectile.instance()
+	get_tree().current_scene.get_node("World").add_child(proj)
+	
+	if enemy.is_facing_left:
+		proj.global_position = pos
+		proj.set_dir(Vector2(-1, 0).normalized())
+	else:
+		proj.global_position = pos
+		proj.set_dir(Vector2(1, 0).normalized())
+
+
+# Extra method to shake stage during attack animations if needed
+func shake_stage() -> void:
+	var stage = get_tree().current_scene
+	stage.shake()
 
 
 func enter(data_state := {}) -> void:
