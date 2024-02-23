@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/BS002/BS002-Idle.png" type="Texture" id=2]
@@ -8,13 +8,17 @@
 [ext_resource path="res://enemy/BS002/BS002-Spawn.png" type="Texture" id=6]
 [ext_resource path="res://enemy/BS002/BS002-Despawn.png" type="Texture" id=7]
 [ext_resource path="res://enemy/BS002/BS002.tres" type="Resource" id=8]
-[ext_resource path="res://enemy/BS001/BS001-Shadow.png" type="Texture" id=9]
+[ext_resource path="res://enemy/BS002/BS002-Shadow.png" type="Texture" id=9]
 [ext_resource path="res://enemy/BS002/BS002-Punch.png" type="Texture" id=10]
 [ext_resource path="res://enemy/BS002/BS002-GroundSlam.png" type="Texture" id=11]
 [ext_resource path="res://enemy/enemy_rangebox.gd" type="Script" id=12]
 [ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=13]
 [ext_resource path="res://enemy/enemy_state_attack.gd" type="Script" id=14]
 [ext_resource path="res://enemy/BS002/bs_state_idle.gd" type="Script" id=15]
+[ext_resource path="res://enemy/BS002/BS002-ShadowAttack.png" type="Texture" id=16]
+[ext_resource path="res://enemy/BS002/BS002-ShadowMove.png" type="Texture" id=17]
+[ext_resource path="res://enemy/bs_state_escape_to.gd" type="Script" id=18]
+[ext_resource path="res://enemy/enemy_state_escape_from.gd" type="Script" id=19]
 
 [sub_resource type="Animation" id=4]
 resource_name = "EscapeFrom"
@@ -66,6 +70,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Shadow:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -129,6 +145,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Shadow:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -226,6 +254,18 @@ tracks/6/keys = {
 "method": "shake_stage"
 } ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../Shadow:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 16 ), ExtResource( 9 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Hit1"
@@ -266,6 +306,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Hit2"
@@ -305,6 +357,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -347,6 +411,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Move"
@@ -387,6 +463,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -453,6 +541,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Shadow:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ), ExtResource( 9 ) ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -491,6 +591,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Shadow:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -554,6 +666,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Shadow:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 9 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -646,6 +770,14 @@ activate_spawner = false
 [node name="Idle" parent="States" index="1"]
 script = ExtResource( 15 )
 
+[node name="Hitstun" parent="States" index="2"]
+escapeable = true
+min_stun = 2.0
+
+[node name="HitstunAir" parent="States" index="3"]
+escapeable = true
+min_stun = 2.0
+
 [node name="Move" type="Node" parent="States" index="4"]
 script = ExtResource( 3 )
 
@@ -657,3 +789,10 @@ anim_name = "Punch"
 script = ExtResource( 14 )
 projectile_path = "res://enemy/BS002/ProjectileBS002GroundSlam.tscn"
 anim_name = "GroundSlam"
+
+[node name="EscapeTo" type="Node" parent="States" index="7"]
+script = ExtResource( 18 )
+attack_states = [ "Idle" ]
+
+[node name="EscapeFrom" type="Node" parent="States" index="8"]
+script = ExtResource( 19 )
