@@ -61,6 +61,26 @@ func spawn_projectile_at_pos(pos : Vector2) -> void:
 		proj.set_dir(Vector2(1, 0).normalized())
 
 
+# Spawns projectile at random pos
+func spawn_projectile_at_random_pos() -> void:
+	if not enemy.visible:
+		return
+	
+	var proj = Projectile.instance()
+	get_tree().current_scene.get_node("World").add_child(proj)
+	
+	var random_pos_x = rand_range(enemy.min_x, enemy.max_x)
+	var random_pos_y = rand_range(enemy.max_y, enemy.min_y) # "Up" or max_y is lower number
+	var pos = Vector2(random_pos_x, random_pos_y)
+	
+	if enemy.is_facing_left:
+		proj.global_position = pos
+		proj.set_dir(Vector2(-1, 0).normalized())
+	else:
+		proj.global_position = pos
+		proj.set_dir(Vector2(1, 0).normalized())
+
+
 # Extra method to shake stage during attack animations if needed
 func shake_stage() -> void:
 	var stage = get_tree().current_scene
