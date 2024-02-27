@@ -14,11 +14,12 @@
 [ext_resource path="res://enemy/enemy_rangebox.gd" type="Script" id=12]
 [ext_resource path="res://enemy/enemy_hitbox.gd" type="Script" id=13]
 [ext_resource path="res://enemy/enemy_state_attack.gd" type="Script" id=14]
-[ext_resource path="res://enemy/BS002/bs_state_idle.gd" type="Script" id=15]
+[ext_resource path="res://enemy/BS002/bs002_state_idle.gd" type="Script" id=15]
 [ext_resource path="res://enemy/BS002/BS002-ShadowAttack.png" type="Texture" id=16]
 [ext_resource path="res://enemy/BS002/BS002-ShadowMove.png" type="Texture" id=17]
 [ext_resource path="res://enemy/bs_state_escape_to.gd" type="Script" id=18]
 [ext_resource path="res://enemy/enemy_state_escape_from.gd" type="Script" id=19]
+
 
 [sub_resource type="Animation" id=4]
 resource_name = "EscapeFrom"
