@@ -29,6 +29,10 @@ func _on_area_entered(enemy_hitbox : EnemyHitbox) -> void:
 	
 	# Special case for grounded hitboxes, only apply if player is also grounded
 	if enemy_hitbox.is_grounded and !owner.get_player_child().is_on_floor():
+		# Keep checking for collision in case player was in air and lands on a grounded enemy hitbox
+		if not _curr_areas.has(enemy_hitbox):
+			_curr_areas.append(enemy_hitbox)
+		
 		return
 	
 	# Objects may not be in same lane on area entered and may enter lane while still overlapping

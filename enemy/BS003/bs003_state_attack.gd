@@ -23,7 +23,13 @@ func teleport_to_player():
 
 # Custom teleport to method for BS003
 func teleport_to_random():
-	return
+	var random_pos_x = rand_range(enemy.min_x, enemy.max_x)
+	var random_pos_y = rand_range(enemy.max_y, enemy.min_y) # "Up" or max_y is lower number
+	var pos = Vector2(random_pos_x, random_pos_y)
+	
+	enemy.global_position = pos
+	enemy.child_velocity = Vector2.ZERO
+	enemy.enemy_child.position = Vector2.ZERO
 
 
 func spawn_projectile(y_dir := 0) -> void:
