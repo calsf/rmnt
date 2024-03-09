@@ -5,6 +5,8 @@ func _ready():
 	# EN001, EN007, EN005, EN004, EN010, EN003, EN008
 	
 	# Init stage props
+	final_enemy = Enemies.BS002
+	
 	enemy_listing = [
 		[Enemies.EN001],
 		[Enemies.EN007],
