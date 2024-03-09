@@ -4,6 +4,7 @@ class_name StageNormal
 const Enemies = {
 	BS001 = "res://enemy/BS001/BS001.tscn",
 	BS002 = "res://enemy/BS002/BS002.tscn",
+	BS003 = "res://enemy/BS003/BS003.tscn",
 	HEALTH = "res://enemy/Potions/PotionHealth.tscn",
 	METER = "res://enemy/Potions/PotionMeter.tscn",
 	EN000 = "res://enemy/EN000/EN000.tscn",
@@ -48,8 +49,12 @@ var max_x :float
 var min_y : float
 var max_y : float
 
+# Final enemy
+var final_enemy := ""
+
 var rng := RandomNumberGenerator.new()
 
+var final_enemy_spawned := false
 var is_cleared := false
 var first_spawn := false
 
@@ -60,9 +65,23 @@ func _process(delta):
 	# Stop spawning after reaching maxed overall limit
 	# max_spawn_num is enemy_listing.size() - 1 so need to minus 1 from curr_spawn_num
 	if (curr_spawn_num - 1) >= max_spawn_num:
-		# If reached maxed overall limit and no more active enemies, stage is cleared
 		var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()
-		if active_spawn_num == 0 and not is_cleared:
+		
+		# If reached max overall limit and no more active enemies, spawn final enemy
+		if active_spawn_num == 0 and not final_enemy_spawned:
+			final_enemy_spawned = true
+			
+			var x = rand_range(min_x, max_x)
+			var y = rand_range(min_y, max_y)
+			
+			var enemy = load(final_enemy).instance()
+			enemy.set_stage_bounds(min_x, max_x, min_y, max_y)
+			enemy.global_position = Vector2(x, y)
+			get_tree().current_scene.get_node("World").add_child(enemy)
+			return
+		
+		# If reached maxed overall limit, final enemy spawned, and no more active enemies, stage is cleared
+		if active_spawn_num == 0 and final_enemy_spawned and not is_cleared:
 			is_cleared = true
 			for player in get_tree().get_nodes_in_group("players"):
 				if player.visible:
