@@ -197,7 +197,7 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 	return false
 
 
-func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : EnemyRangebox, ignore_lane : bool) -> bool:
+func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : EnemyRangebox) -> bool:
 	var other_rangebox_owner = other_rangebox.owner
 	
 	# Objects must be in same lane for hurtbox/hitbox interaction
@@ -213,17 +213,17 @@ func on_enemy_rangebox_hit(other_rangebox : PlayerRangebox, enemy_rangebox : Ene
 						})
 					return true
 	
-	# If ignoring lane collision
-	if ignore_lane:
-		if find_trigger_state(enemy_rangebox.trigger_state_name) == -1:
-				trigger_states.append({
-						"trigger_state_name": enemy_rangebox.trigger_state_name,
-						"trigger_min_delay": enemy_rangebox.trigger_min_delay,
-						"trigger_max_delay": enemy_rangebox.trigger_max_delay
-					})
-				return true
-	
 	return false
+
+
+# Adds trigger state, for rangeboxes that ignore lane collision
+func add_trigger_state(enemy_rangebox : EnemyRangebox):
+	if find_trigger_state(enemy_rangebox.trigger_state_name) == -1:
+		trigger_states.append({
+				"trigger_state_name": enemy_rangebox.trigger_state_name,
+				"trigger_min_delay": enemy_rangebox.trigger_min_delay,
+				"trigger_max_delay": enemy_rangebox.trigger_max_delay
+			})
 
 
 func activate_spawner():

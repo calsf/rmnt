@@ -9,7 +9,8 @@ export var trigger_min_delay := 0.05
 export var trigger_max_delay := 0.05
 
 # Ignore lane collision for this rangebox, false by default
-# E.g when the rangebox is entire screen
+# Only use is for when the rangebox is entire screen (always in range)
+# Collision object(s) ARE NOT needed if this is true and will be removed if added
 export var ignore_lane_collision := false
 
 # Areas currently overlapping with hurtbox
@@ -25,6 +26,18 @@ func _init() -> void:
 
 
 func _ready():
+	# If ignoring lane collision, we can assume always in range
+	if ignore_lane_collision:
+		# Remove any collision objects
+		for collision in get_children():
+			collision.queue_free()
+		
+		# Add this rangebox to owner enemy trigger states
+		# The trigger state will never get removed
+		# since _on_area_exited will never be triggered for this area
+		if owner.has_method("add_trigger_state"):
+			owner.add_trigger_state(self)
+	
 	connect("area_entered", self, "_on_area_entered")
 	connect("area_exited", self, "_on_area_exited")
 
@@ -43,7 +56,7 @@ func _on_area_entered(player_rangebox : PlayerRangebox) -> void:
 	# Keep track of reference to area to keep checking for collision in _physics_process
 	# If hit, remove the reference to stop checking
 	if is_instance_valid(owner) and owner.has_method("on_enemy_rangebox_hit"):
-		if owner.on_enemy_rangebox_hit(player_rangebox, self, ignore_lane_collision):
+		if owner.on_enemy_rangebox_hit(player_rangebox, self):
 			# Do not remove trigger state from enemy's set of trigger states until area is exited
 			return
 		elif not _curr_areas.has(player_rangebox):

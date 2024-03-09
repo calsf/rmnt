@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/BS001/BS001-Idle.png" type="Texture" id=2]
@@ -785,12 +785,6 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 3.5 )
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 360, 180 )
-
-[sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 360, 180 )
-
 [node name="BS001" instance=ExtResource( 1 )]
 props = ExtResource( 5 )
 
@@ -855,10 +849,6 @@ trigger_state_name = "Slam"
 trigger_min_delay = 2.0
 trigger_max_delay = 4.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxSlam" index="0"]
-position = Vector2( 0, -36 )
-shape = SubResource( 18 )
-
 [node name="RangeboxSpin" type="Area2D" parent="." index="7"]
 script = ExtResource( 12 )
 trigger_state_name = "SpinStartup"
@@ -866,18 +856,12 @@ trigger_min_delay = 2.0
 trigger_max_delay = 4.0
 ignore_lane_collision = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxSpin" index="0"]
-shape = SubResource( 15 )
-
 [node name="RangeboxStomp" type="Area2D" parent="." index="8"]
 script = ExtResource( 12 )
 trigger_state_name = "Stomp"
 trigger_min_delay = 2.0
 trigger_max_delay = 4.0
 ignore_lane_collision = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxStomp" index="0"]
-shape = SubResource( 15 )
 
 [node name="Spawn" parent="States" index="0"]
 activate_spawner = false

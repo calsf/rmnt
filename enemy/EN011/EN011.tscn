@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/EN011/EN011-Idle.png" type="Texture" id=2]
@@ -329,9 +329,6 @@ extents = Vector2( 12.5, 11.5 )
 radius = 3.0
 height = 16.0
 
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 360, 180 )
-
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 4, 3.5 )
 
@@ -371,9 +368,6 @@ trigger_state_name = "AttackA"
 trigger_min_delay = 2.5
 trigger_max_delay = 4.5
 ignore_lane_collision = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeboxAttackA" index="0"]
-shape = SubResource( 11 )
 
 [node name="Pushbox" parent="." index="6"]
 script = ExtResource( 9 )
