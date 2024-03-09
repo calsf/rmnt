@@ -79,6 +79,7 @@ tracks/3/keys = {
 }
 
 [node name="ProjectileBS003Slam" instance=ExtResource( 1 )]
+z_index = -1
 destroy_on_hit = false
 
 [node name="Sprite" parent="Projectile" index="0"]
