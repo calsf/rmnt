@@ -24,6 +24,7 @@ const Enemies = {
 const METER_SPAWN_NUM = 5		# Chance to spawn meter every x enemy num
 const HEALTH_SPAWN_NUM = 10		# Chance to spawn health every x enemy num
 const INCREASE_SPAWN_NUM = 10	# Increase min and max spawn num every x enemy num
+const BOSS_SPAWN_NUM = 40 # Spawn boss every x enemy num
 
 # Corresponds to indices in save data e.g 0, 1, or 2
 export var stage_num : int
@@ -33,6 +34,9 @@ onready var _kill_count_label = get_tree().current_scene.get_node("HUD/KillCount
 
 # An array of possible enemies for this stage
 var normal_enemy_listing : Array
+
+# Boss enemy for this stage
+var boss_enemy : String
 
 var start_spawn_num : int
 var curr_spawn_num : int
@@ -91,7 +95,7 @@ func _process(delta):
 		reset_spawn_time()
 		
 		# Every x enemies, increase min and max enemy spawn num
-		if curr_spawn_num % INCREASE_SPAWN_NUM == 0:
+		if curr_spawn_num != 0 and curr_spawn_num % INCREASE_SPAWN_NUM == 0:
 			min_enemy_num = min(min_enemy_num + 1, Global.MAX_ACTIVE_ENEMIES)
 			max_enemy_num = min(max_enemy_num + 1, Global.MAX_ACTIVE_ENEMIES)
 	else:
@@ -128,27 +132,41 @@ func spawn_enemies(spawn_num : int) -> void:
 
 # Spawns a single enemy, requires the enemy num to be specified
 func spawn_enemy(i : int) -> void:
-	# Randomize location
-	var x = rand_range(min_x, max_x)
-	var y = rand_range(min_y, max_y)
-	
-	var possible_enemies = normal_enemy_listing.duplicate()
-	
-	# Chance of meter every x spawns
-	if i % METER_SPAWN_NUM == 0:
-		possible_enemies.append(Enemies.METER)
-	
-	# Chance of health every x spawns
-	if i % HEALTH_SPAWN_NUM == 0:
-		possible_enemies.append(Enemies.HEALTH)
-	
-	# Randomize enemy
-	var enemy_path = possible_enemies[randi() % possible_enemies.size()]
-	
-	var enemy = load(enemy_path).instance()
-	enemy.set_stage_bounds(min_x, max_x, min_y, max_y)
-	enemy.global_position = Vector2(x, y)
-	get_tree().current_scene.get_node("World").add_child(enemy)
+	# Should only ever be 1 active boss at most
+	var active_boss_num = get_tree().get_nodes_in_group("bosses").size()
+		
+	# Spawn boss every x num of spawns and while there is no active boss enemy
+	if i != 0 and i % BOSS_SPAWN_NUM == 0 and active_boss_num == 0: # Spawn boss
+		var x = rand_range(min_x, max_x)
+		var y = rand_range(min_y, max_y)
+		
+		var enemy = load(boss_enemy).instance()
+		enemy.set_stage_bounds(min_x, max_x, min_y, max_y)
+		enemy.global_position = Vector2(x, y)
+		get_tree().current_scene.get_node("World").add_child(enemy)
+		enemy.add_to_group("bosses") # Add to boss group
+	else: # Normal spawn
+		# Randomize location
+		var x = rand_range(min_x, max_x)
+		var y = rand_range(min_y, max_y)
+		
+		var possible_enemies = normal_enemy_listing.duplicate()
+		
+		# Chance of meter every x spawns
+		if i % METER_SPAWN_NUM == 0:
+			possible_enemies.append(Enemies.METER)
+		
+		# Chance of health every x spawns
+		if i % HEALTH_SPAWN_NUM == 0:
+			possible_enemies.append(Enemies.HEALTH)
+		
+		# Randomize enemy
+		var enemy_path = possible_enemies[randi() % possible_enemies.size()]
+		
+		var enemy = load(enemy_path).instance()
+		enemy.set_stage_bounds(min_x, max_x, min_y, max_y)
+		enemy.global_position = Vector2(x, y)
+		get_tree().current_scene.get_node("World").add_child(enemy)
 
 
 # Check and save stage scores on player death in stage.gd

@@ -2,18 +2,19 @@ extends StageEndless
 
 
 func _ready():
-	# EN000, EN001, EN006, EN004, EN005, EN002
+	# EN001, EN007, EN005, EN004, EN010, EN003, EN008
 	
 	# Init stage props
-	boss_enemy = Enemies.BS001
+	boss_enemy = Enemies.BS002
 	
 	normal_enemy_listing = [
-		Enemies.EN000,
 		Enemies.EN001,
-		Enemies.EN006,
-		Enemies.EN004,
+		Enemies.EN007,
 		Enemies.EN005,
-		Enemies.EN002
+		Enemies.EN004,
+		Enemies.EN010,
+		Enemies.EN003,
+		Enemies.EN008
 	]
 	
 	start_spawn_num = 4
@@ -30,6 +31,6 @@ func _ready():
 	max_x = 304
 	
 	min_y = 160
-	max_y = 64
+	max_y = 96
 	
 	spawn_initial_enemies()

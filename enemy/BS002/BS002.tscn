@@ -20,7 +20,6 @@
 [ext_resource path="res://enemy/bs_state_escape_to.gd" type="Script" id=18]
 [ext_resource path="res://enemy/enemy_state_escape_from.gd" type="Script" id=19]
 
-
 [sub_resource type="Animation" id=4]
 resource_name = "EscapeFrom"
 length = 0.6

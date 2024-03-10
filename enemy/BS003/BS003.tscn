@@ -582,12 +582,12 @@ script = ExtResource( 10 )
 
 [node name="Hitstun" parent="States" index="2"]
 escapeable = true
-min_stun = 2.0
+min_stun = 2.5
 max_stun = 4.0
 
 [node name="HitstunAir" parent="States" index="3"]
 escapeable = true
-min_stun = 2.0
+min_stun = 2.5
 max_stun = 4.0
 
 [node name="Slash" type="Node" parent="States" index="4"]

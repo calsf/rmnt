@@ -868,11 +868,13 @@ activate_spawner = false
 
 [node name="Hitstun" parent="States" index="2"]
 escapeable = true
-min_stun = 2.0
+min_stun = 3.5
+max_stun = 7.0
 
 [node name="HitstunAir" parent="States" index="3"]
 escapeable = true
-min_stun = 2.0
+min_stun = 3.5
+max_stun = 7.0
 
 [node name="Move" type="Node" parent="States" index="4"]
 script = ExtResource( 13 )
