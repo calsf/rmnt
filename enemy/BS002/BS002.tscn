@@ -772,11 +772,13 @@ script = ExtResource( 15 )
 
 [node name="Hitstun" parent="States" index="2"]
 escapeable = true
-min_stun = 2.0
+min_stun = 5.0
+max_stun = 7.0
 
 [node name="HitstunAir" parent="States" index="3"]
 escapeable = true
-min_stun = 2.0
+min_stun = 5.0
+max_stun = 7.0
 
 [node name="Move" type="Node" parent="States" index="4"]
 script = ExtResource( 3 )
@@ -792,7 +794,7 @@ anim_name = "GroundSlam"
 
 [node name="EscapeTo" type="Node" parent="States" index="7"]
 script = ExtResource( 18 )
-attack_states = [ "Idle" ]
+attack_states = [ "GroundSlam" ]
 
 [node name="EscapeFrom" type="Node" parent="States" index="8"]
 script = ExtResource( 19 )

@@ -4,14 +4,14 @@ extends StageSelect
 func _ready():
 	stages = [
 		"res://stages/StageEndless001.tscn",
-		"res://stages/main/StageMain.tscn",
-		"res://stages/main/StageMain.tscn",
+		"res://stages/StageEndless002.tscn",
+		"res://stages/StageEndless003.tscn",
 	]
 	
 	stage_icons = [
 		load("res://stages/Stage001-Select.png"),
-		load("res://stages/StageLocked.png"),
-		load("res://stages/StageLocked.png")
+		load("res://stages/Stage002-Select.png"),
+		load("res://stages/Stage003-Select.png")
 	]
 	
 	var stage_unlocks = SaveLoadManager.get_endless_stage_unlocks()
