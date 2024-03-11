@@ -15,3 +15,4 @@ hitstun_multiplier = 1.0
 air_hitstun_multiplier = 1.0
 hud_icon_path = "res://enemy/Dummy/Dummy-IconHUD.png"
 death_path = "res://enemy/Dummy/DummyDeath.tscn"
+hitsparks_path = "res://enemy/Dummy/DummyHitsparks.tscn"

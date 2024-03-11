@@ -98,8 +98,16 @@ func take_damage(dmg : float) -> void:
 		
 		# Force transition to death state
 		state_machine.transition_to("Death")
+	else:
+		activate_hitsparks()
 	
 	emit_signal("health_updated", self)
+
+
+func activate_hitsparks() -> void:
+	var hitsparks = load(props.hitsparks_path).instance()
+	hitsparks.global_position = player_child.global_position
+	get_tree().current_scene.get_node("World").add_child(hitsparks)
 
 
 func gain_health(health : float) -> void:

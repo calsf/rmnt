@@ -132,6 +132,14 @@ func take_damage(dmg : float) -> void:
 		emit_signal("died", self)
 		
 		queue_free()
+	else:
+		activate_hitsparks()
+
+
+func activate_hitsparks() -> void:
+	var hitsparks = load(props.hitsparks_path).instance()
+	hitsparks.global_position = enemy_child.global_position
+	get_tree().current_scene.get_node("World").add_child(hitsparks)
 
 
 # Triggered by EnemyHurtbox

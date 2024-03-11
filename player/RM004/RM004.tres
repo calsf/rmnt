@@ -14,3 +14,4 @@ ground_decel = 200
 hitstun_multiplier = 1.1
 air_hitstun_multiplier = 1.1
 hud_icon_path = "res://player/RM004/RM004-IconHUD.png"
+hitsparks_path = "res://player/PlayerHitsparks.tscn"
