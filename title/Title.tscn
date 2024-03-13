@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://title/title.gd" type="Script" id=1]
 [ext_resource path="res://stages/Fade.tscn" type="PackedScene" id=2]
+[ext_resource path="res://title/TitleLayerBottom.png" type="Texture" id=3]
+[ext_resource path="res://title/TitleLayerTop.png" type="Texture" id=4]
+[ext_resource path="res://title/TitleLayerMid.png" type="Texture" id=5]
 
 [node name="Title" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BG" type="ColorRect" parent="CanvasLayer"]
+[node name="Title" type="Control" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -17,7 +20,44 @@ margin_left = -160.0
 margin_top = -90.0
 margin_right = 160.0
 margin_bottom = 90.0
-color = Color( 0.368627, 0.564706, 0.513726, 1 )
+
+[node name="Bot" type="TextureRect" parent="CanvasLayer/Title"]
+modulate = Color( 0.929412, 0.760784, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+texture = ExtResource( 3 )
+
+[node name="Mid" type="TextureRect" parent="CanvasLayer/Title"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+texture = ExtResource( 5 )
+
+[node name="Top" type="TextureRect" parent="CanvasLayer/Title"]
+modulate = Color( 0.765625, 0.658723, 0.406738, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -92.0
+margin_right = 160.0
+margin_bottom = 88.0
+rect_scale = Vector2( 0.75, 0.75 )
+rect_pivot_offset = Vector2( 160, 90 )
+texture = ExtResource( 4 )
 
 [node name="Fade" parent="CanvasLayer" instance=ExtResource( 2 )]
 
