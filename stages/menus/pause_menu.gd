@@ -59,7 +59,8 @@ func _input(event):
 			visible = false
 	
 	# Move up and down options while paused
-	if menu_paused and get_tree().paused and event.is_action_pressed("move_up"):
+	if menu_paused and get_tree().paused and event.is_action_pressed("move_up") \
+			and event.get_action_strength("move_up") >= 1:
 		menu_options[last_option_i].set_unselected()
 		last_option_i -= 1
 		
@@ -67,7 +68,8 @@ func _input(event):
 			last_option_i = menu_options.size() - 1
 		
 		menu_options[last_option_i].set_selected()
-	elif menu_paused and get_tree().paused and event.is_action_pressed("move_down"):
+	elif menu_paused and get_tree().paused and event.is_action_pressed("move_down") \
+			and event.get_action_strength("move_down") >= 1:
 		menu_options[last_option_i].set_unselected()
 		last_option_i += 1
 		

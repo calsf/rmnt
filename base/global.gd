@@ -8,6 +8,9 @@ const MAX_ACTIVE_ENEMIES = 26
 # Reference for endless stage kill counts
 var kill_count := 0
 
+# Used to determine what input type is being used
+var is_keyboard = true
+
 
 func _ready():
 	# Global randomize call, only need to be called once

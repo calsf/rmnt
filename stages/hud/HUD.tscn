@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://stages/menus/MenuOpt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/Fade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://stages/hud/KillCount.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/menus/pause_menu.gd" type="Script" id=4]
+[ext_resource path="res://base/input_texture.gd" type="Script" id=5]
 [ext_resource path="res://stages/hud.gd" type="Script" id=6]
 [ext_resource path="res://stages/hud/BarBG.png" type="Texture" id=7]
 [ext_resource path="res://stages/hud/BarHealth.png" type="Texture" id=8]
@@ -294,6 +295,9 @@ margin_top = -60.0
 margin_right = 16.0
 margin_bottom = -44.0
 texture = ExtResource( 11 )
+script = ExtResource( 5 )
+texture_kb_path = "res://stages/main/Confirm.png"
+texture_ctrl_path = "res://stages/main/Controller-Confirm.png"
 
 [node name="GuideScreen" type="Control" parent="PauseMenu"]
 visible = false
@@ -314,6 +318,9 @@ anchor_bottom = 0.928
 margin_right = -3.05176e-05
 margin_bottom = -0.0400085
 texture = ExtResource( 12 )
+script = ExtResource( 5 )
+texture_kb_path = "res://stages/menus/Guide.png"
+texture_ctrl_path = "res://stages/menus/Controller-Guide.png"
 
 [node name="BackLabel" type="TextureRect" parent="PauseMenu/GuideScreen"]
 anchor_left = 0.45
@@ -323,5 +330,8 @@ anchor_bottom = 0.128
 margin_top = -0.02
 margin_bottom = -0.0400009
 texture = ExtResource( 14 )
+script = ExtResource( 5 )
+texture_kb_path = "res://stages/main/Cancel.png"
+texture_ctrl_path = "res://stages/main/Controller-Cancel.png"
 
 [node name="Fade" parent="." instance=ExtResource( 2 )]
