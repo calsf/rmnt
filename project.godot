@@ -154,6 +154,8 @@ config/icon="res://icon.png"
 
 SaveLoadManager="*res://save/save_load_manager.gd"
 Global="*res://base/global.gd"
+SoundsGlobal="*res://audio/SoundsGlobal.tscn"
+MusicGlobal="*res://audio/MusicGlobal.tscn"
 
 [display]
 

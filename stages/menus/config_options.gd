@@ -17,7 +17,8 @@ func _ready():
 
 
 func _input(event):
-	# Move up and down options while paused
+	# Move up and down options while visible
+	# Also listen for decrease/increase on selected option
 	if visible and event.is_action_pressed("move_up") \
 			and event.get_action_strength("move_up") >= 1:
 		config_options[last_option_i].set_unselected()

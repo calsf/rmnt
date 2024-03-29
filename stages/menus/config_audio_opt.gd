@@ -43,6 +43,13 @@ func decrease():
 	vol -= 1
 	SaveLoadManager.set_save_data(config_key, vol)
 	SaveLoadManager.save_data()
+	
+	SoundsGlobal.play("ButtonPressed")
+	
+	# Special case for music, audio may already be playing
+	# Need to update all audio player volume
+	if config_key == "music_vol":
+		MusicGlobal.update_all_audio_volumes()
 
 
 func increase():
@@ -53,4 +60,10 @@ func increase():
 	_bars.get_child(vol - 1).visible = true
 	SaveLoadManager.set_save_data(config_key, vol)
 	SaveLoadManager.save_data()
-
+	
+	SoundsGlobal.play("ButtonPressed")
+	
+	# Special case for music, audio may already be playing
+	# Need to update all audio player volume
+	if config_key == "music_vol":
+		MusicGlobal.update_all_audio_volumes()

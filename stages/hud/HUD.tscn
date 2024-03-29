@@ -374,4 +374,3 @@ texture_kb_path = "res://stages/main/Cancel.png"
 texture_ctrl_path = "res://stages/main/Controller-Cancel.png"
 
 [node name="Fade" parent="." instance=ExtResource( 2 )]
-visible = false

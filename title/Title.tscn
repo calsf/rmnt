@@ -1,31 +1,56 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://title/title.gd" type="Script" id=1]
 [ext_resource path="res://stages/Fade.tscn" type="PackedScene" id=2]
-[ext_resource path="res://title/TitleLayerBottom.png" type="Texture" id=3]
-[ext_resource path="res://title/TitleLayerTop.png" type="Texture" id=4]
-[ext_resource path="res://title/TitleLayerMid.png" type="Texture" id=5]
+[ext_resource path="res://title/Title000.png" type="Texture" id=3]
+[ext_resource path="res://title/Title002.png" type="Texture" id=4]
+[ext_resource path="res://title/Title001.png" type="Texture" id=5]
+[ext_resource path="res://title/Title003.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
-
-[sub_resource type="Animation" id=2]
-resource_name = "Start"
-length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:self_modulate")
+tracks/0/path = NodePath("../003:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 2 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../001:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../003:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../Mid:modulate")
+tracks/1/path = NodePath("../001:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -34,54 +59,42 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.105882, 0.105882, 0.105882, 1 ), Color( 0.105882, 0.105882, 0.105882, 1 ), Color( 0.647059, 0.647059, 0.647059, 1 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
-length = 4.0
+length = 5.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2, 4 ),
+"times": PoolRealArray( 0, 2.5, 5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.835294, 0.835294, 0.835294, 1 ), Color( 1, 1, 1, 1 ), Color( 0.835294, 0.835294, 0.835294, 1 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../Mid:self_modulate")
+tracks/1/path = NodePath("../001:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2, 4 ),
+"times": PoolRealArray( 0, 2.5, 5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.545098, 0.545098, 0.545098, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Top:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 2, 4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.745098, 0.65098, 0.65098, 1 ), Color( 1, 0.707031, 0.707031, 1 ), Color( 0.745098, 0.65098, 0.65098, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.27451 ), Color( 1, 1, 1, 0.580392 ), Color( 1, 1, 1, 0.27451 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -90,10 +103,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.835294, 0.835294, 0.835294, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../Mid:self_modulate")
+tracks/1/path = NodePath("../001:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -102,10 +115,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.580392 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../Top:modulate")
+tracks/2/path = NodePath("../003:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -133,19 +146,18 @@ margin_right = 160.0
 margin_bottom = 90.0
 
 [node name="AnimStart" type="AnimationPlayer" parent="CanvasLayer/Title"]
-root_node = NodePath("../Top")
+root_node = NodePath("../002")
 autoplay = "Start"
 anims/RESET = SubResource( 1 )
 anims/Start = SubResource( 2 )
 
 [node name="AnimRepeat" type="AnimationPlayer" parent="CanvasLayer/Title"]
-root_node = NodePath("../Bot")
+root_node = NodePath("../000")
 autoplay = "Idle"
 anims/Idle = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
-[node name="Bot" type="TextureRect" parent="CanvasLayer/Title"]
-modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+[node name="000" type="TextureRect" parent="CanvasLayer/Title"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -156,8 +168,9 @@ margin_right = 160.0
 margin_bottom = 90.0
 texture = ExtResource( 3 )
 
-[node name="Mid" type="TextureRect" parent="CanvasLayer/Title"]
-modulate = Color( 0.647059, 0.647059, 0.647059, 1 )
+[node name="001" type="TextureRect" parent="CanvasLayer/Title"]
+modulate = Color( 1, 1, 1, 0.580392 )
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -168,19 +181,19 @@ margin_right = 160.0
 margin_bottom = 90.0
 texture = ExtResource( 5 )
 
-[node name="Top" type="TextureRect" parent="CanvasLayer/Title"]
-modulate = Color( 1, 0.707031, 0.707031, 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -160.0
-margin_top = -92.0
-margin_right = 160.0
-margin_bottom = 88.0
-rect_scale = Vector2( 0.75, 0.75 )
+[node name="002" type="TextureRect" parent="CanvasLayer/Title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 160, 90 )
 texture = ExtResource( 4 )
+
+[node name="003" type="TextureRect" parent="CanvasLayer/Title"]
+modulate = Color( 1, 0.707031, 0.707031, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.75, 0.75 )
+rect_pivot_offset = Vector2( 160, 90 )
+texture = ExtResource( 6 )
 
 [node name="Fade" parent="CanvasLayer" instance=ExtResource( 2 )]
 
