@@ -1,11 +1,15 @@
 extends Control
 
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
+onready var _back_label = $BackLabel
+onready var _confirm_label = $ConfirmLabel
 onready var _resume_opt = $MenuOptions/Resume
 onready var _config_opt = $MenuOptions/Config
 onready var _guide_opt = $MenuOptions/Guide
 onready var _quit_opt = $MenuOptions/Quit
 onready var _guide_screen = $GuideScreen
+onready var _menu_options = $MenuOptions
+onready var _config_options = $ConfigOptions
 
 var unfocused := false # If no longer focused on pause menu
 var menu_options := []
@@ -20,7 +24,10 @@ var quit_to_scene : String
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS	# This will never pause
 	visible = false
+	_confirm_label.visible = true
+	_back_label.visible = false
 	_guide_screen.visible = false
+	_config_options.visible = false
 	
 	menu_options = $MenuOptions.get_children()
 	_resume_opt.connect("selected", self, "_resume")
@@ -38,6 +45,9 @@ func _input(event):
 		# Back from guide screen
 		if _guide_screen.visible and event.is_action_released("attack_b"):
 			_toggle_guide()
+		
+		if _config_options.visible and event.is_action_pressed("attack_b"):
+			_toggle_config()
 		
 		return
 	
@@ -92,7 +102,18 @@ func _resume():
 
 # Toggle config screen on/off
 func _toggle_config():
-	pass
+	if _config_options.visible:
+		unfocused = false
+		_config_options.visible = false
+		_menu_options.visible = true
+		_confirm_label.visible = true
+		_back_label.visible = false
+	else:
+		unfocused = true
+		_config_options.visible = true
+		_menu_options.visible = false
+		_confirm_label.visible = false
+		_back_label.visible = true
 
 
 # Toggle guide screen on/off

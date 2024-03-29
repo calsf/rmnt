@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://stages/menus/MenuOpt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/Fade.tscn" type="PackedScene" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://stages/main/Cancel.png" type="Texture" id=14]
 [ext_resource path="res://stages/hud/BarMeterFlash.png" type="Texture" id=15]
 [ext_resource path="res://player/RM001/RM001-IconHUD.png" type="Texture" id=16]
+[ext_resource path="res://stages/menus/ConfigMusicOpt.tscn" type="PackedScene" id=17]
+[ext_resource path="res://stages/menus/ConfigSoundOpt.tscn" type="PackedScene" id=18]
+[ext_resource path="res://stages/menus/config_options.gd" type="Script" id=19]
 
 [sub_resource type="Animation" id=5]
 resource_name = "Flash"
@@ -235,7 +238,6 @@ columns = 13
 [node name="KillCount" parent="." instance=ExtResource( 3 )]
 
 [node name="PauseMenu" type="Control" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -285,6 +287,29 @@ margin_top = 57.0
 margin_bottom = 72.0
 label_path = "res://stages/menus/MenuOptQuit.png"
 
+[node name="ConfigOptions" type="VBoxContainer" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -36.0
+margin_right = 32.0
+margin_bottom = 36.0
+custom_constants/separation = 10
+alignment = 1
+script = ExtResource( 19 )
+
+[node name="Music" parent="PauseMenu/ConfigOptions" instance=ExtResource( 17 )]
+margin_top = 3.0
+margin_bottom = 31.0
+config_key = "music_vol"
+
+[node name="Sound" parent="PauseMenu/ConfigOptions" instance=ExtResource( 18 )]
+margin_top = 41.0
+margin_bottom = 69.0
+config_key = "sound_vol"
+
 [node name="ConfirmLabel" type="TextureRect" parent="PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -298,6 +323,20 @@ texture = ExtResource( 11 )
 script = ExtResource( 5 )
 texture_kb_path = "res://stages/main/Confirm.png"
 texture_ctrl_path = "res://stages/main/Controller-Confirm.png"
+
+[node name="BackLabel" type="TextureRect" parent="PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -60.0
+margin_right = 16.0
+margin_bottom = -44.0
+texture = ExtResource( 11 )
+script = ExtResource( 5 )
+texture_kb_path = "res://stages/main/Cancel.png"
+texture_ctrl_path = "res://stages/main/Controller-Cancel.png"
 
 [node name="GuideScreen" type="Control" parent="PauseMenu"]
 visible = false
@@ -335,3 +374,4 @@ texture_kb_path = "res://stages/main/Cancel.png"
 texture_ctrl_path = "res://stages/main/Controller-Cancel.png"
 
 [node name="Fade" parent="." instance=ExtResource( 2 )]
+visible = false

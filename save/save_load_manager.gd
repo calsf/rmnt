@@ -10,7 +10,10 @@ var _default_data := {
 	"normal_stage_unlocks": [true, false, false],
 	"endless_stage_unlocks": [false, false, false],
 	"normal_stage_clears": [false, false, false],
-	"endless_stage_scores": [0, 0, 0]
+	"endless_stage_scores": [0, 0, 0],
+	
+	"music_vol": 10,
+	"sound_vol": 10
 }
 
 # Data loaded from save
@@ -60,6 +63,22 @@ func get_endless_stage_scores() -> Array:
 
 func set_endless_stage_scores(val) -> void:
 	set_save_data("endless_stage_scores", val)
+
+
+func set_music_vol(val) -> void:
+	set_save_data("music_vol", val)
+
+
+func get_music_vol() -> int:
+	return get_save_data("music_vol")
+
+
+func set_sound_vol(val) -> void:
+	set_save_data("sound_vol", val)
+
+
+func get_sound_vol() -> int:
+	return get_save_data("sound_vol")
 
 
 # Save and overwrite save file with data arg or current loaded_data by default
