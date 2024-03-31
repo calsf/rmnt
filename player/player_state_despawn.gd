@@ -24,6 +24,9 @@ func enter(data_state := {}) -> void:
 	yield(get_tree().create_timer(delay, false), "timeout")
 	despawning = true
 	player.anim.play("Despawn")
+	
+	if player.visible:
+		SoundsGlobal.play("RmntDespawn")
 
 
 func exit(data_state := {}) -> void:

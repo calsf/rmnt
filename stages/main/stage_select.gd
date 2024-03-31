@@ -41,12 +41,16 @@ func _input(event):
 			curr_stage_i = min_stage_i
 		
 		_select_stage(curr_stage_i)
+		
+		SoundsGlobal.play("ButtonPressed")
 	elif event.is_action_pressed("prev"):
 		curr_stage_i -= 1
 		if curr_stage_i < min_stage_i:
 			curr_stage_i = max_stage_i
 		
 		_select_stage(curr_stage_i)
+		
+		SoundsGlobal.play("ButtonPressed")
 	
 	# "Enter" stage
 	if event.is_action_pressed("attack_a"):
@@ -60,6 +64,8 @@ func _input(event):
 		# Hide players
 		for player in players:
 			player.visible = false
+		
+		SoundsGlobal.play("ButtonPressed")
 		
 		# Go to select scene
 		_fade.go_to_scene(stages[curr_stage_i])

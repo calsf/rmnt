@@ -25,17 +25,17 @@ func _ready():
 			bars[i].visible = false
 
 
-func set_selected():
+func set_selected() -> void:
 	_left.visible = true
 	_right.visible = true
 
 
-func set_unselected():
+func set_unselected() -> void:
 	_left.visible = false
 	_right.visible = false
 
 
-func decrease():
+func decrease() -> void:
 	if vol <= MIN_VOL:
 		return
 	
@@ -45,14 +45,10 @@ func decrease():
 	SaveLoadManager.save_data()
 	
 	SoundsGlobal.play("ButtonPressed")
-	
-	# Special case for music, audio may already be playing
-	# Need to update all audio player volume
-	if config_key == "music_vol":
-		MusicGlobal.update_all_audio_volumes()
+	_update_audio_volumes(config_key)
 
 
-func increase():
+func increase() -> void:
 	if vol >= MAX_VOL:
 		return
 	
@@ -62,8 +58,12 @@ func increase():
 	SaveLoadManager.save_data()
 	
 	SoundsGlobal.play("ButtonPressed")
-	
-	# Special case for music, audio may already be playing
-	# Need to update all audio player volume
-	if config_key == "music_vol":
+	_update_audio_volumes(config_key)
+
+
+func _update_audio_volumes(config_key : String) -> void:
+	# Need to update corresponding audio players
+	if config_key == "sound_vol":
+		SoundsGlobal.update_all_audio_volumes()
+	elif config_key == "music_vol":
 		MusicGlobal.update_all_audio_volumes()

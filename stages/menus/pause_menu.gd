@@ -63,10 +63,14 @@ func _input(event):
 			menu_paused = true
 			get_tree().paused = true
 			visible = true
+			
+			SoundsGlobal.play("ButtonPressed")
 		elif menu_paused and get_tree().paused:
 			menu_paused = false
 			get_tree().paused = false
 			visible = false
+			
+			SoundsGlobal.play("ButtonPressed")
 	
 	# Move up and down options while paused
 	if menu_paused and get_tree().paused and event.is_action_pressed("move_up") \
@@ -78,6 +82,8 @@ func _input(event):
 			last_option_i = menu_options.size() - 1
 		
 		menu_options[last_option_i].set_selected()
+		
+		SoundsGlobal.play("ButtonPressed")
 	elif menu_paused and get_tree().paused and event.is_action_pressed("move_down") \
 			and event.get_action_strength("move_down") >= 1:
 		menu_options[last_option_i].set_unselected()
@@ -87,6 +93,8 @@ func _input(event):
 			last_option_i = 0
 		
 		menu_options[last_option_i].set_selected()
+		
+		SoundsGlobal.play("ButtonPressed")
 	
 	# Select option while paused
 	if menu_paused and get_tree().paused and event.is_action_released("attack_a"):
@@ -98,6 +106,8 @@ func _resume():
 	menu_paused = false
 	get_tree().paused = false
 	visible = false
+	
+	SoundsGlobal.play("ButtonPressed")
 
 
 # Toggle config screen on/off
@@ -114,6 +124,8 @@ func _toggle_config():
 		_menu_options.visible = false
 		_confirm_label.visible = false
 		_back_label.visible = true
+	
+	SoundsGlobal.play("ButtonPressed")
 
 
 # Toggle guide screen on/off
@@ -124,6 +136,8 @@ func _toggle_guide():
 	else:
 		unfocused = true
 		_guide_screen.visible = true
+	
+	SoundsGlobal.play("ButtonPressed")
 
 
 # Go to scene as specified by the quit_to_scene path
@@ -134,4 +148,6 @@ func _quit():
 	if quit_to_scene.empty():
 		get_tree().quit()
 	else:
+		SoundsGlobal.play("ButtonPressed")
+		
 		_fade.go_to_scene(quit_to_scene)

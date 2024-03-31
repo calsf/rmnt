@@ -117,9 +117,13 @@ func gain_health(health : float) -> void:
 
 
 func gain_meter(meter_gain : float) -> void:
+	if curr_meter >= props.max_meter:
+		return
+	
 	curr_meter += meter_gain
-	if curr_meter > props.max_meter:
+	if curr_meter >= props.max_meter:
 		curr_meter = props.max_meter
+		SoundsGlobal.play("RmntAttackSpec")
 	
 	emit_signal("meter_gained", self)
 
@@ -293,6 +297,8 @@ func activate(position = null):
 	
 	visible = true
 	
+	SoundsGlobal.play("RmntSpawn")
+	
 	yield(get_tree(), "idle_frame")
 	if position != null:
 		global_position = position
@@ -314,3 +320,8 @@ func get_player_child():
 		player_child = $SubBody
 	
 	return player_child
+
+
+# For animation
+func play_audio(audio_name : String):
+	SoundsGlobal.play(audio_name)

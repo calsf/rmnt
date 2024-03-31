@@ -31,6 +31,8 @@ func _input(event):
 		stage_select_normal_ui.deactivate()
 		rmnt_select.activate()
 		stage_select_normal_interactable.set_can_interact(true)
+		
+		SoundsGlobal.play("ButtonPressed")
 		return
 	
 	# Endless stage select
@@ -42,6 +44,8 @@ func _input(event):
 		stage_select_endless_ui.deactivate()
 		rmnt_select.activate()
 		stage_select_endless_interactable.set_can_interact(true)
+		
+		SoundsGlobal.play("ButtonPressed")
 		return
 	
 	# Toggle UIs on
@@ -56,6 +60,8 @@ func _input(event):
 				stage_select_normal_ui.activate()
 				rmnt_select.deactivate()
 				stage_select_normal_interactable.set_can_interact(false)
+				
+				SoundsGlobal.play("ButtonPressed")
 	
 	# Endless stage select
 	if stage_select_endless_interactable.is_interactable:
@@ -68,6 +74,8 @@ func _input(event):
 				stage_select_endless_ui.activate()
 				rmnt_select.deactivate()
 				stage_select_endless_interactable.set_can_interact(false)
+				
+				SoundsGlobal.play("ButtonPressed")
 
 
 func _physics_process(delta):

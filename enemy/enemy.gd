@@ -121,6 +121,7 @@ func set_stage_bounds(min_x : int, max_x : int, min_y : int, max_y : int) -> voi
 func take_damage(dmg : float) -> void:
 	curr_hp -= dmg
 	emit_signal("health_updated", self)
+	SoundsGlobal.play_enemy_hit()
 	
 	# Death check
 	if curr_hp <= 0:

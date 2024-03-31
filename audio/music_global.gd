@@ -6,9 +6,8 @@ func _ready():
 
 
 func play(audio_name : String) -> void:
-	var vol = SaveLoadManager.get_music_vol() / 10.0
 	var audio = get_node(audio_name)
-	audio.play_with_vol(vol)
+	audio.play()
 
 
 func stop(audio_name : String) -> void:
@@ -21,6 +20,7 @@ func stop_all() -> void:
 
 
 # Update all music audio volume since music audio may already be playing
+# Only need to update on initialization and when changing setting
 func update_all_audio_volumes() -> void:
 	var vol = SaveLoadManager.get_music_vol() / 10.0
 	for audio in get_children():

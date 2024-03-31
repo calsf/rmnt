@@ -28,6 +28,8 @@ func _input(event):
 			last_option_i = config_options.size() - 1
 		
 		config_options[last_option_i].set_selected()
+		
+		SoundsGlobal.play("ButtonPressed")
 	elif visible and event.is_action_pressed("move_down") \
 			and event.get_action_strength("move_down") >= 1:
 		config_options[last_option_i].set_unselected()
@@ -37,6 +39,8 @@ func _input(event):
 			last_option_i = 0
 		
 		config_options[last_option_i].set_selected()
+		
+		SoundsGlobal.play("ButtonPressed")
 	elif visible and event.is_action_pressed("prev"):
 		config_options[last_option_i].decrease()
 	elif visible and event.is_action_pressed("next"):
