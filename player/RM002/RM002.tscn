@@ -647,6 +647,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R02B" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "AttackC"
@@ -741,9 +755,12 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.55 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [ "R02CCharge" ],
+"method": "play_audio"
+}, {
 "args": [ "R02C" ],
 "method": "play_audio"
 } ]
@@ -1475,10 +1492,12 @@ meter_gain = 2.0
 [node name="AttackA3Left" type="CollisionShape2D" parent="SubBody/AttackA3" index="0"]
 position = Vector2( -19.5, -19.5 )
 shape = SubResource( 21 )
+disabled = true
 
 [node name="AttackA3Right" type="CollisionShape2D" parent="SubBody/AttackA3" index="1"]
 position = Vector2( 21.5, -19.5 )
 shape = SubResource( 22 )
+disabled = true
 
 [node name="AttackB" parent="SubBody" index="6"]
 damage = 38.0
@@ -1541,7 +1560,6 @@ knockup = 200.0
 [node name="AttackSpecialR" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
 position = Vector2( 46, -4.5 )
 shape = SubResource( 30 )
-disabled = true
 
 [node name="AttackSpecialL" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="1"]
 position = Vector2( -46, -4.5 )

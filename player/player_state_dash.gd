@@ -13,6 +13,9 @@ func enter(data_state := {}) -> void:
 	
 	player.anim.play("Dash")
 	player.child_velocity.y = 0
+	
+	if player.visible:
+		SoundsGlobal.play("RmntDash")
 
 
 func exit(data_state := {}) -> void:

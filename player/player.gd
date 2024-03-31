@@ -324,4 +324,5 @@ func get_player_child():
 
 # For animation
 func play_audio(audio_name : String):
-	SoundsGlobal.play(audio_name)
+	if visible:
+		SoundsGlobal.play(audio_name)
