@@ -15,3 +15,5 @@ hitstun_multiplier = 1.0
 air_hitstun_multiplier = 1.0
 hud_icon_path = "res://enemy/Potions/PotionMeter-IconHUD.png"
 death_path = "res://enemy/Potions/PotionMeterDeath.tscn"
+hitsparks_path = "res://enemy/EnemyHitsparks.tscn"
+death_sound = "PotionDeath"

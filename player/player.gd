@@ -178,9 +178,13 @@ func on_player_hurtbox_hit(hitbox : EnemyHitbox) -> bool:
 					
 					toggle_hit_frame()
 					take_damage(hitbox_damage)
+					
+					SoundsGlobal.play("RmntHit")
 				else: # Armored
 					hitbox_damage = hitbox_damage / 2
 					take_damage(hitbox_damage)
+					
+					SoundsGlobal.play("RmntHitArmored")
 				
 				Global.hitstop([self, hitbox_owner])
 				

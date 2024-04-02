@@ -15,3 +15,4 @@ export var air_hitstun_multiplier := 1.0 # Default 1.0, multiplies base knockup/
 export var hud_icon_path : String
 export var death_path := "res://enemy/EnemyDeath.tscn"
 export var hitsparks_path := "res://enemy/EnemyHitsparks.tscn"
+export var death_sound := "EnemyDeath"

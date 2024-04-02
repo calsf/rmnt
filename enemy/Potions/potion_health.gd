@@ -32,4 +32,6 @@ func take_damage(dmg : float) -> void:
 		var player = get_player_target()
 		player.gain_health(player.props.max_hp / 3.0)
 		
+		SoundsGlobal.play(props.death_sound)
+		
 		queue_free()

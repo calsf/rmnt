@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://audio/audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/sounds/button-pressed.wav" type="AudioStream" id=2]
@@ -11,6 +11,11 @@
 [ext_resource path="res://audio/sounds/rmnt02_c_charge.wav" type="AudioStream" id=9]
 [ext_resource path="res://audio/sounds/rmnt02_b.wav" type="AudioStream" id=10]
 [ext_resource path="res://audio/sounds/rmnt_dash.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/sounds/rmnt_hit.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/sounds/enemy_death.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/sounds/potion_death.wav" type="AudioStream" id=14]
+[ext_resource path="res://audio/sounds/rmnt_hit_armored.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/sounds/enemy_hit_armored001.wav" type="AudioStream" id=16]
 
 [node name="SoundsGlobal" type="Node2D"]
 script = ExtResource( 3 )
@@ -19,90 +24,132 @@ script = ExtResource( 3 )
 pause_mode = 2
 stream = ExtResource( 2 )
 script = ExtResource( 1 )
-default_vol = -4
+default_vol = -1
 
 [node name="RmntSpawn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 script = ExtResource( 1 )
+default_vol = 1
 
 [node name="RmntDespawn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 script = ExtResource( 1 )
+default_vol = 1
 
 [node name="RmntAttackSpec" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 script = ExtResource( 1 )
+default_vol = 1
 
 [node name="RmntDash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 pitch_scale = 0.86
 script = ExtResource( 1 )
+default_vol = 1
+
+[node name="RmntHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="RmntHitArmored" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+script = ExtResource( 1 )
+default_vol = -4
 
 [node name="EnemyHit001" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 script = ExtResource( 1 )
-default_vol = -2
+default_vol = 2
 
 [node name="EnemyHit002" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 pitch_scale = 0.9
 script = ExtResource( 1 )
-default_vol = -2
+default_vol = 2
 
 [node name="EnemyHit003" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 pitch_scale = 1.1
+script = ExtResource( 1 )
+default_vol = 2
+
+[node name="EnemyHitArmored001" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+script = ExtResource( 1 )
+default_vol = -1
+
+[node name="EnemyHitArmored002" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+pitch_scale = 0.95
+script = ExtResource( 1 )
+default_vol = -1
+
+[node name="EnemyHitArmored003" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+pitch_scale = 1.05
+script = ExtResource( 1 )
+default_vol = -1
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+pitch_scale = 0.76
+script = ExtResource( 1 )
+default_vol = -5
+
+[node name="PotionDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 script = ExtResource( 1 )
 default_vol = -2
 
 [node name="R02A1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 script = ExtResource( 1 )
-default_vol = 6
+default_vol = 9
 
 [node name="R02A2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 0.95
 script = ExtResource( 1 )
-default_vol = 6
+default_vol = 9
 
 [node name="R02A3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 1.05
 script = ExtResource( 1 )
-default_vol = 6
+default_vol = 9
 
 [node name="R02B" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 script = ExtResource( 1 )
-default_vol = 2
+default_vol = 5
 
 [node name="R02C" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 0.8
 script = ExtResource( 1 )
-default_vol = 10
+default_vol = 13
 
 [node name="R02CCharge" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 pitch_scale = 0.8
 script = ExtResource( 1 )
-default_vol = -8
+default_vol = -5
 
 [node name="R02AirA" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 1.1
 script = ExtResource( 1 )
-default_vol = 6
+default_vol = 9
 
 [node name="R02AirB" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 1.05
 script = ExtResource( 1 )
-default_vol = 6
+default_vol = 9
 
 [node name="R02AirC" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 1.15
 script = ExtResource( 1 )
-default_vol = 6
+default_vol = 9

@@ -32,4 +32,6 @@ func take_damage(dmg : float) -> void:
 		var player = get_player_target()
 		player.gain_meter(player.props.max_meter)
 		
+		SoundsGlobal.play(props.death_sound)
+		
 		queue_free()

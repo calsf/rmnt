@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rmnt_hit.wav-61ff218f14f3c74b79c6b35650dec7b1.sample"
+
+[deps]
+
+source_file="res://audio/sounds/rmnt_hit.wav"
+dest_files=[ "res://.import/rmnt_hit.wav-61ff218f14f3c74b79c6b35650dec7b1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

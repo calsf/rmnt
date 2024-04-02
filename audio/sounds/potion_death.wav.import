@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/potion_death.wav-ea28c2dd3bce05dd475aff4b2a3127bc.sample"
+
+[deps]
+
+source_file="res://audio/sounds/potion_death.wav"
+dest_files=[ "res://.import/potion_death.wav-ea28c2dd3bce05dd475aff4b2a3127bc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

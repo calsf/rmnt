@@ -121,7 +121,6 @@ func set_stage_bounds(min_x : int, max_x : int, min_y : int, max_y : int) -> voi
 func take_damage(dmg : float) -> void:
 	curr_hp -= dmg
 	emit_signal("health_updated", self)
-	SoundsGlobal.play_enemy_hit()
 	
 	# Death check
 	if curr_hp <= 0:
@@ -131,6 +130,8 @@ func take_damage(dmg : float) -> void:
 		death.global_position = enemy_child.global_position
 		Global.add_kill_count()
 		emit_signal("died", self)
+		
+		SoundsGlobal.play(props.death_sound)
 		
 		queue_free()
 	else:
@@ -190,9 +191,13 @@ func on_enemy_hurtbox_hit(hitbox : PlayerHitbox) -> bool:
 					
 					toggle_hit_frame()
 					take_damage(hitbox_damage)
+					
+					SoundsGlobal.play_enemy_hit()
 				else: # Armored
 					hitbox_damage = hitbox_damage / 2
 					take_damage(hitbox_damage)
+					
+					SoundsGlobal.play_enemy_hit_armored()
 				
 				Global.hitstop([self, hitbox_owner])
 				

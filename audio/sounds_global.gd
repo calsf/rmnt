@@ -5,6 +5,12 @@ onready var enemy_hit_audio = [
 		get_node("EnemyHit002"),
 		get_node("EnemyHit003")
 	]
+
+onready var enemy_hit_armored_audio = [
+		get_node("EnemyHitArmored001"),
+		get_node("EnemyHitArmored002"),
+		get_node("EnemyHitArmored003")
+	]
 #var curr_enemy_hit = 0
 
 
@@ -26,6 +32,11 @@ func play_enemy_hit() -> void:
 	
 	# Play random enemy hit audio
 	enemy_hit_audio[randi() % enemy_hit_audio.size()].play()
+
+
+func play_enemy_hit_armored() -> void:
+	# Play random enemy hit armored audio
+	enemy_hit_armored_audio[randi() % enemy_hit_armored_audio.size()].play()
 
 
 # Only need to update on initialization and when changing setting
