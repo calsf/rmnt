@@ -85,6 +85,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01A1" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=26]
 resource_name = "AirAttackB"
@@ -152,6 +166,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ 6 ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01B" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=27]
 resource_name = "AirAttackC"
@@ -218,6 +246,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 8 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01C" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=28]
@@ -326,6 +368,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ 6 ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01A1" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=30]
 resource_name = "AttackA2"
@@ -392,6 +448,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 6 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01A2" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=31]
@@ -460,10 +530,25 @@ tracks/4/keys = {
 "update": 1,
 "values": [ 7 ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01A3" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=32]
 resource_name = "AttackB"
 length = 0.6
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("CharSprite:frame")
 tracks/0/interp = 1
@@ -525,6 +610,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 7 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01B" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -592,6 +691,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 8 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01C" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=41]
@@ -670,6 +783,20 @@ tracks/5/keys = {
 "values": [ {
 "args": [  ],
 "method": "finish_special"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R01Spec" ],
+"method": "play_audio"
 } ]
 }
 
@@ -1231,7 +1358,6 @@ meter_gain = 2.0
 [node name="AttackA1" type="CollisionShape2D" parent="SubBody/AttackA1" index="0"]
 position = Vector2( 15, -1.5 )
 shape = SubResource( 12 )
-disabled = true
 
 [node name="AttackA2" parent="SubBody" index="4"]
 damage = 15.0
@@ -1256,7 +1382,6 @@ meter_gain = 3.0
 
 [node name="AttackB" type="CollisionPolygon2D" parent="SubBody/AttackB" index="0"]
 polygon = PoolVector2Array( 40, 16, 40, -27, -18, -27, -18, -12, 10, -12, 10, 16 )
-disabled = true
 
 [node name="AttackC" parent="SubBody" index="7"]
 damage = 25.0
@@ -1274,7 +1399,6 @@ meter_gain = 2.0
 
 [node name="AirAttackA" type="CollisionPolygon2D" parent="SubBody/AirAttackA" index="0"]
 polygon = PoolVector2Array( 7, -24, 7, -9, -8, -9, -8, 9, 40, 9, 40, -24 )
-disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="9"]
 damage = 22.0
@@ -1283,7 +1407,6 @@ meter_gain = 3.0
 [node name="AirAttackB" type="CollisionShape2D" parent="SubBody/AirAttackB" index="0"]
 position = Vector2( -0.5, -3 )
 shape = SubResource( 21 )
-disabled = true
 
 [node name="AirAttackC" parent="SubBody" index="10"]
 damage = 25.0
@@ -1292,7 +1415,6 @@ meter_gain = 4.0
 
 [node name="AirAttackC" type="CollisionPolygon2D" parent="SubBody/AirAttackC" index="0"]
 polygon = PoolVector2Array( -27, -42, -27, -16, 6, -16, 6, 12, 40, 12, 40, -42 )
-disabled = true
 
 [node name="AttackSpecial" parent="SubBody" index="11"]
 damage = 60.0

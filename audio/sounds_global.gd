@@ -39,6 +39,11 @@ func play_enemy_hit_armored() -> void:
 	enemy_hit_armored_audio[randi() % enemy_hit_armored_audio.size()].play()
 
 
+func stop_all() -> void:
+	for player in get_children():
+		player.stop()
+
+
 # Only need to update on initialization and when changing setting
 func update_all_audio_volumes() -> void:
 	var vol = SaveLoadManager.get_sound_vol() / 10.0

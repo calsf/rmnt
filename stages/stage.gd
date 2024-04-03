@@ -43,6 +43,11 @@ func _on_player_death(rmnt : Player):
 		if stage is StageEndless:
 			stage.save_stage_score()
 		
+		# Temporarily process sounds while paused
+		SoundsGlobal.pause_mode = Node.PAUSE_MODE_PROCESS
+		SoundsGlobal.stop_all()
+		SoundsGlobal.play("RmntDeath")
+		
 		# Pause entire tree
 		get_tree().paused = true
 		
@@ -58,6 +63,10 @@ func _on_player_death(rmnt : Player):
 		# Wait for death anim to finish and return to main stage
 		yield(rmnt.anim, "animation_finished")
 		yield(get_tree().create_timer(.8, true), "timeout")
+		
+		# Revert pause mode
+		SoundsGlobal.pause_mode = Node.PAUSE_MODE_INHERIT
+		
 		_fade.go_to_scene("res://stages/main/StageMain.tscn")
 
 
