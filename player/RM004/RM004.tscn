@@ -126,6 +126,20 @@ tracks/7/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04AirA" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "AirAttackB"
@@ -207,6 +221,20 @@ tracks/5/keys = {
 "method": "spawn_projectile"
 } ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04AirB" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=20]
 resource_name = "AirAttackC"
@@ -286,6 +314,20 @@ tracks/5/keys = {
 "values": [ {
 "args": [ null ],
 "method": "spawn_projectile"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.35 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04AirC" ],
+"method": "play_audio"
 } ]
 }
 
@@ -421,6 +463,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04A1" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=11]
 resource_name = "AttackA2"
@@ -501,6 +557,20 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04A2" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -583,6 +653,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04A3" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "AttackB"
@@ -661,6 +745,20 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04B" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=17]
@@ -741,6 +839,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04C" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "AttackSpecial"
@@ -820,6 +932,20 @@ tracks/5/keys = {
 "values": [ {
 "args": [  ],
 "method": "finish_special"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "R04Spec" ],
+"method": "play_audio"
 } ]
 }
 
@@ -1423,7 +1549,7 @@ texture = ExtResource( 6 )
 [node name="CharSprite" parent="SubBody" index="0"]
 texture = ExtResource( 2 )
 
-[node name="AnimationPlayer" parent="SubBody" index="1"]
+[node name="AnimationPlayer" parent="SubBody" index="2"]
 autoplay = "Spawn"
 anims/AirAttackA = SubResource( 18 )
 anims/AirAttackB = SubResource( 19 )
@@ -1446,7 +1572,7 @@ anims/Move = SubResource( 8 )
 anims/RESET = SubResource( 5 )
 anims/Spawn = SubResource( 24 )
 
-[node name="AttackB" parent="SubBody" index="5"]
+[node name="AttackB" parent="SubBody" index="6"]
 damage = 22.0
 knockback_x = 150.0
 knockup = 150.0
@@ -1456,9 +1582,8 @@ meter_gain = 4.0
 [node name="AttackB" type="CollisionShape2D" parent="SubBody/AttackB" index="0"]
 position = Vector2( 19, -3.5 )
 shape = SubResource( 16 )
-disabled = true
 
-[node name="AttackC" parent="SubBody" index="6"]
+[node name="AttackC" parent="SubBody" index="7"]
 damage = 35.0
 knockback_x = 25.0
 knockup = 350.0
@@ -1467,9 +1592,8 @@ meter_gain = 5.0
 [node name="AttackC" type="CollisionPolygon2D" parent="SubBody/AttackC" index="0"]
 position = Vector2( 1, -19 )
 polygon = PoolVector2Array( -7, 20, -13, -6, -18, -27, 16, -27, 11, -6, 6, 20 )
-disabled = true
 
-[node name="AirAttackA" parent="SubBody" index="7"]
+[node name="AirAttackA" parent="SubBody" index="8"]
 damage = 10.0
 knockup = 0.0
 meter_gain = 1.0
@@ -1478,7 +1602,7 @@ meter_gain = 1.0
 position = Vector2( 0, -3.5 )
 shape = SubResource( 21 )
 
-[node name="AttackSpecial" parent="SubBody" index="10"]
+[node name="AttackSpecial" parent="SubBody" index="11"]
 damage = 30.0
 knockup = 300.0
 
@@ -1495,6 +1619,9 @@ shape = SubResource( 2 )
 
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 3 )
+
+[node name="TEMP" type="Node2D" parent="." index="7"]
+position = Vector2( 16, -8 )
 
 [node name="AttackA1" parent="States" index="5"]
 projectile_path = "res://player/RM004/ProjectileRM004A1.tscn"
@@ -1521,6 +1648,3 @@ projectile_path = "res://player/RM004/ProjectileRM004AirC.tscn"
 
 [node name="AttackSpecial" parent="States" index="13"]
 projectile_path = "res://player/RM004/ProjectileRMSpecial.tscn"
-
-[node name="TEMP" type="Node2D" parent="." index="7"]
-position = Vector2( 16, -8 )

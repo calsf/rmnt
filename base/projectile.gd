@@ -78,3 +78,9 @@ func set_offset_y(offset : Vector2) -> void:
 
 func destroy() -> void:
 	queue_free()
+
+
+# For animation
+func play_audio(audio_name : String):
+	if visible:
+		SoundsGlobal.play(audio_name)

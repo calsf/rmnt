@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://audio/audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/sounds/button-pressed.wav" type="AudioStream" id=2]
@@ -20,6 +20,10 @@
 [ext_resource path="res://audio/sounds/rmnt03_generic.wav" type="AudioStream" id=18]
 [ext_resource path="res://audio/sounds/rmnt01_spec.wav" type="AudioStream" id=19]
 [ext_resource path="res://audio/sounds/rmnt03_spec.wav" type="AudioStream" id=20]
+[ext_resource path="res://audio/sounds/rmnt04_generic.wav" type="AudioStream" id=21]
+[ext_resource path="res://audio/sounds/rmnt04_airc.wav" type="AudioStream" id=22]
+[ext_resource path="res://audio/sounds/rmnt04_c.wav" type="AudioStream" id=23]
+[ext_resource path="res://audio/sounds/rmnt04_b.wav" type="AudioStream" id=24]
 
 [node name="SoundsGlobal" type="Node2D"]
 script = ExtResource( 3 )
@@ -197,25 +201,24 @@ default_vol = 9
 
 [node name="R03A1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-pitch_scale = 1.15
 script = ExtResource( 1 )
 default_vol = -1
 
 [node name="R03A2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-pitch_scale = 0.95
+pitch_scale = 0.9
 script = ExtResource( 1 )
 default_vol = -1
 
 [node name="R03A3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-pitch_scale = 1.1
+pitch_scale = 0.95
 script = ExtResource( 1 )
 default_vol = -1
 
 [node name="R03B" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-pitch_scale = 0.9
+pitch_scale = 0.92
 script = ExtResource( 1 )
 default_vol = -1
 
@@ -253,3 +256,61 @@ stream = ExtResource( 20 )
 pitch_scale = 1.1
 script = ExtResource( 1 )
 default_vol = -5
+
+[node name="R04A1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04A2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+pitch_scale = 1.1
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04A3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+pitch_scale = 1.35
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04B" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+pitch_scale = 1.2
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04C" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+script = ExtResource( 1 )
+default_vol = -5
+
+[node name="R04AirA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+pitch_scale = 1.1
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04AirB" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+pitch_scale = 1.05
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04AirC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+pitch_scale = 1.15
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="R04Spec" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+pitch_scale = 0.9
+script = ExtResource( 1 )
+default_vol = -5
+
+[node name="R04SpecLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+pitch_scale = 0.9
+script = ExtResource( 1 )
+default_vol = -9

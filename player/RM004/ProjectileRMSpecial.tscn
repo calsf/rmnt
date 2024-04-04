@@ -60,6 +60,53 @@ tracks/3/keys = {
 "method": "destroy"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1, 1.7, 3.3, 4.9, 6.5, 8.1, 9.7, 11.3, 12.9, 14.5, 16.1, 17.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+}, {
+"args": [ "R04SpecLoop" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001

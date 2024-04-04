@@ -792,7 +792,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.25 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "R01Spec" ],
@@ -1399,6 +1399,7 @@ meter_gain = 2.0
 
 [node name="AirAttackA" type="CollisionPolygon2D" parent="SubBody/AirAttackA" index="0"]
 polygon = PoolVector2Array( 7, -24, 7, -9, -8, -9, -8, 9, 40, 9, 40, -24 )
+disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="9"]
 damage = 22.0
