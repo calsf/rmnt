@@ -4,6 +4,8 @@ extends StageNormal
 func _ready():
 	# EN007, EN002, EN010, EN003, EN008, EN009, EN011
 	
+	SoundsGlobal.play("AmbienceStage03")
+	
 	# Init stage props
 	final_enemy = Enemies.BS003
 	

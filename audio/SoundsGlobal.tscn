@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://audio/audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/sounds/button-pressed.wav" type="AudioStream" id=2]
@@ -32,9 +32,51 @@
 [ext_resource path="res://audio/sounds/bs03_slash.wav" type="AudioStream" id=30]
 [ext_resource path="res://audio/sounds/bs03_slam.wav" type="AudioStream" id=31]
 [ext_resource path="res://audio/sounds/bs03_teleport.wav" type="AudioStream" id=32]
+[ext_resource path="res://audio/sounds/ambience_stage02.ogg" type="AudioStream" id=33]
+[ext_resource path="res://audio/sounds/ambience_stage01.ogg" type="AudioStream" id=34]
+[ext_resource path="res://audio/sounds/ambience_stage03.ogg" type="AudioStream" id=35]
+[ext_resource path="res://audio/sounds/stage02_thunder02.wav" type="AudioStream" id=36]
+[ext_resource path="res://audio/sounds/stage02_thunder01.wav" type="AudioStream" id=37]
+[ext_resource path="res://audio/sounds/ambience_stagemain.ogg" type="AudioStream" id=38]
 
 [node name="SoundsGlobal" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="AmbienceStage01" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 34 )
+script = ExtResource( 1 )
+default_vol = -19
+
+[node name="AmbienceStage02" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 33 )
+script = ExtResource( 1 )
+default_vol = -24
+
+[node name="AmbienceStage03" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 35 )
+script = ExtResource( 1 )
+default_vol = -7
+
+[node name="AmbienceStageMain" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 38 )
+script = ExtResource( 1 )
+default_vol = -22
+
+[node name="Stage02Thunder01" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 37 )
+script = ExtResource( 1 )
+default_vol = -14
+
+[node name="Stage02Thunder02" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 36 )
+script = ExtResource( 1 )
+default_vol = -14
 
 [node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

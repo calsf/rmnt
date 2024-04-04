@@ -4,6 +4,8 @@ extends StageEndless
 func _ready():
 	# EN000, EN001, EN006, EN004, EN005, EN002
 	
+	SoundsGlobal.play("AmbienceStage01")
+	
 	# Init stage props
 	boss_enemy = Enemies.BS001
 	

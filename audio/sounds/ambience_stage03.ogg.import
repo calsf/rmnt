@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ambience_stage03.ogg-653c464548652c47698f7603562411ec.oggstr"
+
+[deps]
+
+source_file="res://audio/sounds/ambience_stage03.ogg"
+dest_files=[ "res://.import/ambience_stage03.ogg-653c464548652c47698f7603562411ec.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

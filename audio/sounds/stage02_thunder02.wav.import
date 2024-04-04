@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stage02_thunder02.wav-3ed7477384d7c471e6049fcf6b7b525d.sample"
+
+[deps]
+
+source_file="res://audio/sounds/stage02_thunder02.wav"
+dest_files=[ "res://.import/stage02_thunder02.wav-3ed7477384d7c471e6049fcf6b7b525d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

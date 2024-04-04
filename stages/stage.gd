@@ -83,3 +83,10 @@ func _get_random_offset():
 		_random.randomize()
 		var y = _random.randf_range(-shake, shake)
 		return Vector2(0, y)
+
+
+# For animation
+func play_audio(audio_name : String):
+	if visible:
+		SoundsGlobal.play(audio_name)
+

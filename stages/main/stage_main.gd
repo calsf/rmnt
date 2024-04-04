@@ -15,6 +15,10 @@ var is_in_lane := false
 var is_overlapping_player_hurtbox := false
 
 
+func _ready():
+	SoundsGlobal.play("AmbienceStageMain")
+
+
 func _input(event):
 	# Avoid interaction while mid swap
 	if not swap_timer.is_stopped():

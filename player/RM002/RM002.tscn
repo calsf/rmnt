@@ -1531,6 +1531,7 @@ meter_gain = 2.0
 [node name="AirAttackA" type="CollisionShape2D" parent="SubBody/AirAttackA" index="0"]
 position = Vector2( 36.5, -6.75 )
 shape = SubResource( 25 )
+disabled = true
 
 [node name="AirAttackB" parent="SubBody" index="9"]
 damage = 20.0
