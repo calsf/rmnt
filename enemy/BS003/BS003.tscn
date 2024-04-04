@@ -67,6 +67,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, true, false ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSDespawn" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "EscapeTo"
@@ -129,6 +143,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSSpawn" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -360,6 +388,26 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.75, 1.55 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "BS03TeleportFrom" ],
+"method": "play_audio"
+}, {
+"args": [ "BS03TeleportTo" ],
+"method": "play_audio"
+}, {
+"args": [ "BS03Slam" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=11]
 resource_name = "Slash"
@@ -439,6 +487,26 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.75, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "BS03TeleportFrom" ],
+"method": "play_audio"
+}, {
+"args": [ "BS03TeleportTo" ],
+"method": "play_audio"
+}, {
+"args": [ "BS03Slash" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Spawn"
@@ -502,6 +570,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSSpawn" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.5, 20 )
@@ -542,6 +624,7 @@ anims/Spawn = SubResource( 10 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SubBody/EnemyHurtbox" index="0"]
 position = Vector2( -1.5, -4 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="Slash" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 8 )
