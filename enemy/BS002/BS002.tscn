@@ -83,6 +83,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ ExtResource( 9 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSDespawn" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "EscapeTo"
@@ -158,10 +172,25 @@ tracks/5/keys = {
 "update": 0,
 "values": [ ExtResource( 9 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSSpawn" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "GroundSlam"
 length = 1.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:hframes")
 tracks/0/interp = 1
@@ -265,6 +294,20 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 9 ), ExtResource( 16 ), ExtResource( 9 ) ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BS02GroundSlam" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -553,6 +596,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ ExtResource( 16 ), ExtResource( 9 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BS02Punch" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -679,6 +736,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [ ExtResource( 9 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSSpawn" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 17 )
@@ -703,7 +774,6 @@ extents = Vector2( 30, 38 )
 props = ExtResource( 8 )
 
 [node name="Shadow" parent="." index="0"]
-visible = false
 texture = ExtResource( 9 )
 
 [node name="EnemySprite" parent="SubBody" index="0"]
@@ -736,7 +806,6 @@ knockup = 100.0
 [node name="Punch" type="CollisionShape2D" parent="SubBody/Punch" index="0"]
 position = Vector2( 45, -7 )
 shape = SubResource( 14 )
-disabled = true
 
 [node name="PunchStartup" type="Area2D" parent="SubBody" index="6"]
 script = ExtResource( 13 )
@@ -747,7 +816,6 @@ knockup = 65.0
 [node name="PunchStartup" type="CollisionShape2D" parent="SubBody/PunchStartup" index="0"]
 position = Vector2( 4.5, -6.5 )
 shape = SubResource( 16 )
-disabled = true
 
 [node name="WorldCollision" parent="." index="4"]
 shape = SubResource( 2 )

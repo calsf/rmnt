@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://audio/audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/sounds/button-pressed.wav" type="AudioStream" id=2]
@@ -24,6 +24,11 @@
 [ext_resource path="res://audio/sounds/rmnt04_airc.wav" type="AudioStream" id=22]
 [ext_resource path="res://audio/sounds/rmnt04_c.wav" type="AudioStream" id=23]
 [ext_resource path="res://audio/sounds/rmnt04_b.wav" type="AudioStream" id=24]
+[ext_resource path="res://audio/sounds/bs01_slam.wav" type="AudioStream" id=25]
+[ext_resource path="res://audio/sounds/bs01_stomp.wav" type="AudioStream" id=26]
+[ext_resource path="res://audio/sounds/bs01_spin.wav" type="AudioStream" id=27]
+[ext_resource path="res://audio/sounds/bs02_groundslam.wav" type="AudioStream" id=28]
+[ext_resource path="res://audio/sounds/bs02_punch.wav" type="AudioStream" id=29]
 
 [node name="SoundsGlobal" type="Node2D"]
 script = ExtResource( 3 )
@@ -314,3 +319,49 @@ stream = ExtResource( 23 )
 pitch_scale = 0.9
 script = ExtResource( 1 )
 default_vol = -9
+
+[node name="BSSpawn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+pitch_scale = 0.8
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BSDespawn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 0.8
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BS01Stomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+pitch_scale = 0.6
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="BS01Slam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+pitch_scale = 0.8
+script = ExtResource( 1 )
+default_vol = -3
+
+[node name="BS01Spin01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+pitch_scale = 0.8
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="BS01Spin02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+pitch_scale = 0.9
+script = ExtResource( 1 )
+default_vol = -4
+
+[node name="BS02GroundSlam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
+script = ExtResource( 1 )
+default_vol = 1
+
+[node name="BS02Punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 29 )
+script = ExtResource( 1 )
+default_vol = -6

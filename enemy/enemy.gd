@@ -342,3 +342,9 @@ func toggle_hit_frame():
 	else:
 		anim.play("Hit2")
 	hit_frame = not hit_frame
+
+
+# For animation
+func play_audio(audio_name : String):
+	if visible:
+		SoundsGlobal.play(audio_name)
