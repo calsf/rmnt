@@ -646,15 +646,15 @@ shape = SubResource( 3 )
 [node name="RangeboxSlash" type="Area2D" parent="." index="6"]
 script = ExtResource( 11 )
 trigger_state_name = "Slash"
-trigger_min_delay = 2.0
-trigger_max_delay = 3.0
+trigger_min_delay = 1.5
+trigger_max_delay = 2.5
 ignore_lane_collision = true
 
 [node name="RangeboxSlam" type="Area2D" parent="." index="7"]
 script = ExtResource( 11 )
 trigger_state_name = "Slam"
-trigger_min_delay = 2.0
-trigger_max_delay = 3.0
+trigger_min_delay = 1.5
+trigger_max_delay = 2.5
 ignore_lane_collision = true
 
 [node name="Spawn" parent="States" index="0"]

@@ -69,6 +69,8 @@ func _process(delta):
 		
 		# If reached max overall limit and no more active enemies, spawn final enemy
 		if active_spawn_num == 0 and not final_enemy_spawned:
+			MusicGlobal.play("BS")
+			
 			final_enemy_spawned = true
 			
 			var x = rand_range(min_x, max_x)
@@ -82,6 +84,8 @@ func _process(delta):
 		
 		# If reached maxed overall limit, final enemy spawned, and no more active enemies, stage is cleared
 		if active_spawn_num == 0 and final_enemy_spawned and not is_cleared:
+			MusicGlobal.stop_all()
+			
 			is_cleared = true
 			for player in get_tree().get_nodes_in_group("players"):
 				if player.visible:

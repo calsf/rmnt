@@ -6,6 +6,7 @@ func _ready():
 
 
 func play(audio_name : String) -> void:
+	stop_all()
 	var audio = get_node(audio_name)
 	audio.play()
 

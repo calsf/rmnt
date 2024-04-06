@@ -16,3 +16,8 @@ func _input(event):
 # Wait for initial fade before allowing input
 func _on_Fade_fade_out_finished():
 	can_input = true
+
+
+# For animation
+func _play_music(music : String):
+	MusicGlobal.play("Title")

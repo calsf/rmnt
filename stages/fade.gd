@@ -18,6 +18,7 @@ func _ready():
 func go_to_scene(scene_name):
 	if not _in_transition:
 		SoundsGlobal.stop_all()
+		MusicGlobal.stop_all()
 		Global.reset_kill_count()
 		_in_transition = true
 		_next_scene = scene_name

@@ -37,6 +37,7 @@ var normal_enemy_listing : Array
 
 # Boss enemy for this stage
 var boss_enemy : String
+var boss_active := false
 
 var start_spawn_num : int
 var curr_spawn_num : int
@@ -64,6 +65,12 @@ onready var spawn_timer = $SpawnTimer
 func _process(delta):
 	# Update kill count label
 	_kill_count_label.text = str(Global.kill_count)
+	
+	if boss_active:
+		var active_boss_num = get_tree().get_nodes_in_group("bosses").size()
+		if active_boss_num == 0:
+			boss_active = false
+			MusicGlobal.play("Stage")
 	
 	# Stop spawning after reaching max active limit
 	var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()
@@ -145,6 +152,9 @@ func spawn_enemy(i : int) -> void:
 		enemy.global_position = Vector2(x, y)
 		get_tree().current_scene.get_node("World").add_child(enemy)
 		enemy.add_to_group("bosses") # Add to boss group
+		
+		MusicGlobal.play("BS")
+		boss_active = true
 	else: # Normal spawn
 		# Randomize location
 		var x = rand_range(min_x, max_x)

@@ -28,6 +28,9 @@ func _ready():
 			rmnts[i].connect("died", self, "_on_player_death")
 		else:
 			rmnts[i].deactivate()
+	
+	yield(get_tree().create_timer(.4), "timeout")
+	MusicGlobal.play("Stage")
 
 
 func _process(delta):
