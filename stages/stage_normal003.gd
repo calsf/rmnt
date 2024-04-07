@@ -10,6 +10,7 @@ func _ready():
 	final_enemy = Enemies.BS003
 	
 	enemy_listing = [
+		[Enemies.EN011],
 		[Enemies.EN007],
 		[Enemies.EN002],
 		[Enemies.EN007],
