@@ -17,6 +17,8 @@ var is_overlapping_player_hurtbox := false
 
 func _ready():
 	SoundsGlobal.play("AmbienceStageMain")
+	yield(get_tree().create_timer(.4), "timeout")
+	MusicGlobal.play("Main")
 
 
 func _input(event):
