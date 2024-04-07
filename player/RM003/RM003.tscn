@@ -1378,7 +1378,7 @@ anims/RESET = SubResource( 3 )
 anims/Spawn = SubResource( 30 )
 
 [node name="AttackA1" parent="SubBody" index="3"]
-damage = 6.0
+damage = 8.0
 knockback_x = -150.0
 meter_gain = 1.0
 
@@ -1460,7 +1460,7 @@ shape = SubResource( 24 )
 disabled = true
 
 [node name="AttackSpecial" parent="SubBody" index="11"]
-damage = 35.0
+damage = 40.0
 knockup = 130.0
 
 [node name="AttackSpecial" type="CollisionShape2D" parent="SubBody/AttackSpecial" index="0"]
