@@ -114,6 +114,7 @@ func _resume():
 func _toggle_config():
 	if _config_options.visible:
 		unfocused = false
+		_config_options.reset()
 		_config_options.visible = false
 		_menu_options.visible = true
 		_confirm_label.visible = true

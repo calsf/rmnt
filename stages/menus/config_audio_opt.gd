@@ -28,11 +28,17 @@ func _ready():
 func set_selected() -> void:
 	_left.visible = true
 	_right.visible = true
+	
+	if config_key == "music_vol":
+		MusicGlobal.play("MusicSetting", false)
 
 
 func set_unselected() -> void:
 	_left.visible = false
 	_right.visible = false
+	
+	if config_key == "music_vol":
+		MusicGlobal.stop("MusicSetting")
 
 
 func decrease() -> void:

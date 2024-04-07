@@ -300,15 +300,15 @@ custom_constants/separation = 10
 alignment = 1
 script = ExtResource( 19 )
 
-[node name="Music" parent="PauseMenu/ConfigOptions" instance=ExtResource( 17 )]
+[node name="Sound" parent="PauseMenu/ConfigOptions" instance=ExtResource( 18 )]
 margin_top = 3.0
 margin_bottom = 31.0
-config_key = "music_vol"
+config_key = "sound_vol"
 
-[node name="Sound" parent="PauseMenu/ConfigOptions" instance=ExtResource( 18 )]
+[node name="Music" parent="PauseMenu/ConfigOptions" instance=ExtResource( 17 )]
 margin_top = 41.0
 margin_bottom = 69.0
-config_key = "sound_vol"
+config_key = "music_vol"
 
 [node name="ConfirmLabel" type="TextureRect" parent="PauseMenu"]
 anchor_left = 0.5

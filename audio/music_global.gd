@@ -5,8 +5,9 @@ func _ready():
 	update_all_audio_volumes()
 
 
-func play(audio_name : String) -> void:
-	stop_all()
+func play(audio_name : String, stop_all := true) -> void:
+	if stop_all:
+		stop_all()
 	var audio = get_node(audio_name)
 	audio.play()
 

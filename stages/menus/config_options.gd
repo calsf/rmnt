@@ -6,7 +6,10 @@ var last_option_i := -1
 
 func _ready():
 	config_options = get_children()
-	
+	reset()
+
+
+func reset():
 	# Init to first option
 	for i in range(0, config_options.size()):
 		if i == 0:
