@@ -7,7 +7,7 @@ onready var _stage_bg = $StaticBody2D/Background
 onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 onready var _random = RandomNumberGenerator.new()
 
-var shake := 0.0
+var shake_val := 0.0
 
 onready var rmnts := [
 	get_tree().current_scene.get_node("World/RM001"),
@@ -34,7 +34,7 @@ func _ready():
 
 
 func _process(delta):
-	shake = lerp(shake, 0, SHAKE_DECAY_RATE * delta)
+	shake_val = lerp(shake_val, 0, SHAKE_DECAY_RATE * delta)
 
 	_stage_bg.offset = _get_random_offset()
 
@@ -75,16 +75,16 @@ func _on_player_death(rmnt : Player):
 
 # Call to shake the stage background
 func shake():
-	shake = SHAKE_RANGE
+	shake_val = SHAKE_RANGE
 
 
 # Only shakes vertically
 func _get_random_offset():
-	if shake == 0:
+	if shake_val == 0:
 		return Vector2.ZERO
 	else:
 		_random.randomize()
-		var y = _random.randf_range(-shake, shake)
+		var y = _random.randf_range(-shake_val, shake_val)
 		return Vector2(0, y)
 
 

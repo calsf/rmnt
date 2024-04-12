@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://enemy/BS002/BS002-Head.png" type="Texture" id=20]
 [ext_resource path="res://stages/main/boss_heads.gd" type="Script" id=21]
 [ext_resource path="res://base/input_texture.gd" type="Script" id=22]
+[ext_resource path="res://stages/interactable/interactable_bs_final.gd" type="Script" id=23]
 
 [sub_resource type="Animation" id=16]
 resource_name = "Idle"
@@ -130,6 +131,29 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, -65 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 20, 4 )
+
+[sub_resource type="Animation" id=20]
+resource_name = "Interact"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -66 ), Vector2( 0, -65 ), Vector2( 0, -66 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 20, 4 )
 
 [node name="StageMain" type="Node2D"]
 script = ExtResource( 17 )
@@ -295,20 +319,43 @@ anims/RESET = SubResource( 15 )
 position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
+[node name="BSFinalInteractable" parent="World" instance=ExtResource( 15 )]
+position = Vector2( 160, 85 )
+script = ExtResource( 23 )
+
+[node name="CollisionShape2D" parent="World/BSFinalInteractable/InteractableBox" index="0"]
+position = Vector2( 0, -6 )
+shape = SubResource( 18 )
+
+[node name="InteractLabel" parent="World/BSFinalInteractable/InteractableBox" index="1"]
+visible = true
+position = Vector2( 0, -66 )
+
+[node name="AnimationPlayer" parent="World/BSFinalInteractable/InteractableBox" index="2"]
+autoplay = "Interact"
+anims/Interact = SubResource( 20 )
+
+[node name="LaneCollision" parent="World/BSFinalInteractable/LaneDetection" index="0"]
+position = Vector2( 0, -6 )
+shape = SubResource( 19 )
+
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
+visible = false
 position = Vector2( 160, 90 )
 
 [node name="RM002" parent="World" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 160, 90 )
 
 [node name="RM003" parent="World" instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 160, 90 )
 
 [node name="RM004" parent="World" instance=ExtResource( 16 )]
+visible = false
 position = Vector2( 160, 90 )
-
-[node name="Interactable" parent="World" instance=ExtResource( 15 )]
 
 [editable path="HUD"]
 [editable path="World/StageSelectNormal"]
 [editable path="World/StageSelectEndless"]
+[editable path="World/BSFinalInteractable"]
