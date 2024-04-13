@@ -16,7 +16,14 @@ onready var stage_select_endless_interactable = $World/StageSelectEndless
 onready var swap_timer = $CanvasLayer/RmntSelect/Timer
 onready var bs_final_interactable = $World/BSFinalInteractable
 
+onready var _fade = get_tree().current_scene.get_node("HUD/Fade")
 onready var players = get_tree().get_nodes_in_group("players")
+onready var rmnts := [
+	get_tree().current_scene.get_node("World/RM001"),
+	get_tree().current_scene.get_node("World/RM002"),
+	get_tree().current_scene.get_node("World/RM003"),
+	get_tree().current_scene.get_node("World/RM004")
+]
 
 var is_in_lane := false
 var is_overlapping_player_hurtbox := false
@@ -27,6 +34,9 @@ var decay_rate := 0.0
 
 
 func _ready():
+	for i in range(rmnts.size()):
+		rmnts[i].connect("died", self, "_on_player_death")
+	
 	SoundsGlobal.play("AmbienceStageMain")
 	yield(get_tree().create_timer(.4), "timeout")
 	MusicGlobal.play("Main")
@@ -158,10 +168,40 @@ func trigger_bs_final():
 	MusicGlobal.play("BS")
 
 
+func _on_player_death(rmnt : Player):
+	if get_tree().current_scene.has_node("World/DeathOverlay"):
+		# Temporarily process sounds while paused
+		SoundsGlobal.pause_mode = Node.PAUSE_MODE_PROCESS
+		SoundsGlobal.stop_all()
+		SoundsGlobal.play("RmntDeath")
+		
+		# Pause entire tree
+		get_tree().paused = true
+		
+		# Only process death overlay, active player, and fade
+		var death_overlay = get_tree().current_scene.get_node("World/DeathOverlay")
+		death_overlay.pause_mode = Node.PAUSE_MODE_PROCESS
+		rmnt.pause_mode = Node.PAUSE_MODE_PROCESS
+		_fade.pause_mode = Node.PAUSE_MODE_PROCESS
+		
+		death_overlay.visible = true
+		rmnt.z_index = death_overlay.z_index + 1
+		
+		# Wait for death anim to finish and return to main stage
+		yield(rmnt.anim, "animation_finished")
+		yield(get_tree().create_timer(.8, true), "timeout")
+		
+		# Revert pause mode
+		SoundsGlobal.pause_mode = Node.PAUSE_MODE_INHERIT
+		
+		_fade.go_to_scene("res://title/Title.tscn")
+
+
 # Call to shake the stage background
 func shake(shake_range := DEFAULT_SHAKE_RANGE, shake_decay_rate := DEFAULT_SHAKE_DECAY_RATE):
 	shake_val = shake_range
 	decay_rate = shake_decay_rate
+
 
 # Only shakes vertically
 func _get_random_offset():
