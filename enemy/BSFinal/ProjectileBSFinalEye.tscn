@@ -90,7 +90,7 @@ hframes = 8
 visible = false
 
 [node name="EnemyHitbox" parent="Projectile" index="2"]
-damage = 20.0
+damage = 10.0
 knockup = 200.0
 
 [node name="CollisionShape2D" parent="Projectile/EnemyHitbox" index="0"]

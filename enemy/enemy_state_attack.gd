@@ -82,9 +82,12 @@ func spawn_projectile_at_random_pos() -> void:
 
 
 # Extra method to shake stage during attack animations if needed
-func shake_stage() -> void:
+func shake_stage(shake_val = null, decay_rate = null) -> void:
 	var stage = get_tree().current_scene
-	stage.shake()
+	if shake_val != null and decay_rate != null:
+		stage.shake(shake_val, decay_rate)
+	else:
+		stage.shake()
 
 
 func enter(data_state := {}) -> void:

@@ -32,7 +32,8 @@ func state_physics_process(delta: float) -> void:
 	elif abs(idle_time - OS.get_unix_time()) >= transition_time:
 		# Transition to Scream attack if certain amount of time has passed
 		# since last Scream attack
-		if abs(last_scream_time - OS.get_unix_time()) >= 6:
+		if abs(last_scream_time - OS.get_unix_time()) >= 20 and \
+				get_tree().get_nodes_in_group("enemies").size() < Global.MAX_ACTIVE_ENEMIES:
 			last_scream_time = OS.get_unix_time()
 			state_machine.transition_to("Scream")
 		else:
