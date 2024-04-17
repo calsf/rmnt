@@ -23,6 +23,32 @@ var stage_max_y := 68
 var rng := RandomNumberGenerator.new()
 
 
+func take_damage(dmg : float) -> void:
+	curr_hp -= dmg
+	emit_signal("health_updated", self)
+	
+	# Death check
+	if curr_hp <= 0:
+		# Destroy all other active enemies
+		for enemy in get_tree().get_nodes_in_group("enemies"):
+			if enemy != self:
+				enemy.take_damage(enemy.curr_hp)
+		
+		# Instance death effect before removing enemy
+		var death = load(props.death_path).instance()
+		var world = get_tree().current_scene.get_node("World")
+		world.call_deferred("add_child", death)
+		death.global_position = enemy_child.global_position
+		Global.add_kill_count()
+		emit_signal("died", self)
+		
+		SoundsGlobal.play(props.death_sound)
+		
+		queue_free()
+	else:
+		activate_hitsparks()
+
+
 # Spawn spawn_num of enemies and update curr_spawn_count
 func spawn_enemies(spawn_num : int) -> void:
 	var active_spawn_num = get_tree().get_nodes_in_group("enemies").size()

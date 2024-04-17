@@ -576,13 +576,15 @@ script = ExtResource( 2 )
 props = ExtResource( 7 )
 
 [node name="Shadow" parent="." index="0"]
+visible = false
 modulate = Color( 1, 1, 1, 1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
+hframes = 8
 
 [node name="EnemySprite" parent="SubBody" index="0"]
 visible = false
-texture = ExtResource( 8 )
-hframes = 15
+texture = ExtResource( 3 )
+hframes = 8
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
 autoplay = "Spawn"

@@ -4,16 +4,16 @@
 
 [resource]
 script = ExtResource( 1 )
-max_hp = 200.0
+max_hp = 500.0
 speed_x = 0.0
 speed_y = 0.0
 speed_x_dash = 0.0
 speed_y_dash = 0.0
-armored = true
+armored = false
 ground_decel = 200
-hitstun_multiplier = 0.0
-air_hitstun_multiplier = 0.0
+hitstun_multiplier = 0.7
+air_hitstun_multiplier = 0.7
 hud_icon_path = "res://enemy/EN001/EN001-IconHUD.png"
-death_path = "res://enemy/BSFinal/P2/BSFinal2.tscn"
+death_path = "res://enemy/EnemyDeath.tscn"
 hitsparks_path = "res://enemy/EnemyHitsparks.tscn"
 death_sound = "EnemyDeath"
