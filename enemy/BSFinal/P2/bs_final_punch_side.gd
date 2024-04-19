@@ -84,7 +84,7 @@ func state_physics_process(delta: float) -> void:
 		state_machine.transition_to("Hitstun")
 	
 	if not enemy.anim.is_playing():
-		state_machine.transition_to("Idle")
+		state_machine.transition_to("Move")
 
 
 # Used for toggling movement via animation
