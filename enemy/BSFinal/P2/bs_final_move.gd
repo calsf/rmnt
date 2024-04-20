@@ -41,7 +41,6 @@ func state_physics_process(delta: float) -> void:
 		enemy.global_position += (push_vector * delta) * enemy.props.speed_x
 		enemy.turn(enemy.velocity.x)
 	
-
 	if not enemy.trigger_states.empty():
 		# Check for and trigger a random trigger state
 		if enemy.should_trigger_random_state():

@@ -1,8 +1,8 @@
 # Custom idle for BSFinal2
 extends EnemyState
 
-const MIN_IDLE := 1
-const MAX_IDLE := 1
+const MIN_IDLE := 2
+const MAX_IDLE := 2
 
 var idle_time := 0
 var transition_time := 0
@@ -15,14 +15,15 @@ var next_attack := ""
 func enter(data_state := {}) -> void:
 	enemy.anim.play("Idle")
 	
-	# Reset idle timer
-	idle_time = OS.get_unix_time()
-	transition_time = rand_range(MIN_IDLE, MAX_IDLE)
-	
 	# Only set next_attack again if already empty
 	# This is to make sure the next_attack is triggered at least once
 	if next_attack == "":
 		next_attack = data_state.get("next_attack", "")
+		
+		# Reset idle timer
+		# Also only reset idle when setting new attack
+		idle_time = OS.get_unix_time()
+		transition_time = rand_range(MIN_IDLE, MAX_IDLE)
 
 
 func exit(data_state := {}) -> void:
