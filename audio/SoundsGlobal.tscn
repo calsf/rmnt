@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://audio/audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/sounds/button-pressed.wav" type="AudioStream" id=2]
@@ -40,6 +40,12 @@
 [ext_resource path="res://audio/sounds/ambience_stagemain.ogg" type="AudioStream" id=38]
 [ext_resource path="res://audio/sounds/en011_startup.wav" type="AudioStream" id=39]
 [ext_resource path="res://audio/sounds/en011_explo.wav" type="AudioStream" id=40]
+[ext_resource path="res://audio/sounds/bsfinal_eye_startup.wav" type="AudioStream" id=41]
+[ext_resource path="res://audio/sounds/bsfinal_punch02.wav" type="AudioStream" id=42]
+[ext_resource path="res://audio/sounds/bsfinal_phase2.wav" type="AudioStream" id=43]
+[ext_resource path="res://audio/sounds/bsfinal_slam.wav" type="AudioStream" id=44]
+[ext_resource path="res://audio/sounds/bsfinal_punch01.wav" type="AudioStream" id=45]
+[ext_resource path="res://audio/sounds/bsfinal_scream.wav" type="AudioStream" id=46]
 
 [node name="SoundsGlobal" type="Node2D"]
 script = ExtResource( 3 )
@@ -444,3 +450,51 @@ default_vol = -10
 stream = ExtResource( 40 )
 script = ExtResource( 1 )
 default_vol = -10
+
+[node name="BSFinalScream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 46 )
+script = ExtResource( 1 )
+default_vol = -6
+
+[node name="BSFinalEyeStartup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 41 )
+script = ExtResource( 1 )
+default_vol = -3
+
+[node name="BSFinalPhase2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 43 )
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BSFinalPunchWoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 45 )
+script = ExtResource( 1 )
+default_vol = 1
+
+[node name="BSFinalPunchImpact1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 42 )
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BSFinalPunchImpact2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 42 )
+pitch_scale = 1.1
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BSFinalPunchImpact3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 42 )
+pitch_scale = 1.3
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BSFinalPunchImpact4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 42 )
+pitch_scale = 1.5
+script = ExtResource( 1 )
+default_vol = -2
+
+[node name="BSFinalSlam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 44 )
+script = ExtResource( 1 )
+default_vol = -5

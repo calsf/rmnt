@@ -128,6 +128,37 @@ tracks/4/keys = {
 "method": "spawn_projectile_on_player"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("../States/SlamEye")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ null, null ],
+"method": "shake_stage"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.4, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "BSFinalEyeStartup" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalSlam" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Hit1"
@@ -288,6 +319,58 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true, true, false, true, false, true, false, true, false, true ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.125, 0.225, 0.325, 0.425, 0.525 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ "BSFinalPunchWoosh" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchWoosh" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchWoosh" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchWoosh" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchWoosh" ],
+"method": "play_audio"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.125, 0.225, 0.325, 0.425, 0.525 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ "BSFinalPunchImpact1" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchImpact1" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchImpact2" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchImpact3" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalPunchImpact4" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -383,6 +466,37 @@ tracks/4/keys = {
 "method": "spawn_projectile_on_player"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("../States/SlamEye")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ null, null ],
+"method": "shake_stage"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.6, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "BSFinalSlam" ],
+"method": "play_audio"
+}, {
+"args": [ "BSFinalEyeStartup" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Spawn"
@@ -422,6 +536,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSFinalPhase2" ],
+"method": "play_audio"
+} ]
 }
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -469,7 +597,7 @@ shape = SubResource( 1 )
 
 [node name="PunchSide" type="Area2D" parent="SubBody" index="5"]
 script = ExtResource( 11 )
-damage = 3.0
+damage = 2.0
 knockback_x = 125.0
 
 [node name="PunchSide" type="CollisionShape2D" parent="SubBody/PunchSide" index="0"]

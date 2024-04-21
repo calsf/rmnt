@@ -101,6 +101,20 @@ tracks/6/keys = {
 "method": "spawn_projectile_on_player"
 } ]
 }
+tracks/7/type = "method"
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSFinalEyeStartup" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Hit1"
@@ -460,6 +474,20 @@ tracks/7/keys = {
 "method": "spawn_enemies"
 } ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("..")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "BSFinalScream" ],
+"method": "play_audio"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Spawn"
@@ -578,13 +606,12 @@ props = ExtResource( 7 )
 [node name="Shadow" parent="." index="0"]
 visible = false
 modulate = Color( 1, 1, 1, 1 )
-texture = ExtResource( 4 )
-hframes = 8
+texture = ExtResource( 5 )
 
 [node name="EnemySprite" parent="SubBody" index="0"]
 visible = false
-texture = ExtResource( 3 )
-hframes = 8
+texture = ExtResource( 9 )
+hframes = 12
 
 [node name="AnimationPlayer" parent="SubBody" index="1"]
 autoplay = "Spawn"
