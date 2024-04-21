@@ -2,7 +2,7 @@ extends EnemyState
 
 export var projectile_path := ""
 export var spawn_offset : Vector2
-export var anim_name := ""
+export var anim_names := []
 
 var Projectile
 
@@ -91,7 +91,7 @@ func shake_stage(shake_val = null, decay_rate = null) -> void:
 
 
 func enter(data_state := {}) -> void:
-	enemy.anim.play(anim_name)
+	enemy.anim.play(anim_names[randi() % anim_names.size()])
 	enemy.is_attacking = true
 	
 	# If attack is a projectile, face player before spawning projectile
@@ -115,4 +115,4 @@ func state_physics_process(delta: float) -> void:
 		state_machine.transition_to("Hitstun")
 	
 	if not enemy.anim.is_playing():
-		state_machine.transition_to("Idle")
+		state_machine.transition_to("Move")

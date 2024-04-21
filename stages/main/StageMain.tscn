@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://enemy/BS002/BS002-Head.png" type="Texture" id=20]
 [ext_resource path="res://stages/main/boss_heads.gd" type="Script" id=21]
 [ext_resource path="res://base/input_texture.gd" type="Script" id=22]
+[ext_resource path="res://stages/interactable/interactable_bs_final.gd" type="Script" id=23]
+[ext_resource path="res://stages/DeathOverlay.tscn" type="PackedScene" id=24]
+[ext_resource path="res://stages/main/StageMain-End.png" type="Texture" id=25]
 
 [sub_resource type="Animation" id=16]
 resource_name = "Idle"
@@ -60,6 +63,89 @@ extents = Vector2( 160, 37.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 60, 90 )
+
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../HUD/EndFlash:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Start"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../../HUD/Fade")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://title/Title.tscn" ],
+"method": "go_to_scene"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "free_world"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../../HUD/EndFlash:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10, 3.5 )
@@ -131,6 +217,29 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -65 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 20, 4 )
+
+[sub_resource type="Animation" id=20]
+resource_name = "Interact"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("InteractLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -66 ), Vector2( 0, -65 ), Vector2( 0, -66 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 20, 4 )
+
 [node name="StageMain" type="Node2D"]
 script = ExtResource( 17 )
 
@@ -139,6 +248,17 @@ layer = 2
 
 [node name="KillCount" parent="HUD" index="2"]
 visible = false
+
+[node name="EndFlash" type="ColorRect" parent="HUD"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -253,7 +373,19 @@ shape = SubResource( 2 )
 position = Vector2( -56, 90 )
 shape = SubResource( 2 )
 
+[node name="BackgroundEnd" type="Sprite" parent="WorldStaticBody"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 160, 90 )
+z_index = 5
+texture = ExtResource( 25 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldStaticBody/BackgroundEnd"]
+anims/RESET = SubResource( 21 )
+anims/Start = SubResource( 22 )
+
 [node name="World" type="YSort" parent="."]
+
+[node name="DeathOverlay" parent="World" instance=ExtResource( 24 )]
 
 [node name="StageSelectNormal" parent="World" instance=ExtResource( 15 )]
 position = Vector2( 45, 86 )
@@ -295,6 +427,26 @@ anims/RESET = SubResource( 15 )
 position = Vector2( 0, -6.5 )
 shape = SubResource( 13 )
 
+[node name="BSFinalInteractable" parent="World" instance=ExtResource( 15 )]
+position = Vector2( 160, 85 )
+script = ExtResource( 23 )
+
+[node name="CollisionShape2D" parent="World/BSFinalInteractable/InteractableBox" index="0"]
+position = Vector2( 0, -6 )
+shape = SubResource( 18 )
+
+[node name="InteractLabel" parent="World/BSFinalInteractable/InteractableBox" index="1"]
+visible = true
+position = Vector2( 0, -66 )
+
+[node name="AnimationPlayer" parent="World/BSFinalInteractable/InteractableBox" index="2"]
+autoplay = "Interact"
+anims/Interact = SubResource( 20 )
+
+[node name="LaneCollision" parent="World/BSFinalInteractable/LaneDetection" index="0"]
+position = Vector2( 0, -6 )
+shape = SubResource( 19 )
+
 [node name="RM001" parent="World" instance=ExtResource( 1 )]
 position = Vector2( 160, 90 )
 
@@ -307,8 +459,7 @@ position = Vector2( 160, 90 )
 [node name="RM004" parent="World" instance=ExtResource( 16 )]
 position = Vector2( 160, 90 )
 
-[node name="Interactable" parent="World" instance=ExtResource( 15 )]
-
 [editable path="HUD"]
 [editable path="World/StageSelectNormal"]
 [editable path="World/StageSelectEndless"]
+[editable path="World/BSFinalInteractable"]

@@ -5,6 +5,7 @@ const Enemies = {
 	BS001 = "res://enemy/BS001/BS001.tscn",
 	BS002 = "res://enemy/BS002/BS002.tscn",
 	BS003 = "res://enemy/BS003/BS003.tscn",
+	BSFINAL = "res://enemy/BSFinal/BSFinal.tscn",
 	HEALTH = "res://enemy/Potions/PotionHealth.tscn",
 	METER = "res://enemy/Potions/PotionMeter.tscn",
 	EN000 = "res://enemy/EN000/EN000.tscn",

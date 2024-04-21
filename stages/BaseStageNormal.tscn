@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://stages/hud/HUD.tscn" type="PackedScene" id=1]
-[ext_resource path="res://stages/menus/MenuOptUnselected.png" type="Texture" id=2]
+[ext_resource path="res://stages/DeathOverlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/RM001/RM001.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stages/stage.gd" type="Script" id=7]
 [ext_resource path="res://player/RM003/RM003.tscn" type="PackedScene" id=8]
@@ -41,13 +41,7 @@ position = Vector2( -56, 90 )
 
 [node name="World" type="YSort" parent="."]
 
-[node name="DeathOverlay" type="Sprite" parent="World"]
-visible = false
-modulate = Color( 0, 0, 0, 0.490196 )
-position = Vector2( 160, 90 )
-scale = Vector2( 6, 15 )
-z_index = 1
-texture = ExtResource( 2 )
+[node name="DeathOverlay" parent="World" instance=ExtResource( 2 )]
 
 [node name="RM001" parent="World" instance=ExtResource( 3 )]
 position = Vector2( 160, 120 )

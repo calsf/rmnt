@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://stages/menus/MenuOptUnselected.png" type="Texture" id=1]
+
+[node name="DeathOverlay" type="Sprite"]
+visible = false
+modulate = Color( 0, 0, 0, 0.490196 )
+position = Vector2( 160, 90 )
+scale = Vector2( 6, 15 )
+z_index = 1
+texture = ExtResource( 1 )
