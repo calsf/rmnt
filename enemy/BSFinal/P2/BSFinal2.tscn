@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/BSFinal/P2/BSFinal-Spawn-2.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://enemy/BSFinal/P2/BSFinal-EscapeFrom-2.png" type="Texture" id=17]
 [ext_resource path="res://enemy/BSFinal/P2/BSFinal-SlamEyeAlt-2.png" type="Texture" id=18]
 [ext_resource path="res://enemy/BSFinal/P2/bs_final_spawn.gd" type="Script" id=19]
+[ext_resource path="res://enemy/BSFinal/P2/bs_final2.gd" type="Script" id=20]
 
 [sub_resource type="Animation" id=14]
 resource_name = "EscapeFrom"
@@ -569,6 +570,7 @@ extents = Vector2( 8, 3.5 )
 extents = Vector2( 40.5, 44.5 )
 
 [node name="BSFinal2" instance=ExtResource( 1 )]
+script = ExtResource( 20 )
 props = ExtResource( 5 )
 
 [node name="Shadow" parent="." index="0"]

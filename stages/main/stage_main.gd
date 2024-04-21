@@ -6,6 +6,7 @@ const DUMMY = "res://enemy/Dummy/Dummy.tscn"
 const BS_FINAL = "res://enemy/BSFinal/BSFinal.tscn"
 
 onready var _stage_bg = $WorldStaticBody/Background
+onready var _stage_bg_end_anim = $WorldStaticBody/BackgroundEnd/AnimationPlayer
 onready var _random = RandomNumberGenerator.new()
 
 onready var rmnt_select = $CanvasLayer/RmntSelect
@@ -211,3 +212,18 @@ func _get_random_offset():
 		_random.randomize()
 		var y = _random.randf_range(-shake_val, shake_val)
 		return Vector2(0, y)
+
+
+func trigger_end():
+	MusicGlobal.stop_all()
+	
+	MusicGlobal.play("MainEnd")
+	get_tree().current_scene.get_node("HUD/PauseMenu").can_pause = false
+	get_tree().current_scene.get_node("HUD/PlayerBar").visible = false
+	Engine.time_scale = .5
+	_stage_bg_end_anim.play("Start")
+
+
+func free_world():
+	Engine.time_scale = 1
+	$World.queue_free()
