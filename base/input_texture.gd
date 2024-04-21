@@ -9,16 +9,18 @@ onready var texture_ctrl = load(texture_ctrl_path)
 
 
 func _ready():
-	if Global.is_keyboard:
-		self.texture = texture_kb
-	else:
-		self.texture = texture_ctrl
+	self.texture = texture_kb
+#	if Global.is_keyboard:
+#		self.texture = texture_kb
+#	else:
+#		self.texture = texture_ctrl
 
 
 func _input(event):
-	if event is InputEventKey:
-		Global.is_keyboard = true
-		self.texture = texture_kb
-	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		Global.is_keyboard = false
-		self.texture = texture_ctrl
+	pass
+#	if event is InputEventKey:
+#		Global.is_keyboard = true
+#		self.texture = texture_kb
+#	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+#		Global.is_keyboard = false
+#		self.texture = texture_ctrl
